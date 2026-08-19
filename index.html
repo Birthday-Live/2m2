@@ -1,41 +1,696 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="titanium">
 <head>
     <meta charset="UTF-8">
-    <title>二月二 · 发生了什么？</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CifangStudio / 2011</title>
+    <style>
+        /* ==========================================================================
+           1. 高级感色彩与变量系统 (Muted & Premium)
+           ========================================================================== */
+        :root {
+            --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+            --font-mono: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --radius-main: 28px;
+            --radius-card: 20px;
+        }
+
+        /* 主题 1：钛空暗黑 (Titanium Dark) */
+        [data-theme="titanium"] {
+            --bg-body: #0a0a0c;
+            --card-bg: rgba(22, 22, 26, 0.65);
+            --border-light: rgba(255, 255, 255, 0.08);
+            --border-focus: rgba(255, 255, 255, 0.25);
+            --text-main: #f4f4f6;
+            --text-sub: #71717a;
+            --accent-primary: #e4e4e7;
+            --accent-glow: rgba(255, 255, 255, 0.05);
+            --canvas-dot: 255, 255, 255;
+        }
+
+        /* 主题 2：深海极光 (Aero Northern) */
+        [data-theme="aero"] {
+            --bg-body: #06090e;
+            --card-bg: rgba(13, 20, 31, 0.65);
+            --border-light: rgba(56, 189, 248, 0.12);
+            --border-focus: rgba(56, 189, 248, 0.35);
+            --text-main: #f0f9ff;
+            --text-sub: #64748b;
+            --accent-primary: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.08);
+            --canvas-dot: 56, 189, 248;
+        }
+
+        /* 主题 3：香槟暮光 (Champagne) */
+        [data-theme="champagne"] {
+            --bg-body: #0d0c0b;
+            --card-bg: rgba(28, 25, 23, 0.65);
+            --border-light: rgba(214, 211, 209, 0.12);
+            --border-focus: rgba(217, 119, 6, 0.35);
+            --text-main: #fafaf9;
+            --text-sub: #78716c;
+            --accent-primary: #d6d3d1;
+            --accent-glow: rgba(217, 119, 6, 0.06);
+            --canvas-dot: 214, 211, 209;
+        }
+
+        /* ==========================================================================
+           2. 基础重置
+           ========================================================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 16px;
+            overflow-x: hidden;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* 背景氛围柔光 */
+        .ambient-blur {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 50% 30%, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ==========================================================================
+           3. 核心容器与微模糊玻璃面板
+           ========================================================================== */
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 860px;
+        }
+
+        .haute-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(40px) saturate(140%);
+            -webkit-backdrop-filter: blur(40px) saturate(140%);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-main);
+            padding: 32px 28px;
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.56);
+            transition: border-color 0.5s var(--ease-out);
+        }
+
+        /* ==========================================================================
+           4. Header 极简顶栏
+           ========================================================================== */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-mark {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            box-shadow: 0 0 12px var(--accent-primary);
+        }
+
+        .brand-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-sub);
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .theme-pills {
+            display: flex;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-light);
+            padding: 3px;
+            border-radius: 100px;
+        }
+
+        .pill-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-sub);
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .pill-btn.active {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .icon-btn {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-light);
+            color: var(--text-sub);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .icon-btn:active {
+            transform: scale(0.92);
+        }
+
+        /* ==========================================================================
+           5. Hero 主标题与极细排版
+           ========================================================================== */
+        .hero {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .hero-tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .hero-date {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            font-weight: 400;
+        }
+
+        /* ==========================================================================
+           6. 网格卡片（超薄微光感）
+           ========================================================================== */
+        .grid-matrix {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-card);
+            padding: 24px 12px;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s var(--ease-out);
+        }
+
+        .time-box:hover {
+            border-color: var(--border-focus);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .num-val {
+            font-family: var(--font-mono);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .num-lbl {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-sub);
+        }
+
+        /* ==========================================================================
+           7. 进度分析（极简线条）
+           ========================================================================== */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .metric-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-card);
+            padding: 20px 22px;
+        }
+
+        .metric-title {
+            font-size: 0.68rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-sub);
+            margin-bottom: 16px;
+        }
+
+        .bar-group {
+            margin-bottom: 14px;
+        }
+
+        .bar-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .bar-meta {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .bar-meta span:last-child {
+            color: var(--text-sub);
+        }
+
+        .bar-track {
+            height: 2px;
+            background: rgba(255, 255, 255, 0.06);
+            width: 100%;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: var(--text-main);
+            width: 0%;
+            transition: width 1s var(--ease-out);
+        }
+
+        .data-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+        }
+
+        .data-row .key {
+            color: var(--text-sub);
+        }
+
+        .data-row .val {
+            font-family: var(--font-mono);
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* ==========================================================================
+           8. Footer 页脚
+           ========================================================================== */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--text-sub);
+            border-top: 1px solid var(--border-light);
+            padding-top: 20px;
+        }
+
+        /* ==========================================================================
+           9. 移动端自适应微调
+           ========================================================================== */
+        @media (max-width: 640px) {
+            .haute-card {
+                padding: 24px 18px;
+                border-radius: 24px;
+            }
+
+            .grid-matrix {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 16px;
+                align-items: stretch;
+                margin-bottom: 32px;
+            }
+
+            .controls {
+                justify-content: space-between;
+            }
+
+            .pill-btn {
+                padding: 5px 10px;
+            }
+
+            .time-box {
+                padding: 18px 8px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="page-header">
-        <h1>二月二 · 历史事件搜索</h1>
-        <p class="subtitle">输入年份即可查看对应事件（1800–2026）</p>
-    </header>
 
-    <main class="main-container">
+    <canvas id="bg-canvas"></canvas>
+    <div class="ambient-blur"></div>
 
-        <section class="controls">
-            <input id="yearInput" type="number" placeholder="请输入年份，例如：1943">
-            <button id="searchBtn">搜索</button>
-        </section>
+    <div class="container">
+        <main class="haute-card">
+            
+            <!-- 顶栏 -->
+            <header class="header">
+                <div class="brand">
+                    <div class="brand-mark"></div>
+                    <span class="brand-name">CIfang Studio</span>
+                </div>
 
-        <section class="event-card">
-            <h2 id="eventTitle">等待搜索年份</h2>
-            <p class="event-date">公历日期：2 月 2 日</p>
-            <div id="eventContent" class="event-content">
-                输入年份后即可显示对应事件。
-            </div>
-        </section>
+                <div class="controls">
+                    <div class="theme-pills">
+                        <button class="pill-btn active" onclick="setTheme('titanium')">钛空</button>
+                        <button class="pill-btn" onclick="setTheme('aero')">极光</button>
+                        <button class="pill-btn" onclick="setTheme('champagne')">暮光</button>
+                    </div>
 
-    </main>
+                    <button class="icon-btn" id="audio-btn" onclick="toggleAudio()" aria-label="Toggle Audio">
+                        <svg id="icon-off" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <line x1="23" y1="9" x2="17" y2="15"></line>
+                            <line x1="17" y1="9" x2="23" y2="15"></line>
+                        </svg>
+                        <svg id="icon-on" style="display:none;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                        </svg>
+                    </button>
+                </div>
+            </header>
 
-    <footer class="page-footer">
-        <p>
-            <a href="https://t.me/Jixue_bot" target="_blank" style="color:#2563eb; text-decoration:none;">
-                添加请联系 @Jixue_bot
-            </a>
-        </p>
-    </footer>
+            <!-- 极简 Headline -->
+            <section class="hero">
+                <span class="hero-tag">Temporal Elapsed</span>
+                <h1 class="hero-title">2011 至今的时间沉淀</h1>
+                <p class="hero-date">SINCE FEB 02, 2011 — 00:00:00</p>
+            </section>
 
-    <script src="main.js"></script>
+            <!-- 核心数字矩阵 -->
+            <section class="grid-matrix">
+                <div class="time-box">
+                    <div class="num-val" id="cnt-days">0</div>
+                    <div class="num-lbl">Days</div>
+                </div>
+                <div class="time-box">
+                    <div class="num-val" id="cnt-hours">00</div>
+                    <div class="num-lbl">Hours</div>
+                </div>
+                <div class="time-box">
+                    <div class="num-val" id="cnt-mins">00</div>
+                    <div class="num-lbl">Minutes</div>
+                </div>
+                <div class="time-box">
+                    <div class="num-val" id="cnt-secs">00</div>
+                    <div class="num-lbl">Seconds</div>
+                </div>
+            </section>
+
+            <!-- 指标细分 -->
+            <section class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">Temporal Progress</div>
+                    <div class="bar-group">
+                        <div class="bar-meta">
+                            <span>Today</span>
+                            <span id="p-day-val">0%</span>
+                        </div>
+                        <div class="bar-track">
+                            <div class="bar-fill" id="p-day-bar"></div>
+                        </div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-meta">
+                            <span>This Year</span>
+                            <span id="p-year-val">0%</span>
+                        </div>
+                        <div class="bar-track">
+                            <div class="bar-fill" id="p-year-bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-title">Aggregated Metrics</div>
+                    <div class="data-list">
+                        <div class="data-row">
+                            <span class="key">Total Hours</span>
+                            <span class="val" id="tot-hours">0</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="key">Total Seconds</span>
+                            <span class="val" id="tot-secs">0</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <span>SYSTEM / ONLINE</span>
+                <span>FPS <span id="fps-val">60</span></span>
+            </footer>
+
+        </main>
+    </div>
+
+    <script>
+        const START_TIME = new Date(2011, 1, 2, 0, 0, 0, 0);
+        let audioCtx = null;
+        let audioEnabled = false;
+
+        // 触感反馈微震动
+        function triggerHaptic() {
+            if (navigator.vibrate) {
+                navigator.vibrate(10);
+            }
+        }
+
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (AudioContextClass) audioCtx = new AudioContextClass();
+            }
+        }
+
+        function playSoftTick() {
+            if (!audioEnabled || !audioCtx) return;
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                // 使用低调的高频微嘀嗒声
+                osc.frequency.setValueAtTime(2400, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.015);
+
+                gain.gain.setValueAtTime(0.008, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.015);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.015);
+            } catch(e){}
+        }
+
+        function toggleAudio() {
+            triggerHaptic();
+            initAudio();
+            audioEnabled = !audioEnabled;
+            document.getElementById('icon-on').style.display = audioEnabled ? 'block' : 'none';
+            document.getElementById('icon-off').style.display = audioEnabled ? 'none' : 'block';
+        }
+
+        function setTheme(name) {
+            triggerHaptic();
+            document.documentElement.setAttribute('data-theme', name);
+            document.querySelectorAll('.pill-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes(name)) btn.classList.add('active');
+            });
+        }
+
+        // 背景微光星尘 Canvas
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let dots = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Dot {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vy = -(Math.random() * 0.2 + 0.05);
+                this.size = Math.random() * 1.2 + 0.3;
+                this.alpha = Math.random() * 0.4 + 0.1;
+            }
+            update() {
+                this.y += this.vy;
+                if (this.y < 0) this.reset();
+            }
+            draw() {
+                const rgb = getComputedStyle(document.documentElement).getPropertyValue('--canvas-dot').trim() || '255, 255, 255';
+                ctx.fillStyle = `rgba(${rgb}, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 40; i++) dots.push(new Dot());
+
+        // 主循环
+        let lastSec = -1;
+        let frames = 0;
+        let lastFpsCalc = performance.now();
+
+        function fmt(n) { return n.toLocaleString(); }
+        function pad(n) { return n < 10 ? '0' + n : n; }
+
+        function loop(nowTime) {
+            frames++;
+            if (nowTime - lastFpsCalc >= 1000) {
+                document.getElementById('fps-val').textContent = frames;
+                frames = 0;
+                lastFpsCalc = nowTime;
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            dots.forEach(d => { d.update(); d.draw(); });
+
+            const now = new Date();
+            const diffMs = now.getTime() - START_TIME.getTime();
+
+            if (diffMs >= 0) {
+                const totalSecs = Math.floor(diffMs / 1000);
+                const totalHours = Math.floor(totalSecs / 3600);
+
+                const days = Math.floor(totalSecs / (24 * 3600));
+                const hours = Math.floor((totalSecs % (24 * 3600)) / 3600);
+                const mins = Math.floor((totalSecs % 3600) / 60);
+                const secs = totalSecs % 60;
+
+                document.getElementById('cnt-days').textContent = fmt(days);
+                document.getElementById('cnt-hours').textContent = pad(hours);
+                document.getElementById('cnt-mins').textContent = pad(mins);
+                document.getElementById('cnt-secs').textContent = pad(secs);
+
+                document.getElementById('tot-hours').textContent = fmt(totalHours) + " HRS";
+                document.getElementById('tot-secs').textContent = fmt(totalSecs) + " SEC";
+
+                if (secs !== lastSec) {
+                    playSoftTick();
+                    lastSec = secs;
+                }
+
+                // 进度条计算
+                const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                const dayP = (((now - startOfDay) / (24 * 3600 * 1000)) * 100).toFixed(1);
+
+                const startOfYear = new Date(now.getFullYear(), 0, 1);
+                const endOfYear = new Date(now.getFullYear() + 1, 0, 1);
+                const yearP = (((now - startOfYear) / (endOfYear - startOfYear)) * 100).toFixed(1);
+
+                document.getElementById('p-day-val').textContent = dayP + '%';
+                document.getElementById('p-day-bar').style.width = dayP + '%';
+
+                document.getElementById('p-year-val').textContent = yearP + '%';
+                document.getElementById('p-year-bar').style.width = yearP + '%';
+            }
+
+            requestAnimationFrame(loop);
+        }
+
+        requestAnimationFrame(loop);
+    </script>
 </body>
 </html>
