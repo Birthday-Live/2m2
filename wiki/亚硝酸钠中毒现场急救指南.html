@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1565c0">
+<title>亚硝酸钠（亚硝酸盐）中毒现场急救指南</title>
+<style>
+  :root{
+    --blue:#1565c0;
+    --blue-dark:#0d47a1;
+    --blue-bg:#e7f0fb;
+    --red:#c62828;
+    --red-bg:#fdeaea;
+    --amber:#b26a00;
+    --amber-bg:#fff6e6;
+    --green:#1b5e20;
+    --green-bg:#e9f6ea;
+    --ink:#17212b;
+    --muted:#5c6672;
+    --line:#e3e9f0;
+    --bg:#f4f7fb;
+    --card:#ffffff;
+    --radius:16px;
+    --shadow:0 8px 28px rgba(20,50,90,.08);
+    --maxw:860px;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Segoe UI",system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.85;
+    font-size:17px;
+  }
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+  /* ---------- 顶部通栏 ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(244,247,251,.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+  .brand{font-weight:800;letter-spacing:.3px;color:var(--blue-dark);display:flex;align-items:center;gap:9px}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(198,40,40,.15)}
+  .topnav{display:flex;gap:6px;font-size:14px}
+  .topnav a{color:var(--muted);padding:6px 9px;border-radius:8px}
+  .topnav a:hover{background:var(--blue-bg);color:var(--blue-dark);text-decoration:none}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      radial-gradient(1200px 420px at 15% -10%, rgba(255,255,255,.14), transparent),
+      linear-gradient(135deg,#0d47a1 0%,#1565c0 55%,#1976d2 100%);
+    color:#fff;
+    padding:54px 0 46px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{max-width:var(--maxw)}
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.28);
+    padding:6px 15px;border-radius:999px;
+    font-size:13.5px;letter-spacing:.4px;margin-bottom:18px;
+  }
+  .hero h1{font-size:clamp(26px,5vw,40px);line-height:1.28;margin:0 0 14px;font-weight:900;letter-spacing:.5px}
+  .hero .sub{font-size:16.5px;color:#e4eefb;max-width:640px;margin:0}
+  .hero .sub b{color:#fff}
+
+  /* ---------- 最重要提醒横幅 ---------- */
+  .sos{
+    margin:-24px auto 0;max-width:var(--maxw);
+    position:relative;z-index:5;
+  }
+  .sos .inner{
+    background:linear-gradient(135deg,#fff0f0,#fff);
+    border:1px solid #f3c6c6;border-left:6px solid var(--red);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:24px 26px;
+  }
+  .sos .inner b{color:var(--red)}
+  .sos .inner p{margin:8px 0;font-size:18px}
+  .sos .inner p:first-child{margin-top:0}
+
+  /* ---------- 目 录 ---------- */
+  .toc{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:24px 26px;margin:34px 0;
+  }
+  .toc h2{margin:0 0 12px;font-size:15px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase}
+  .toc ol{margin:0;padding-left:20px;columns:1;column-gap:30px}
+  .toc a{color:var(--ink);display:block;padding:6px 0;border-bottom:1px dashed var(--line)}
+  .toc li{break-inside:avoid}
+  @media(min-width:640px){.toc ol{columns:2}}
+
+  /* ---------- 区块 ---------- */
+  section{padding:8px 0 20px}
+  .card{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:28px 28px;margin:22px 0;
+  }
+
+  h2.sec-title{
+    font-size:23px;font-weight:900;color:var(--blue-dark);
+    margin:0 0 6px;display:flex;align-items:center;gap:12px;
+  }
+  h2.sec-title .no{
+    flex:none;width:30px;height:30px;border-radius:9px;
+    background:var(--blue-bg);color:var(--blue-dark);
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:15px;font-weight:800;
+  }
+  .sec-lead{color:var(--muted);margin:0 0 18px}
+
+  h3.sub{font-size:18.5px;font-weight:800;color:var(--ink);margin:30px 0 8px;display:flex;align-items:center;gap:10px}
+  h3.sub::before{content:"";width:4px;height:18px;border-radius:3px;background:var(--blue)}
+  h3.sub .tag{font-size:12px;font-weight:700;color:#fff;padding:2px 8px;border-radius:6px;letter-spacing:.5px}
+
+  /* ---------- 呼叫 120 卡片 ---------- */
+  .call{
+    background:linear-gradient(135deg,#0d47a1,#1976d2);
+    color:#fff;border-radius:var(--radius);padding:24px 26px;margin:18px 0;
+  }
+  .call h4{margin:0 0 12px;font-size:19px;display:flex;align-items:center;gap:10px}
+  .call h4 .ph{font-size:26px;line-height:1}
+  .call pre{
+    white-space:pre-wrap;font-family:inherit;
+    background:rgba(255,255,255,.12);
+    border-left:4px solid rgba(255,255,255,.5);
+    padding:14px 18px;border-radius:10px;margin:0;
+    font-size:16px;line-height:1.7;
+  }
+  .call .hint{font-size:14px;color:#e0ebfb;margin-top:12px}
+
+  /* ---------- 步骤 / 列表 ---------- */
+  .step{border-left:3px solid var(--line);padding:2px 0 2px 18px;margin:14px 0}
+  .step h4{margin:0 0 4px;font-size:17px;font-weight:800}
+  .step p{margin:4px 0}
+  .step ul{margin:6px 0 0;padding-left:20px}
+  .step li{margin:4px 0}
+
+  ul.clean{list-style:none;padding-left:0;margin:10px 0}
+  ul.clean li{padding:7px 0 7px 30px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.clean li::before{
+    content:"";position:absolute;left:6px;top:17px;
+    width:8px;height:8px;border-radius:50%;background:var(--blue);
+  }
+  ul.clean li:last-child{border-bottom:none}
+
+  /* ---------- 提示框 ---------- */
+  .box{border-radius:14px;padding:16px 18px;margin:16px 0;border:1px solid}
+  .box p{margin:5px 0}
+  .box p:first-child{margin-top:0}
+  .box.warn{background:var(--red-bg);border-color:#e8b3b3}
+  .box.warn h4,.box.warn b{color:var(--red)}
+  .box.note{background:var(--amber-bg);border-color:#ecd7a8}
+  .box.note h4,.box.note b{color:var(--amber)}
+  .box.info{background:var(--blue-bg);border-color:#bfd4f0}
+  .box.info h4,.box.info b{color:var(--blue-dark)}
+  .box.good{background:var(--green-bg);border-color:#bcdbc0}
+  .box.good h4,.box.good b{color:var(--green)}
+
+  .flex2{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:640px){.flex2{grid-template-columns:1fr 1fr}}
+  .mini{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+
+  /* 不做的事 */
+  .dont{background:var(--red-bg);border:1px solid #e8b3b3;border-radius:12px;padding:14px 16px}
+  .dont li{margin:6px 0;position:relative;padding-left:8px}
+  .dont li::marker{color:var(--red)}
+  .dont b{color:var(--red)}
+
+  /* ---------- 危机章节 ---------- */
+  .crisis{
+    background:linear-gradient(160deg,#12100d,#2c251b);
+    color:#f3ede4;border-radius:var(--radius);
+    padding:34px 30px;margin:26px 0;
+  }
+  .crisis h2{color:#fbe7cf;font-size:21px;font-weight:900;margin:0 0 16px}
+  .crisis p{color:#ece3d6;margin:12px 0}
+  .crisis .hl{color:#ffd08a;font-weight:800}
+  .crisis .quote{
+    border-left:4px solid #b98a4a;padding-left:18px;margin:18px 0;
+    font-size:19px;font-weight:700;color:#fff3e0;
+  }
+
+  .hotline{
+    background:#fff;color:var(--ink);border-radius:12px;padding:18px 20px;margin-top:22px;
+    box-shadow:0 6px 20px rgba(0,0,0,.25);
+  }
+  .hotline h4{margin:0 0 10px;font-size:16px;color:var(--blue-dark)}
+  .hotline .num{font-size:22px;font-weight:900;color:var(--red)}
+
+  /* ---------- 参考文献 ---------- */
+  .refs{font-size:14px;color:var(--muted)}
+  .refs .s{color:var(--blue-dark);font-weight:700;margin:16px 0 6px}
+  .refs ol{padding-left:20px;margin:6px 0}
+  .refs li{margin:5px 0}
+  .refs a{word-break:break-all}
+
+  .sep{height:1px;background:var(--line);margin:14px 0}
+
+  footer{color:var(--muted);text-align:center;font-size:12.5px;padding:40px 20px 50px}
+  footer a{color:var(--muted)}
+  footer .dis{max-width:600px;margin:0 auto;line-height:1.7}
+
+  /* ---------- 打印 ---------- */
+  @media print{
+    .topbar{display:none}
+    body{background:#fff;font-size:13px}
+    .card,.toc{box-shadow:none;border-color:#ccc}
+    a{color:#000}
+  }
+</style>
+</head>
+<body>
+
+  <!-- 顶部通栏 -->
+  <header class="topbar">
+    <div class="wrap">
+      <div class="brand"><span class="dot"></span>急救指南</div>
+      <nav class="topnav">
+        <a href="#guide">旁人版</a>
+        <a href="#self">本人版</a>
+        <a href="#science">原理</a>
+        <a href="#crisis">求助</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="kicker">⚠️ 急救 + 危机干预 · 请先看最上面那句</div>
+      <h1>亚硝酸钠（亚硝酸盐）<br>中毒现场急救指南</h1>
+      <p class="sub"><b>「旁人优先版」</b>——专为「刚发现有人吞了亚硝酸盐」或「你自己刚吞下、还能看手机」的时刻而写。人命关天，极其危险。</p>
+    </div>
+  </section>
+
+  <!-- 最重要提醒 -->
+  <div class="sos">
+    <div class="inner">
+      <p>⚠️ <b>最重要的一句先说在最前面：</b></p>
+      <p>一旦怀疑有人因为摄入亚硝酸钠 / 亚硝酸盐而中毒，<br><b>第一步永远是：立刻拨打 120（或当地急救电话）。</b></p>
+      <p>请以急救调度员和医生的指示为最高优先级。本页面只是帮你把他们可能会说的话讲得更清楚、更有条理，<b>不能代替专业诊断和治疗。</b></p>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <!-- 目录 -->
+    <nav class="toc">
+      <h2>本页目录</h2>
+      <ol>
+        <li><a href="#guide">旁观者版：现在立刻能做的事（按时间顺序）</a></li>
+        <li><a href="#self">本人版：如果你就是吞了亚硝酸盐的那个人</a></li>
+        <li><a href="#science">亚硝酸钠中毒：它在身体里做了什么？</a></li>
+        <li><a href="#mtf">对 MTF / 长期用药人群和同伴的特别提醒</a></li>
+        <li><a href="#crisis">写给正在考虑用亚硝酸盐自杀的你</a></li>
+        <li><a href="#refs">参考文献</a></li>
+      </ol>
+    </nav>
+
+    <!-- ===== 0. 使用说明 ===== -->
+    <section id="guide">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">0</span>使用说明 &amp; 适用范围</h2>
+        <p class="sec-lead">本页面向两类人：</p>
+        <ul class="clean">
+          <li><b>旁人 / 朋友 / 家属</b>：刚发现有人吞了亚硝酸盐；</li>
+          <li><b>本人</b>：你自己刚吞了亚硝酸盐，还能看手机、还能做决定。</li>
+        </ul>
+        <div class="box info">
+          <p>本页面<b>只谈中毒后的急救与求生</b>，不会提供任何关于：</p>
+          <p>购买渠道 · 具体剂量 · 配方和「成功率」</p>
+          <p>任何时候，只要你觉得情况危急，<b>别浪费时间在 wiki 上纠结细节，直接听医务人员的。</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 一、旁人视角 ===== -->
+    <section>
+      <div class="card">
+        <h2 class="sec-title"><span class="no">一</span>旁观者版：现在立刻能做的事</h2>
+        <p class="sec-lead">按时间顺序来，别乱。</p>
+
+        <!-- 1 -->
+        <div class="call">
+          <h4><span class="ph">📞</span>1. 立刻拨打 120 / 急救电话</h4>
+          <p style="margin-top:0"><b>别等症状「更严重一点再叫车」。</b>亚硝酸钠可以在短时间内让血液失去携氧能力，导致严重缺氧、意识改变、心律失常甚至心跳骤停。</p>
+          <p style="margin:0 0 10px">拨打 120 时，可以按这个结构说（可以直接照读）：</p>
+          <pre>“这里是（地址/大概位置）。
+有一名 疑似摄入亚硝酸钠（亚硝酸盐）自杀/误服的病人。
+现在表现为：嘴唇/指甲发紫，呼吸困难 / 剧烈头晕 / 恶心呕吐 / 说话含糊 / 好像要昏过去。
+请尽快派车。
+请同时提醒急诊科：可能是亚硝酸盐引起的高铁血红蛋白血症，
+需要准备亚甲蓝注射液、高流量氧气、静脉通路和必要时的血液净化设备。”</pre>
+          <p class="hint">（不用纠结术语读得准不准，只要让「<b>亚硝酸盐 + 可能要用亚甲蓝</b>」这两个信息传到医院就行。）</p>
+        </div>
+
+        <div class="box warn">
+          <p><b>通话时建议：</b></p>
+          <p>开免提 / 耳机，一边听调度员指导，一边做下面的步骤；</p>
+          <p>不要因为「怕麻烦」或「怕被问细节」而隐瞒「这是自杀」的事实——这些信息会直接影响医生在急诊室的优先级和准备。</p>
+        </div>
+
+        <!-- 2 -->
+        <h3 class="sub">2. 快速判断意识和呼吸，摆好体位</h3>
+        <p>你不用会专业医学，只要分三种情况：<b>还算清醒 / 意识模糊 / 完全叫不醒</b>。</p>
+
+        <div class="flex2">
+          <div class="mini">
+            <h4 style="font-size:16px;color:var(--blue-dark)">2.1 还能说话、有反应 → 「清醒但危险」</h4>
+            <p>让 TA <b>尽量半坐位或舒适坐姿</b>，不要强迫其走动或站着说话，避免加重缺氧。</p>
+            <p>松开领口、围巾、腰带，保持空气流通，但不要吹冷风。</p>
+            <p>安抚情绪，不要逼问「为什么要这样做」，<b>此刻先以保命为第一优先。</b></p>
+          </div>
+          <div class="mini">
+            <h4 style="font-size:16px;color:var(--amber)">2.2 说话含糊、反应迟钝 / 反复呕吐 → 「意识模糊」</h4>
+            <p>让 TA <b>改为侧卧位</b>：头偏向一侧，下巴略抬起，保持气道尽量通畅；防止呕吐物倒流、堵住气道。</p>
+            <p>用纸巾 / 毛巾轻轻清理口鼻可见呕吐物或异物。</p>
+            <p>观察呼吸：胸廓有没有起伏、有没有异常打鼾声或喘不过气的样子。</p>
+          </div>
+        </div>
+
+        <div class="box warn">
+          <h4>2.3 完全叫不醒，怀疑没呼吸 / 没脉搏 → 「极危重」</h4>
+          <p>立刻告诉 120 调度员<b>「叫不醒、怀疑没呼吸 / 没脉搏」</b>。</p>
+          <p>如果你学过 CPR，按当地流程立即开始心肺复苏。没学过，也可以在调度员电话指导下进行<b>胸外按压</b>。</p>
+          <p>按压频率和深度由调度员教你，你跟着做就行。</p>
+          <p style="margin-top:12px"><b>你此刻做得不完美，也比什么都不做强。</b></p>
+        </div>
+
+        <!-- 3 -->
+        <h3 class="sub">3. 防止继续暴露 &amp; 明确「不要做」的事</h3>
+        <div class="box info">
+          <h4>3.1 防止更多人接触</h4>
+          <p>如果有散落的白色粉末 / 开口包装袋：</p>
+          <p>不要徒手抓，用纸巾 / 手套简单装进袋子，避免其他人误触或误食；不要在风口、阳台等地方撒得到处都是。</p>
+        </div>
+
+        <div class="dont">
+          <h4 style="color:var(--red)">3.2 很多人第一反应是错的，请尽量避免：</h4>
+          <ul>
+            <li><b>❌ 不要催吐</b> — 亚硝酸钠有一定腐蚀性，强行催吐可能加重食管和咽喉损伤，还增加呕吐物误吸风险。</li>
+            <li><b>❌ 不要疯狂灌水</b> — 大量喝水既不能真正「解毒」，反而增加呕吐和误吸的风险。</li>
+            <li><b>❌ 不要给酒、可乐、奇怪的「解毒偏方」</b> — 酒精会进一步影响循环系统；各种民间偏方没有可靠证据，可能拖延就医。</li>
+            <li><b>❌ 不要因为症状暂时缓解就取消去医院</b> — 亚硝酸盐导致的是血液携氧能力下降，早期症状有时会波动，<b>并不意味着危险已经过去</b>。</li>
+          </ul>
+        </div>
+
+        <div class="box note">
+          <h4>3.3 家用氧气可以用，但不能当「治好了」</h4>
+          <p>如果家里刚好有正规<b>医用氧气瓶</b>，按说明给 TA 吸氧，能稍微缓解缺氧感。但要知道：</p>
+          <p>氧气只是「撑一撑」，<b>不能把已经变成高铁血红蛋白的那部分血红蛋白变回来</b>，真正的解毒需要专业治疗。</p>
+        </div>
+
+        <!-- 4 -->
+        <h3 class="sub">4. 帮医生准备的关键信息和物品</h3>
+        <p>在不耽误急救的前提下，尽量做这些：</p>
+        <div class="flex2">
+          <div class="mini">
+            <h4 style="color:var(--blue-dark)">带上 / 拍照所有可疑的东西</h4>
+            <ul class="clean">
+              <li>亚硝酸盐粉末、包装袋、瓶子</li>
+              <li>同时发现的其他药片、空药板、酒瓶等</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4 style="color:var(--blue-dark)">记下（哪怕是大致的）</h4>
+            <ul class="clean">
+              <li><b>摄入时间</b>（大约多久以前？）</li>
+              <li>可能摄入的大致量（比如「饭勺两勺」「整袋倒进去」等模糊描述也有用）</li>
+              <li>是否合并其他药物或酒精</li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top:14px">如果知道 TA 原本有的疾病或长期在吃的药（比如抗抑郁药 / 抗焦虑药 / 抗精神病药、HRT〔雌二醇、抗雄药物〕、心血管疾病药物），就记在纸上或手机备忘录里，<b>一起交给急诊医生</b>。</p>
+        <p>这些信息会直接影响：医生是否考虑给予<b>亚甲蓝解毒</b>以及采用何种剂量；如何避免与既往药物发生相互作用（例如部分抗抑郁药与亚甲蓝合用存在 5-HT 综合征风险）。</p>
+      </div>
+    </section>
+
+    <!-- ===== 二、本人视角 ===== -->
+    <section id="self">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">二</span>本人版：如果你就是吞了亚硝酸盐的那个人</h2>
+        <p>如果你现在是边难受边拿着手机看的那一个，请先深呼吸一下（哪怕很难），然后<b>把注意力先放在「如何活下来」</b>。</p>
+        <div class="box good">
+          <p><b>你还能看字、还能操作手机，就说明你离「完全没机会」还有距离。</b>亚硝酸盐中毒如果尽早用上亚甲蓝和支持治疗，很多病例是完全可以恢复的。</p>
+        </div>
+        <p>你不需要向任何人证明「你是认真的」。你已经做了一件非常极端、非常决绝的事。<b>现在最极端的做法，是亲手把自己送进急诊室。</b></p>
+        <p>你可以这样打 120（照抄也可以）：</p>
+        <div class="call">
+          <pre>“我刚刚出于自杀想法服用了亚硝酸钠（亚硝酸盐）。
+现在已经出现头晕 / 心慌 / 嘴唇发紫 / 呼吸困难。
+我现在后悔了，想活下去。
+地址在（准确地址或能被找到的位置），请尽快派车，
+请提醒急诊准备亚甲蓝、吸氧、输液和抢救设备。”</pre>
+        </div>
+        <p>如果你是 MTF / TGN / 非二元：你<b>有权利</b>告诉医护你希望怎么被称呼，用什么称谓；同时请告诉他们：你在用哪些<b>激素类药物（雌激素、抗雄）、抗抑郁药、抗精神病药、其他精神科药物</b>。</p>
+        <p>这不是多此一举，而是实实在在关系到他们<b>怎么用解毒药（例如亚甲蓝）以及怎样监测你有没有药物相互作用问题</b>。</p>
+        <div class="box note">
+          <p>你现在做的一切，不是为了「打扰别人」，而是为了让接下来的人生有资格说一句：</p>
+          <p><b>「我死过一次，后来决定试试活下去。」</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 三、原理 ===== -->
+    <section id="science">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">三</span>亚硝酸钠中毒：它在身体里做了什么？</h2>
+        <p class="sec-lead">这一段是为那些想要多知道一点来安抚不确定感的人写的。<b>如果你现在正处在急性现场，优先看前面那几节就足够了。</b></p>
+
+        <h3 class="sub">1. 机制：为什么会「缺氧到发紫」</h3>
+        <p>亚硝酸盐进入体内后，会把血红蛋白里的铁从「二价铁」氧化成「高铁」，变成<b>高铁血红蛋白</b>。这种变了形的血红蛋白<b>不能好好抓住氧气</b>，血液看上去还是红的在流，但器官等于在「干吸没有氧气的空气」。</p>
+        <p>结果就是：明明在呼吸，却像被人掐住脖子一样喘不上气；大脑、心脏等对缺氧最敏感的器官会很快出问题，出现头痛、意识模糊、心律失常甚至心跳骤停。</p>
+
+        <h3 class="sub">2. 典型症状（可能出现的一部分）</h3>
+        <p>症状会因剂量、体重、个体差异而不同，常见的包括：</p>
+        <ul class="clean">
+          <li>皮肤、嘴唇、指甲发<b>青紫 / 灰蓝 / 异常暗红</b></li>
+          <li>剧烈头晕、乏力、胸闷、呼吸困难</li>
+          <li>心跳加快或乱跳（心悸）</li>
+          <li>恶心、呕吐、腹痛</li>
+          <li>视物模糊、说话含糊、行为异常</li>
+          <li>意识模糊、抽搐、昏迷</li>
+        </ul>
+        <p>这些表现的共同本质就是——<b>全身在缺氧</b>。</p>
+        <div class="box warn">
+          <p><b>重点：</b>一旦出现「发紫 + 呼吸困难 + 意识改变」，不要继续在家观察，把它当成心梗、中风那种等级的危重情况来处理。</p>
+        </div>
+
+        <h3 class="sub">3. 医院大致会做些什么？（科普向说明）</h3>
+        <p>具体操作由医生根据情况决定，这里只是帮助你理解，不是自救教程：</p>
+        <div class="flex2">
+          <div class="mini"><h4 style="color:var(--blue-dark)">监测与检查</h4>
+            <ul class="clean"><li>生命体征：血压、心率、呼吸频率、血氧饱和度</li><li>实验室检查：动脉血气分析、血中高铁血红蛋白水平等</li></ul>
+          </div>
+          <div class="mini"><h4 style="color:var(--blue-dark)">基础支持治疗</h4>
+            <ul class="clean"><li>高流量氧气吸入（面罩 / 高流量鼻导管）</li><li>建立静脉通路、输液维持循环稳定</li><li>必要时使用升压药、抗惊厥药等</li></ul>
+          </div>
+        </div>
+        <div class="box info">
+          <h4>特异性解毒药：亚甲蓝（Methylene Blue）</h4>
+          <p>是<b>获得性高铁血红蛋白血症的一线解毒药物</b>，可以帮助把高铁血红蛋白还原回正常血红蛋白，让血液恢复携氧能力。</p>
+          <p>一般通过静脉缓慢推注 / 输注，根据病情和体重由医生计算剂量。通常在给药后 30–60 分钟内，血氧和症状会明显改善（如果在可逆阶段及时用上）。</p>
+        </div>
+        <div class="box note">
+          <h4>重症时的进一步措施</h4>
+          <p>若出现呼吸衰竭：可能需要气管插管、呼吸机；若对亚甲蓝反应不好或病情极重：可能考虑换血、血液透析等高级支持。</p>
+        </div>
+        <div class="box warn">
+          <h4>延迟就医 / 大剂量摄入可能的后果</h4>
+          <p>若长时间严重缺氧，即使抢救成功，也可能留下脑功能受损、认知障碍等后遗症。</p>
+          <p>简单说：<b>越早到医院，越早用上合适的治疗，越有可能「完全恢复而没有后遗症」。</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 四、MTF 特别提醒 ===== -->
+    <section id="mtf">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">四</span>对 MTF / 长期用药人群和同伴的特别提醒</h2>
+        <p class="sec-lead">这一节不止亚硝酸盐。</p>
+
+        <h3 class="sub">1. 请尽量带上 / 拍照这些东西</h3>
+        <div class="flex2">
+          <div class="mini">
+            <h4 style="color:var(--blue-dark)">所有日常在吃的精神科药物</h4>
+            <ul class="clean"><li>抗抑郁药（SSRI / SNRI / 三环类等）</li><li>抗焦虑药、镇静催眠药</li><li>抗精神病药、心境稳定剂</li></ul>
+          </div>
+          <div class="mini">
+            <h4 style="color:var(--blue-dark)">所有在用的 HRT 药物及其他</h4>
+            <ul class="clean"><li>雌二醇（口服 / 透皮）、醋酸环丙孕酮、螺内酯等</li><li>若有其他慢性病：降压药、心脏病药、抗癫痫药等</li></ul>
+          </div>
+        </div>
+        <p style="margin-top:14px">这些信息对医生来说不是「隐私八卦」，而是<b>用药安全的关键参数</b>。比如：</p>
+        <div class="box warn">
+          <p>亚甲蓝本身是一个强效的可逆 MAOI，<b>与部分抗抑郁药（特别是 SSRI / SNRI）合用时存在 5-HT 综合征风险</b>；但在生命威胁的高铁血红蛋白血症场景下，医生会评估利弊后决定使用方式。</p>
+        </div>
+
+        <h3 class="sub">2. 在急诊可以这样介绍 TA（如果 TA 没法自己讲）</h3>
+        <div class="call">
+          <pre>“TA 是跨性别女性 / 男性 / 非二元，
+长期在用（列出激素）和（列出精神科药物），
+这次是疑似亚硝酸盐自杀中毒。”</pre>
+        </div>
+        <p>这么说既能让医护更快进入状态，也能减少反复追问造成的二次伤害。</p>
+      </div>
+    </section>
+
+    <!-- ===== 五、危机干预 ===== -->
+    <section id="crisis">
+      <div class="crisis">
+        <h2>五、写给正在考虑用亚硝酸盐自杀的你</h2>
+        <p><span class="hl">这段话，是写给那些在搜索时就已经想好了要用亚硝酸盐的人看的。</span></p>
+
+        <h3 style="color:#ffd08a;font-size:18px;margin:26px 0 6px">1. 现实一点：这是一个非常痛苦、非常难控制的方式</h3>
+        <p>法医和临床报告里反复提到：急性亚硝酸盐中毒的死者，全身会呈现<b>蓝灰 / 巧克力色</b>的尸斑；生前则常常经历<b>严重的气促、焦虑、胸痛、头痛、恶心、抽搐</b>等症状。</p>
+        <p>很多案例里，<b>当事人在快窒息的时候其实已经后悔了</b>，求救或者被旁人发现，但因为剂量、体质、就医时间等问题，最后仍然死亡或留下重度后遗症。</p>
+        <p>它既不是「平静」，也不是「干净」，更不是「有尊严」。</p>
+
+        <h3 style="color:#ffd08a;font-size:18px;margin:26px 0 6px">2. 现实一点：这个方法的「失败结局」很糟糕</h3>
+        <p>有人被救回来，却因为长时间缺氧，留下<b>记忆力减退、情绪改变、运动障碍</b>等后遗症；有人从此需要长期服药、复诊、复健，每次回想那一天都会觉得——<b>「如果当时能提前停下或者早点求救就好了。」</b></p>
+        <p>也就是说：</p>
+        <div class="quote">用亚硝酸盐自杀，你付出的代价不只是「死或没死」，中间还有一大片「活着但被严重后遗症困住」的可能。</div>
+
+        <h3 style="color:#ffd08a;font-size:18px;margin:26px 0 6px">3. 你已经极端到这种程度了，其实你还有另外一种极端的选择</h3>
+        <p><span class="hl">你都已经狠下心来吞这种东西了，说明你并不是怕疼、怕麻烦、怕别人怎么想。</span></p>
+        <p><span class="hl">那为什么不把这份狠劲用在「再试一试活下去」上？</span></p>
+        <p><span class="hl">狠一点去找医生、找心理咨询、找能帮忙的人；狠一点去撕开自己现在生活里那些让你崩溃的东西，不再假装一切正常，而是承认你真的撑不住了、需要帮忙。</span></p>
+        <div class="quote">你他妈都有勇气吞亚硝酸盐了，还没勇气试着烂活着一下？</div>
+        <p>我不知道你以后能不能过上「好得不得了」的生活，但至少，如果你现在选择拨打 120、跟医生合作活下去，几年后的你有资格回头骂一句：</p>
+        <p style="font-size:21px;font-weight:900;color:#fff3e0"><b>「当年那个决定真他妈危险，不过幸好最后活下来了。」</b></p>
+        <p>而不是让故事停在一个完全没得改写的结局。</p>
+
+        <div class="hotline">
+          <h4>如果此刻需要帮助，这些渠道随时可以联系：</h4>
+          <p><span class="num">120</span> 急救 · 无论哪种情况，先打这个</p>
+          <p style="margin-bottom:0"><span class="num">110 / 12356</span>&nbsp;心理援助热线（全国各地均有，24 小时）</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 参考文献 ===== -->
+    <section id="refs">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">¶</span>参考文献</h2>
+        <p class="sec-lead">用于编写上述急救与原理部分的医学来源。</p>
+        <div class="refs">
+          <p><b>亚硝酸钠 / 高铁血红蛋白血症急救：</b></p>
+          <ol>
+            <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK537317/">NCBI — Methemoglobinemia</a> · 用于：机制、典型表现、亚甲蓝治疗阈值。</li>
+            <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK557593/">NCBI — Methylene Blue</a> · 用于：亚甲蓝作用方式、禁忌、剂量原则。</li>
+            <li><a href="https://emedicine.medscape.com/article/204178-treatment">Medscape — Treatment</a> · 用于：医院急救流程（氧疗+亚甲蓝+必要时输血）。</li>
+            <li><a href="https://pubmed.ncbi.nlm.nih.gov/34740513/">PubMed — 获得性高铁血红蛋白血症病例综述</a> · 用于：70% 使用亚甲蓝，预后良好。</li>
+            <li><a href="https://eprints.lib.hokudai.ac.jp/dspace/bitstream/2115/66564/1/9013816.pdf">北海道大学 — 典型案例</a> · 用于：摄入→发绀→亚甲蓝逆转。</li>
+            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9282115/">PMC — 致死性中毒</a> · 用于：延误治疗→高死亡率。</li>
+            <li><a href="https://pubmed.ncbi.nlm.nih.gov/38781490/">PubMed — 巨大剂量</a> · 用于：院前使用亚甲蓝的重要性。</li>
+            <li><a href="https://www.hkmj.org/abstracts/v30n5/412.htm">HK Med J — 10g 自杀案例</a> · 用于：及时救治完全恢复。</li>
+            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9654862/">PMC — 法医综述</a> · 用于：亚硝酸钠自杀趋势、现场表现。</li>
+            <li><a href="https://www.mdpi.com/2673-6756/5/3/42">MDPI — 死亡上升趋势</a> · 用于：公共卫生问题。</li>
+            <li><a href="https://link.springer.com/article/10.1007/s12024-025-01066-9">Springer — 致死剂量范围</a> · 用于：约 2.6g，但存在巨大个体差异。</li>
+          </ol>
+          <p class="s">—— 以下用于跨性别 / MTF 群体吞药类型流行病学 ——</p>
+          <ol start="12">
+            <li><a href="https://pubmed.ncbi.nlm.nih.gov/32557176/">PubMed — 跨性别毒理会诊</a> · 用于：自伤/吞药为主；常见药物为镇痛药、抗抑郁药。</li>
+            <li><a href="https://scholarlyworks.lvhn.org/cgi/viewcontent.cgi?article=1606&amp;context=emergency-medicine">LVHN — 跨性别吞药类型分析</a> · 用于：处方药占多。</li>
+            <li><a href="https://www.sciencedirect.com/science/article/abs/pii/S014929182400256X">ScienceDirect — 跨性别 vs 顺性别</a> · 用于：吞药成分差异；抗抑郁药比例显著。</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p class="dis">本页面为公益性质的自救/急救信息整理，仅供科普与现场临时参考，<b>不能替代专业医疗诊断与治疗</b>。任何紧急情况，请第一时间听从 120 调度员和现场医护人员的指导。</p>
+      <p style="margin-top:14px">作者 · <a href="#">水喝千束</a></p>
+    </footer>
+
+  </main>
+</body>
+</html>
