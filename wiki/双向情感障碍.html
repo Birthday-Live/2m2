@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#5e35b1">
+<title>双相情感障碍：认识、自救与陪伴</title>
+<style>
+  :root{
+    --purple:#5e35b1;
+    --purple-dark:#311b92;
+    --purple-bg:#ebe5f8;
+    --purple-line:#cbbcec;
+    --blue:#1e88e5;
+    --blue-bg:#e9f2fc;
+    --rose:#c2185b;
+    --rose-bg:#fbe7ef;
+    --teal:#00796b;
+    --teal-bg:#e0f2ef;
+    --coral:#e53935;
+    --coral-bg:#fdecea;
+    --coral-line:#f2c2bf;
+    --amber:#b26a00;
+    --amber-bg:#fff6e6;
+    --amber-line:#ecd7a8;
+    --green:#1b5e20;
+    --green-bg:#e9f6ea;
+    --ink:#17212b;
+    --muted:#5c6672;
+    --line:#e3e9f0;
+    --bg:#f7f5fc;
+    --card:#ffffff;
+    --radius:16px;
+    --shadow:0 8px 28px rgba(60,30,110,.09);
+    --maxw:880px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{margin:0;color:var(--ink);background:var(--bg);font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.85;font-size:17px}
+  a{color:var(--purple);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(247,245,252,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+  .brand{font-weight:800;letter-spacing:.3px;color:var(--purple-dark);display:flex;align-items:center;gap:9px}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--rose));box-shadow:0 0 0 4px rgba(94,53,177,.15)}
+  .topnav{display:flex;gap:6px;font-size:14px;flex-wrap:wrap}
+  .topnav a{color:var(--muted);padding:6px 9px;border-radius:8px}
+  .topnav a:hover{background:var(--purple-bg);color:var(--purple-dark);text-decoration:none}
+  .hero{background:radial-gradient(1200px 420px at 15% -10%,rgba(255,255,255,.22),transparent),linear-gradient(135deg,#311b92 0%,#5e35b1 55%,#b39ddb 100%);color:#fff;padding:54px 0 46px;position:relative;overflow:hidden}
+  .kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);padding:6px 15px;border-radius:999px;font-size:13.5px;letter-spacing:.4px;margin-bottom:18px}
+  .hero h1{font-size:clamp(26px,5vw,40px);line-height:1.3;margin:0 0 14px;font-weight:900;letter-spacing:.5px}
+  .hero .sub{font-size:16.5px;color:#ece6fb;max-width:660px;margin:0}
+  .hero .sub b{color:#fff}
+  .sos{margin:-24px auto 0;max-width:var(--maxw);position:relative;z-index:5}
+  .sos .inner{background:linear-gradient(135deg,#fff0f0,#fff);border:1px solid var(--coral-line);border-left:6px solid var(--coral);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 26px}
+  .sos .inner b{color:var(--coral)}
+  .sos .inner p{margin:8px 0;font-size:18px}
+  .sos .inner p:first-child{margin-top:0}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 26px;margin:34px 0}
+  .toc h2{margin:0 0 12px;font-size:15px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase}
+  .toc ol{margin:0;padding-left:20px;columns:1;column-gap:30px}
+  .toc a{color:var(--ink);display:block;padding:6px 0;border-bottom:1px dashed var(--line)}
+  .toc li{break-inside:avoid}
+  @media(min-width:640px){.toc ol{columns:2}}
+  section{padding:8px 0 20px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin:22px 0}
+  h2.sec-title{font-size:23px;font-weight:900;color:var(--purple-dark);margin:0 0 6px;display:flex;align-items:center;gap:12px}
+  h2.sec-title .no{flex:none;width:30px;height:30px;border-radius:9px;background:var(--purple-bg);color:var(--purple-dark);display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:800}
+  .sec-lead{color:var(--muted);margin:0 0 18px}
+  h3.sub{font-size:18.5px;font-weight:800;color:var(--ink);margin:30px 0 8px;display:flex;align-items:center;gap:10px}
+  h3.sub::before{content:"";width:4px;height:18px;border-radius:3px;background:linear-gradient(180deg,var(--purple),var(--rose))}
+  .box{border-radius:14px;padding:16px 18px;margin:16px 0;border:1px solid}
+  .box p{margin:5px 0}
+  .box p:first-child{margin-top:0}
+  .box.warn{background:var(--coral-bg);border-color:var(--coral-line)}
+  .box.warn h4,.box.warn b{color:var(--coral)}
+  .box.note{background:var(--amber-bg);border-color:var(--amber-line)}
+  .box.note h4,.box.note b{color:var(--amber)}
+  .box.info{background:var(--blue-bg);border-color:#c3daf2}
+  .box.info h4,.box.info b{color:var(--blue)}
+  .box.good{background:var(--green-bg);border-color:#bcdbc0}
+  .box.good h4,.box.good b{color:var(--green)}
+  .box.rise{background:var(--rose-bg);border-color:#e3b3c9}
+  .box.rise h4,.box.rise b{color:var(--rose)}
+  .box.low{background:var(--teal-bg);border-color:var(--purple-line)}
+  .box.low b{color:var(--purple-dark)}
+  .flex2{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:640px){.flex2{grid-template-columns:1fr 1fr}}
+  .mini{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .mini.rise{background:var(--rose-bg);border-color:#e3b3c9}
+  .mini.low{background:var(--teal-bg);border-color:var(--purple-line)}
+  ul.clean{list-style:none;padding-left:0;margin:10px 0}
+  ul.clean li{padding:7px 0 7px 30px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.clean li::before{content:"";position:absolute;left:6px;top:17px;width:8px;height:8px;border-radius:50%;background:var(--purple)}
+  ul.clean li:last-child{border-bottom:none}
+  ul.small li{font-size:15.5px}
+  .type-grid{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:680px){.type-grid{grid-template-columns:1fr 1fr}}
+  .type{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--purple);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column}
+  .type.one{border-left-color:var(--rose)}
+  .type.two{border-left-color:var(--blue)}
+  .type .t{font-weight:900;font-size:17.5px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+  .type .t .en{font-size:12.5px;color:var(--muted);font-weight:600;letter-spacing:.3px}
+  .type .badge{flex:none;font-size:11.5px;font-weight:800;color:#fff;background:var(--purple);padding:2px 8px;border-radius:6px;letter-spacing:.5px}
+  .type.one .badge{background:var(--rose)}
+  .type.two .badge{background:var(--blue)}
+  .type .d{font-size:15px;color:var(--ink);margin-top:8px}
+  .type .d b{color:var(--purple-dark)}
+  .step{border-left:3px solid var(--line);padding:2px 0 2px 18px;margin:14px 0}
+  .step h4{margin:0 0 4px;font-size:17px;font-weight:800}
+  .dont{background:var(--coral-bg);border:1px solid var(--coral-line);border-radius:12px;padding:14px 16px}
+  .dont li{margin:6px 0;position:relative;padding-left:8px}
+  .dont li::marker{color:var(--coral)}
+  .dont b{color:var(--coral)}
+  .crisis{background:linear-gradient(160deg,#1c1614,#3a2a24);color:#f3ede4;border-radius:var(--radius);padding:34px 30px;margin:26px 0}
+  .crisis h2{color:#f7d9a8;font-size:21px;font-weight:900;margin:0 0 16px}
+  .crisis p{color:#ece3d6;margin:12px 0}
+  .crisis .hl{color:#ffd08a;font-weight:800}
+  .crisis .quote{border-left:4px solid #b98a4a;padding-left:18px;margin:18px 0;font-size:19px;font-weight:700;color:#fff3e0}
+  .hotline{background:#fff;color:var(--ink);border-radius:12px;padding:18px 20px;margin-top:22px;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+  .hotline h4{margin:0 0 10px;font-size:16px;color:var(--purple-dark)}
+  .hotline .num{font-size:22px;font-weight:900;color:var(--coral)}
+  .helpline{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:640px){.helpline{grid-template-columns:repeat(3,1fr)}}
+  .hp{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-align:center}
+  .hp .n{font-size:20px;font-weight:900;color:var(--purple-dark)}
+  .hp .l{font-size:13.5px;color:var(--muted);margin-top:4px}
+  .refs{font-size:14px;color:var(--muted)}
+  .refs ol{padding-left:20px;margin:6px 0}
+  .refs li{margin:5px 0}
+  .refs a{word-break:break-all}
+  footer{color:var(--muted);text-align:center;font-size:12.5px;padding:40px 20px 50px}
+  footer a{color:var(--muted)}
+  footer .dis{max-width:600px;margin:0 auto;line-height:1.7}
+  @media print{.topbar{display:none}body{background:#fff;font-size:13px}.card,.toc{box-shadow:none;border-color:#ccc}a{color:#000}}
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap">
+      <div class="brand"><span class="dot"></span>双相情感障碍</div>
+      <nav class="topnav">
+        <a href="#know">认识</a>
+        <a href="#types">类型</a>
+        <a href="#phases">发作期</a>
+        <a href="#others">旁人版</a>
+        <a href="#self">本人版</a>
+        <a href="#crisis">求助</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="kicker">🌗 不只是心情起伏 · 是一种可治疗的疾病</div>
+      <h1>双相情感障碍：<br>认识、自救与陪伴指南</h1>
+      <p class="sub">双相（也叫躁郁症）不是「情绪不稳定」「脾气差」，而是<b>一种真实的、有生物学基础的、可以被稳定控制的疾病</b>。它让情绪在「高涨」与「低谷」之间大幅摆动。了解它，才能正确地陪伴与自救。</p>
+    </div>
+  </section>
+
+  <div class="sos">
+    <div class="inner">
+      <p>⚠️ <b>如果你或身边人正处在「想伤害自己」的危险边缘：</b></p>
+      <p>请<b>立刻拨打 120 / 110</b>，或拨打 <b>全国心理援助热线 12356</b>（24 小时）。</p>
+      <p>双相患者在<b>重度抑郁期</b>或<b>混合期（躁狂+抑郁同时存在）</b>，自伤风险会明显升高，<b>千万不要独自硬扛或擅自停药。</b></p>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <nav class="toc">
+      <h2>本页目录</h2>
+      <ol>
+        <li><a href="#know">先搞懂：双相是什么，不是什么</a></li>
+        <li><a href="#types">双相的类型（I 型 / II 型 / 环性心境）</a></li>
+        <li><a href="#phases">认识三种「相」：躁狂、轻躁狂、抑郁</a></li>
+        <li><a href="#others">旁人视角：怎么陪一个双相障碍的人</a></li>
+        <li><a href="#self">本人视角：如果你有双相障碍</a></li>
+        <li><a href="#crisis">危机时刻：撑不下去的时候</a></li>
+        <li><a href="#refs">参考来源</a></li>
+      </ol>
+    </nav>
+
+    <!-- 认识 -->
+    <section id="know">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">0</span>先搞懂：双相是什么，不是什么</h2>
+        <p class="sec-lead">「双相」= 「两个极」（躁狂 / 轻躁狂 与 抑郁）交替或混合出现。</p>
+        <div class="box good">
+          <p><b>好消息：双相是可控的。</b>通过规范的药物治疗（主要是心境稳定剂，部分用抗精神病药/抗抑郁药）、心理治疗、规律作息，绝大多数人能够稳定情绪、正常生活。关键在<b>坚持规律服药与随访</b>。</p>
+        </div>
+        <div class="dont">
+          <h4 style="color:var(--coral);margin-top:0">这些是误解：</h4>
+          <ul>
+            <li><b>❌ 「你就是脾气大/矫情/想太多」</b> — 不是性格问题，是疾病。</li>
+            <li><b>❌ 「情绪好=病好了，可以停药」</b> — 擅自停药是复发和危险的最常见原因。</li>
+            <li><b>❌ 「双相的人都很危险/天才」</b> — 既不该污名化，也不用浪漫化。</li>
+            <li><b>❌ 「双相=抑郁症」</b> — 双相较特殊，<b>普通抗抑郁药单用可能反而诱发躁狂或快速循环</b>，必须由精神科医生诊断。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 类型 -->
+    <section id="types">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">一</span>双相的类型</h2>
+        <p class="sec-lead">双相不是只有一种，主要分为下面几类。诊断需要医生判断，这里帮你了解区别。</p>
+        <div class="type-grid">
+
+          <div class="type one">
+            <div class="t">双相 I 型 <span class="en">Bipolar I</span> <span class="badge">较重</span></div>
+            <div class="d">至少出现过一次<b>完全的躁狂发作</b>（往往较严重，甚至需要住院），可伴或不伴抑郁发作。<b>躁狂是双相 I 的核心标志。</b></div>
+          </div>
+
+          <div class="type two">
+            <div class="t">双相 II 型 <span class="en">Bipolar II</span> <span class="badge">易被漏诊</span></div>
+            <div class="d">有<b>轻躁狂</b>（较轻、较短，可能被当成「状态好」）加上<b>重性抑郁发作</b>。因轻躁狂不明显，<b>常被误诊为普通抑郁症</b>。</div>
+          </div>
+
+          <div class="type">
+            <div class="t">环性心境障碍 <span class="en">Cyclothymia</span></div>
+            <div class="d">持续的（至少 2 年）<b>情绪高低波动</b>，但不曾达到完全的躁狂或重性抑郁标准。像一种「慢性起伏」，同样需要关注与帮助。</div>
+          </div>
+
+        </div>
+        <div class="box warn">
+          <p><b>还有一种更危险、需要警惕的表现：</b>「<b>混合相</b>」——躁狂与抑郁<b>同时出现</b>（如冲动的同时又极度绝望）。这是自伤风险最高的状态之一，<b>要及时就医、不要独处。</b></p>
+        </div>
+        <div class="box note">
+          <p><b>关于「快速循环」与「季节性」：</b>有些患者在一年内发作次数很多（≥4 次，称快速循环），或发作与季节相关。这些信息对医生制定方案很重要，<b>建议记录发作规律</b>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 三相 -->
+    <section id="phases">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">二</span>认识三种「相」</h2>
+        <p class="sec-lead">双相的核心是「相」的切换。认识它们，才能及时识别、及时应对。</p>
+
+        <div class="mini rise" style="margin:16px 0">
+          <h4 style="color:var(--rose);margin-top:0">🔺 躁狂相（Mania）· 程度较重</h4>
+          <p style="margin:8px 0 0"><b>持续（通常≥1 周）</b>异常高涨、易怒或精力充沛，并伴随：</p>
+          <ul class="clean small">
+            <li>睡眠需求大幅减少（睡 3 小时还很亢奋）</li>
+            <li>说话语速快、话多、思绪奔涌「停不下来」</li>
+            <li>自我感觉膨胀、觉得自己无所不能</li>
+            <li>冲动行为：疯狂消费、超速、冒险、乱性等</li>
+            <li>可能伴有<b>幻觉、妄想</b>（需要紧急处理）</li>
+          </ul>
+        </div>
+
+        <div class="mini low" style="margin:16px 0">
+          <h4 style="color:var(--teal);margin-top:0">🌤 轻躁狂相（Hypomania）· 程度较轻</h4>
+          <p style="margin:8px 0 0"><b>类似但较轻微、持续时间较短</b>，常被误当成「状态正好」「变开朗了」。特点：</p>
+          <ul class="clean small">
+            <li>明显更有能量、更健谈、更受欢迎</li>
+            <li>睡眠减少但不至于严重受损</li>
+            <li>通常不至于严重到需要住院</li>
+            <li>关键是：<b>之后往往伴随抑郁回落</b>，呈现「波峰—谷底」循环</li>
+          </ul>
+        </div>
+
+        <div class="mini low" style="margin:16px 0">
+          <h4 style="color:var(--purple-dark);margin-top:0">🔻 抑郁相（Depression）</h4>
+          <p style="margin:8px 0 0"><b>与单相抑郁表现几乎一致</b>（持续≥2 周）：</p>
+          <ul class="clean small">
+            <li>情绪低落、兴趣丧失、疲惫无力</li>
+            <li>睡眠/食欲变化、自责、注意力下降</li>
+            <li>严重时出现<b>想死、想伤害自己</b>的念头</li>
+          </ul>
+        </div>
+
+        <div class="box warn">
+          <p><b>重点：</b>双相的抑郁相<b>不能只当普通抑郁治</b>——若误用大量抗抑郁药，可能诱发躁狂或「快速循环」。<b>一定要由精神科医生评估是否为双相，再决定用药。</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 旁人视角 -->
+    <section id="others">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">三</span>旁人视角：怎么陪一个双相障碍的人</h2>
+        <p class="sec-lead">双相的起伏会让身边人既心疼又疲惫。你的稳定支持，是 TA 康复路上重要的一部分。</p>
+
+        <div class="box info">
+          <h4>✔ 你可以这样</h4>
+          <ul class="clean small">
+            <li><b>把它当成「疾病」而非「性格」</b> — 发作时不要跟 TA 的冲动/低落「较真」。</li>
+            <li><b>帮助 TA 坚持服药和随访</b> — 这是避免复发最关键的一环。</li>
+            <li><b>在躁狂期温和提醒、适度保护</b> — 帮 TA 控制大额消费、避免危险冲动，同时别用责备口吻。</li>
+            <li><b>在抑郁期安静陪伴</b> — 不说「振作点」，而是「我在，我带你去看看医生」。</li>
+            <li><b>帮助 TA 记录发作规律</b> — 情绪、睡眠、触发事件，这些对医生很有用。</li>
+          </ul>
+        </div>
+
+        <h3 class="sub">🙅 请避免</h3>
+        <div class="dont">
+          <ul>
+            <li><b>「你就是一会儿高兴一会儿低，控制下自己」</b> — 这不是能靠意志控制的。</li>
+            <li><b>「别吃药了，药那么伤身」</b> — 擅自停药是复发与危险的最大诱因。</li>
+            <li><b>跟 TA 的冲动行为「较劲」「翻旧账」</b> — 发作期讲理意义不大，先保安全。</li>
+            <li><b>把 TA 当「负担」或嫌弃</b> — 会让 TA 陷入更深的自我否定。</li>
+          </ul>
+        </div>
+
+        <div class="box warn">
+          <p><b>当 TA 处于重度抑郁或混合相、提到想死/想伤害自己：</b>不要让 TA 独处，<b>尽快送医或拨打 120 / 110 / 12356</b>。同时，双相患者的守护者也很容易耗竭——<b>请你也照顾好自己的情绪，必要时向外求助。</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 本人视角 -->
+    <section id="self">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">四</span>本人视角：如果你有双相障碍</h2>
+        <p>如果你正在反复的「高—低」之间挣扎，请先知道：<b>这不是你的错，而且它是可以被稳定控制的。</b>你已经很辛苦地在应对一个复杂的疾病了。</p>
+
+        <div class="box good">
+          <h4>你不是「不正常」，你只是需要更稳定的节律</h4>
+          <p>双相患者同样可以学习、工作、恋爱、过好人生。关键是<b>找到适合自己的药物与作息节律</b>，并坚持下去。</p>
+        </div>
+
+        <h3 class="sub">可以坚持做对的</h3>
+        <ul class="clean small">
+          <li><b>规律服药，绝不擅自停药/减量</b> — 如有副作用，<b>请先和医生沟通调整</b>，不要一赌气就停。</li>
+          <li><b>保持固定作息</b> — 固定睡眠时间、起床时间，对稳定情绪至关重要。</li>
+          <li><b>记录情绪与睡眠</b> — 方便医生判断用药与治疗方案。</li>
+          <li><b>识别自己的「预警信号」</b> — 比如失眠增多往往是躁狂前兆，早醒来往往预示抑郁。</li>
+          <li><b>保持心理治疗</b> — 心理治疗能帮你更好地觉察和应对。</li>
+          <li><b>避免熬夜、酒精、冒险行为</b> — 这些会打乱情绪节律、诱发发作。</li>
+        </ul>
+
+        <div class="box note">
+          <p><b>如果你正处于躁狂期且感觉「停不下来」、想冲动消费或冒险：</b>请把钱包/信用卡暂时交给信任的人，避免做重大决定，<b>尽快联系你的医生</b>。躁狂时的「自信」往往是疾病在骗你。</p>
+        </div>
+
+        <div class="box warn">
+          <p><b>如果你正处于抑郁或混合相，出现想死/想伤害自己的念头：</b>请立刻告诉医生或信任的人，<b>不要独处</b>。这很可能是疾病在放大绝望，不代表真实的全貌。<b>先撑住，去医院，一切都能被重新调整。</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 危机 -->
+    <section id="crisis">
+      <div class="crisis">
+        <h2>五、危机时刻：撑不下去的时候</h2>
+        <p>如果你或你身边的人此刻在绝望边缘——<span class="hl">请立刻先打一个电话，或马上送医。</span></p>
+        <p>那种「一会儿想上天一会儿想消失」的失控感，是双相在剧烈摆动时的真实体验，但它<b>是可以被药物稳定住的</b>。你现在感觉到的黑暗，不一定是永远。</p>
+        <div class="quote">你不是「坏掉」的人，你只是生了一种需要规律治疗、需要被接纳的疾病。请先撑住，让专业的人来帮你稳住这颗「忽高忽低的心」。</div>
+        <p><b>如果已经吞了东西、已经伤害自己、或正在计划：请立刻拨打 120 / 110 去医院急诊。若在躁狂/混合期有伤人、伤己风险，请陪同就医，不要独处。</b></p>
+        <div class="hotline">
+          <h4>此刻可以立刻求助的渠道：</h4>
+          <div class="helpline" style="margin-top:8px">
+            <div class="hp"><div class="n">120</div><div class="l">急救 · 危险时刻第一选择</div></div>
+            <div class="hp"><div class="n">110</div><div class="l">人身安全受威胁时</div></div>
+            <div class="hp"><div class="n">12356</div><div class="l">全国心理援助热线（24 小时）</div></div>
+          </div>
+          <p style="margin-bottom:0;margin-top:14px;font-size:14px">也可联系你所在医院的精神科随访医生。<b>双相患者最重要的保护伞，是「坚持规律随访 + 规律服药」。</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 参考文献 -->
+    <section id="refs">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">¶</span>参考来源</h2>
+        <p class="sec-lead">用于编写上述分类与科普的专业来源。</p>
+        <div class="refs">
+          <ol>
+            <li><a href="https://www.who.int/news-room/fact-sheets/detail/bipolar-disorder">WHO — Bipolar disorder</a> · 双相的定义、类型与治疗。</li>
+            <li><a href="https://www.nimh.nih.gov/health/topics/bipolar-disorder">NIMH — Bipolar disorder</a> · 躁狂、轻躁狂、抑郁期的症状与照护。</li>
+            <li><a href="https://www.mayoclinic.org/diseases-conditions/bipolar-disorder/symptoms-causes/syc-20355909">Mayo Clinic — Bipolar disorder</a> · 类型（I/II/环性）与治疗原则。</li>
+            <li><a href="https://www.psychiatry.org/patients-families/bipolar-disorders/what-are-bipolar-disorders">APA — What are bipolar disorders?</a> · 诊断与分型说明。</li>
+            <li><a href="https://www.nhs.uk/mental-health/conditions/bipolar-disorder/">NHS — Overview of bipolar disorder</a> · 症状、成因、如何求助。</li>
+          </ol>
+          <p style="margin-top:10px">本文分类主要依据《DSM-5》及相关临床指南。本页面为公益科普，仅供参考，<b>不能替代专业诊断与治疗</b>。双相的用药方案请务必由精神科医生制定。</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p class="dis">本页面为公益心理健康科普，仅供了解与参考，<b>不能替代专业的医学诊断、药物治疗与心理治疗</b>。双相尤其是需要规范用药与规律随访的疾病，请前往正规医院精神科评估与治疗。</p>
+      <p style="margin-top:14px">作者 · <a href="#">水喝千束</a></p>
+    </footer>
+
+  </main>
+</body>
+</html>

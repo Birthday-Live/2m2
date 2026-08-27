@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#e91e9c">
+<title>跨性别与 MTF：认识、自救与陪伴</title>
+<style>
+  :root{
+    --blue:#1e88e5;
+    --blue-dark:#0d47a1;
+    --pink:#e91e9c;
+    --pink-dark:#ad1457;
+    --teal:#00796b;
+    --teal-bg:#e0f2ef;
+    --coral:#e53935;
+    --coral-bg:#fdecea;
+    --coral-line:#f2c2bf;
+    --amber:#b26a00;
+    --amber-bg:#fff6e6;
+    --amber-line:#ecd7a8;
+    --green:#1b5e20;
+    --green-bg:#e9f6ea;
+    --ink:#17212b;
+    --muted:#5c6672;
+    --line:#e3e9f0;
+    --bg:#f7f5fb;
+    --card:#ffffff;
+    --radius:16px;
+    --shadow:0 8px 28px rgba(60,30,90,.09);
+    --maxw:880px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{margin:0;color:var(--ink);background:var(--bg);font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.85;font-size:17px}
+  a{color:var(--pink);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(247,245,251,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+  .brand{font-weight:800;letter-spacing:.3px;color:var(--pink-dark);display:flex;align-items:center;gap:9px}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--pink));box-shadow:0 0 0 4px rgba(233,30,156,.15)}
+  .topnav{display:flex;gap:6px;font-size:14px;flex-wrap:wrap}
+  .topnav a{color:var(--muted);padding:6px 9px;border-radius:8px}
+  .topnav a:hover{background:#fbe3f2;color:var(--pink-dark);text-decoration:none}
+  .hero{background:radial-gradient(1200px 420px at 15% -10%,rgba(255,255,255,.25),transparent),linear-gradient(135deg,#0d47a1 0%,#1e88e5 40%,#e91e9c 100%);color:#fff;padding:54px 0 46px;position:relative;overflow:hidden}
+  .kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);padding:6px 15px;border-radius:999px;font-size:13.5px;letter-spacing:.4px;margin-bottom:18px}
+  .hero h1{font-size:clamp(26px,5vw,40px);line-height:1.3;margin:0 0 14px;font-weight:900;letter-spacing:.5px}
+  .hero .sub{font-size:16.5px;color:#f3eafa;max-width:660px;margin:0}
+  .hero .sub b{color:#fff}
+  .sos{margin:-24px auto 0;max-width:var(--maxw);position:relative;z-index:5}
+  .sos .inner{background:linear-gradient(135deg,#fff0f0,#fff);border:1px solid var(--coral-line);border-left:6px solid var(--coral);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 26px}
+  .sos .inner b{color:var(--coral)}
+  .sos .inner p{margin:8px 0;font-size:18px}
+  .sos .inner p:first-child{margin-top:0}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 26px;margin:34px 0}
+  .toc h2{margin:0 0 12px;font-size:15px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase}
+  .toc ol{margin:0;padding-left:20px;columns:1;column-gap:30px}
+  .toc a{color:var(--ink);display:block;padding:6px 0;border-bottom:1px dashed var(--line)}
+  .toc li{break-inside:avoid}
+  @media(min-width:640px){.toc ol{columns:2}}
+  section{padding:8px 0 20px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin:22px 0}
+  h2.sec-title{font-size:23px;font-weight:900;color:var(--pink-dark);margin:0 0 6px;display:flex;align-items:center;gap:12px}
+  h2.sec-title .no{flex:none;width:30px;height:30px;border-radius:9px;background:#fbe3f2;color:var(--pink-dark);display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:800}
+  .sec-lead{color:var(--muted);margin:0 0 18px}
+  h3.sub{font-size:18.5px;font-weight:800;color:var(--ink);margin:30px 0 8px;display:flex;align-items:center;gap:10px}
+  h3.sub::before{content:"";width:4px;height:18px;border-radius:3px;background:linear-gradient(180deg,var(--blue),var(--pink))}
+  .box{border-radius:14px;padding:16px 18px;margin:16px 0;border:1px solid}
+  .box p{margin:5px 0}
+  .box p:first-child{margin-top:0}
+  .box.warn{background:var(--coral-bg);border-color:var(--coral-line)}
+  .box.warn h4,.box.warn b{color:var(--coral)}
+  .box.note{background:var(--amber-bg);border-color:var(--amber-line)}
+  .box.note h4,.box.note b{color:var(--amber)}
+  .box.info{background:#e9f2fc;border-color:#c3daf2}
+  .box.info h4,.box.info b{color:var(--blue-dark)}
+  .box.good{background:var(--green-bg);border-color:#bcdbc0}
+  .box.good h4,.box.good b{color:var(--green)}
+  .box.flag{background:linear-gradient(135deg,#eaf3fc,#fbe3f2);border-color:#d8bfe6}
+  .box.flag h4,.box.flag b{color:var(--pink-dark)}
+  .flex2{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:640px){.flex2{grid-template-columns:1fr 1fr}}
+  .mini{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .mini.bg{background:linear-gradient(135deg,#eaf3fc,#fbe3f2);border-color:#d8bfe6}
+  ul.clean{list-style:none;padding-left:0;margin:10px 0}
+  ul.clean li{padding:7px 0 7px 30px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.clean li::before{content:"";position:absolute;left:6px;top:17px;width:8px;height:8px;border-radius:50%;background:var(--pink)}
+  ul.clean li:last-child{border-bottom:none}
+  ul.small li{font-size:15.5px}
+  .group-label{font-size:14px;font-weight:800;letter-spacing:1.5px;color:var(--pink);text-transform:uppercase;margin:30px 0 14px;display:flex;align-items:center;gap:10px}
+  .group-label::before{content:"";flex:none;width:22px;height:5px;border-radius:3px;background:linear-gradient(90deg,var(--blue),var(--pink))}
+  .type-grid{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:680px){.type-grid{grid-template-columns:1fr 1fr}}
+  .type{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--pink);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column}
+  .type.blue{border-left-color:var(--blue)}
+  .type .t{font-weight:900;font-size:17.5px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+  .type .t .en{font-size:12.5px;color:var(--muted);font-weight:600;letter-spacing:.3px}
+  .type .badge{flex:none;font-size:11.5px;font-weight:800;color:#fff;background:var(--pink);padding:2px 8px;border-radius:6px;letter-spacing:.5px}
+  .type.blue .badge{background:var(--blue)}
+  .type .d{font-size:15px;color:var(--ink);margin-top:8px}
+  .type .d b{color:var(--pink-dark)}
+  .type.blue .d b{color:var(--blue-dark)}
+  .step{border-left:3px solid var(--line);padding:2px 0 2px 18px;margin:14px 0}
+  .step h4{margin:0 0 4px;font-size:17px;font-weight:800}
+  .dont{background:var(--coral-bg);border:1px solid var(--coral-line);border-radius:12px;padding:14px 16px}
+  .dont li{margin:6px 0;position:relative;padding-left:8px}
+  .dont li::marker{color:var(--coral)}
+  .dont b{color:var(--coral)}
+  .crisis{background:linear-gradient(160deg,#1c1614,#3a2a24);color:#f3ede4;border-radius:var(--radius);padding:34px 30px;margin:26px 0}
+  .crisis h2{color:#f7d9a8;font-size:21px;font-weight:900;margin:0 0 16px}
+  .crisis p{color:#ece3d6;margin:12px 0}
+  .crisis .hl{color:#ffd08a;font-weight:800}
+  .crisis .quote{border-left:4px solid #b98a4a;padding-left:18px;margin:18px 0;font-size:19px;font-weight:700;color:#fff3e0}
+  .hotline{background:#fff;color:var(--ink);border-radius:12px;padding:18px 20px;margin-top:22px;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+  .hotline h4{margin:0 0 10px;font-size:16px;color:var(--pink-dark)}
+  .hotline .num{font-size:22px;font-weight:900;color:var(--coral)}
+  .helpline{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:640px){.helpline{grid-template-columns:repeat(3,1fr)}}
+  .hp{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-align:center}
+  .hp .n{font-size:20px;font-weight:900;color:var(--pink-dark)}
+  .hp .l{font-size:13.5px;color:var(--muted);margin-top:4px}
+  .refs{font-size:14px;color:var(--muted)}
+  .refs ol{padding-left:20px;margin:6px 0}
+  .refs li{margin:5px 0}
+  .refs a{word-break:break-all}
+  .sep{height:1px;background:var(--line);margin:14px 0}
+  .table{width:100%;border-collapse:collapse;font-size:15px;margin:16px 0}
+  .table th,.table td{border:1px solid var(--line);padding:11px 13px;text-align:left;vertical-align:top}
+  .table th{background:linear-gradient(135deg,#eaf3fc,#fbe3f2);color:var(--pink-dark);font-weight:800}
+  .table td b{color:var(--pink-dark)}
+  footer{color:var(--muted);text-align:center;font-size:12.5px;padding:40px 20px 50px}
+  footer a{color:var(--muted)}
+  footer .dis{max-width:600px;margin:0 auto;line-height:1.7}
+  @media print{.topbar{display:none}body{background:#fff;font-size:13px}.card,.toc{box-shadow:none;border-color:#ccc}a{color:#000}}
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap">
+      <div class="brand"><span class="dot"></span>跨性别与 MTF</div>
+      <nav class="topnav">
+        <a href="#know">概念</a>
+        <a href="#types">身份</a>
+        <a href="#dys">烦躁</a>
+        <a href="#others">旁人版</a>
+        <a href="#self">本人版</a>
+        <a href="#crisis">求助</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="kicker">🏳️‍⚧️ 认识 · 尊重 · 支持 · 成为自己</div>
+      <h1>跨性别与 MTF：<br>认识、支持与自我探索</h1>
+      <p class="sub">写给<b>正在探索自己性别的你</b>，也写给<b>想支持跨性别朋友 / 家人的你</b>。性别认同是每个人内在真实的一部分，<b>跨性别不是病，不该被歧视，值得被尊重与被看见。</b></p>
+    </div>
+  </section>
+
+  <div class="sos">
+    <div class="inner">
+      <p>⚠️ <b>如果你或身边人正处在「想伤害自己」的危险边缘：</b></p>
+      <p>请<b>立刻拨打 120 / 110</b>，或拨打 <b>全国心理援助热线 12356</b>（24 小时）。</p>
+      <p>跨性别群体因歧视、不被接受、性别烦躁，抑郁与自伤风险明显偏高。<b>你值得被帮助，也值得活下去。</b></p>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <nav class="toc">
+      <h2>本页目录</h2>
+      <ol>
+        <li><a href="#know">先搞懂：性别认同 / 表达 / 指派性别是什么</a></li>
+        <li><a href="#types">跨性别的多种「身份」（含 MTF / FTM 等）</a></li>
+        <li><a href="#dys">性别烦躁：那是一种怎样的感觉</a></li>
+        <li><a href="#others">旁人视角：怎么支持一个跨性别者</a></li>
+        <li><a href="#self">本人视角：如果你是跨性别者</a></li>
+        <li><a href="#crisis">危机时刻：撑不下去的时候</a></li>
+        <li><a href="#refs">参考来源</a></li>
+      </ol>
+    </nav>
+
+    <!-- 概念 -->
+    <section id="know">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">0</span>先搞懂几个基本词</h2>
+        <p class="sec-lead">这些词是理解跨性别的「地基」，先分清楚，才不会误会。</p>
+        <table class="table">
+          <tr><th style="width:34%">名词</th><th>含义</th></tr>
+          <tr><td><b>指派性别</b><br><span style="color:var(--muted);font-size:13px">sex assigned at birth</span></td><td>出生时根据身体特征（生殖器、染色体）被「登记」的性别：男 / 女。</td></tr>
+          <tr><td><b>性别认同</b><br><span style="color:var(--muted);font-size:13px">gender identity</span></td><td>一个人<b>内心</b>觉得自己是男、是女、还是其他性别。这是主观的、真实存在的，无法被「纠正」。</td></tr>
+          <tr><td><b>性别表达</b><br><span style="color:var(--muted);font-size:13px">gender expression</span></td><td>通过衣着、发型、神态、称呼等<b>向外呈现</b>的性别气质。表达可以自由，不一定等于认同。</td></tr>
+          <tr><td><b>顺性别</b><br><span style="color:var(--muted);font-size:13px">cisgender</span></td><td>性别认同与出生指派性别<b>一致</b>的人（大多数人是顺性别，这很常见）。</td></tr>
+          <tr><td><b>跨性别</b><br><span style="color:var(--muted);font-size:13px">transgender</span></td><td>性别认同与出生指派性别<b>不一致</b>的人，是一个宽泛的大伞词，涵盖下面的很多身份。</td></tr>
+        </table>
+        <div class="box flag">
+          <p><b>一句话核心：</b>性别是「由内而外」、每个人自己最清楚的；别人不能替 TA 决定「你到底是男是女」。<b>尊重 TA 的自我认同，就是最好的支持。</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 身份类型 -->
+    <section id="types">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">一</span>跨性别的多种「身份」</h2>
+        <p class="sec-lead">「跨性别」是一个大伞，下面有很多不同的具体身份。了解这些，能帮助你更精准地理解一个人（也提醒：<b>具体怎么自我认同，永远以 TA 本人说的为准</b>）。下面尽量都列全。</p>
+
+        <div class="group-label">A · 最常见的两类</div>
+        <div class="type-grid">
+
+          <div class="type">
+            <div class="t">跨性别女性（男跨女） <span class="en">MtF / trans woman</span></div>
+            <div class="d">指派性别为<b>男</b>，但性别认同为<b>女</b>。常简称为 <b>MtF</b>（male-to-female）。她们可能（也可能不）通过激素、手术等方式让身体更符合自己的认同。她们的认同是「女性」，而「跨性别」只是她自我描述的一部分。</div>
+          </div>
+
+          <div class="type blue">
+            <div class="t">跨性别男性（女跨男） <span class="en">FtM / trans man</span></div>
+            <div class="d">指派性别为<b>女</b>，但性别认同为<b>男</b>。常简称为 <b>FtM</b>（female-to-male）。他们同样可能（也可能不）进行荷尔蒙或手术过渡。他们就是男性。</div>
+          </div>
+
+        </div>
+
+        <div class="group-label">B · 非二元及更多元身份</div>
+        <div class="type-grid">
+
+          <div class="type blue">
+            <div class="t">非二元 <span class="en">Non-binary / enby</span></div>
+            <div class="d">性别认同<b>不完全属于「男」或「女」</b>，或者介于两者之间。ta 们可能使用中性代词（如「TA / 他们」）。非二元也是真实的性别认同。</div>
+          </div>
+
+          <div class="type">
+            <div class="t">性别流动 <span class="en">Genderfluid</span></div>
+            <div class="d">性别认同会<b>随时间或情境而流动</b>，有时偏男、有时偏女、有时都不是。这是一种正常的、持续的体验。</div>
+          </div>
+
+          <div class="type">
+            <div class="t">性别酷儿 <span class="en">Genderqueer</span></div>
+            <div class="d">刻意地<b>挑战或模糊传统性别二元框架</b>的人，认同常与非二元相近，强调「我不被框架定义」。</div>
+          </div>
+
+          <div class="type blue">
+            <div class="t">无性别 / 半性别等 <span class="en">Agender / Demigender</span></div>
+            <div class="d"><b>无性别</b>：没有或很少有性别认同；<b>半性别</b>：部分认同某一性别但不完全。属于非二元伞下的细分身份。</div>
+          </div>
+
+        </div>
+
+        <div class="box warn">
+          <p><b>关于「跨性别者」这个词：</b>有些人只把「男跨女 / 女跨男」叫跨性别，而把非二元单独区分；也有些人把非二元也归入「跨性别的伞下」。<b>用词不必纠结，最稳妥的方式是直接询问对方：「你希望我怎么称呼你？」</b></p>
+        </div>
+
+        <div class="box note">
+          <p><b>重要澄清：</b>跨性别 <b>不是</b>性取向，也 <b>不是</b>心理疾病。跨性别是「我是谁」；性取向是「我喜欢谁」；两者互相独立。WHO 的 ICD-11 已将「性别不一致」从精神障碍中移除，转入与性健康相关的状况。<b>跨性别本身不是病。</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 性别烦躁 -->
+    <section id="dys">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">二</span>性别烦躁：那是一种怎样的感觉</h2>
+        <p class="sec-lead">很多人误以为「跨性别 = 想变性」。其实核心往往是<b>性别烦躁</b>——一种因「内在认同与身体/外界不符」而持续产生的痛苦与不适。</p>
+        <div class="box note">
+          <p><b>说明：</b>性别烦躁是<b>可以被评估、被缓解的</b>，也不是每个跨性别者都会经历同样的强度。专业机构（如 WPATH）通过医学、心理和荷尔蒙方式帮助缓解它，而<b>不是「试图改变/消除一个人的性别认同」</b>。</p>
+        </div>
+        <div class="flex2">
+          <div class="mini bg">
+            <h4 style="color:var(--pink-dark)">可能感受</h4>
+            <ul class="clean small">
+              <li>对身体的某些特征感到强烈不适/疏离</li>
+              <li>被当成「另一个性别」称呼时难受</li>
+              <li>镜子里的自己「不像自己」</li>
+              <li>焦虑、抑郁、持续的内在冲突</li>
+            </ul>
+          </div>
+          <div class="mini bg">
+            <h4 style="color:var(--blue-dark)">哪些事能缓解</h4>
+            <ul class="clean small">
+              <li>按认同的性别穿衣、表达、被称呼</li>
+              <li>使用符合认同的名字与代词</li>
+              <li>在专业指导下进行激素治疗（HRT）</li>
+              <li>获得身边人的理解与接纳</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 旁人视角 -->
+    <section id="others">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">三</span>旁人视角：怎么支持一个跨性别者</h2>
+        <p class="sec-lead">你可能不是专家，但你完全可以是「一个让 TA 感到安全的人」。</p>
+
+        <div class="box flag">
+          <h4>✔ 你可以这样</h4>
+          <ul class="clean small">
+            <li><b>用 TA 希望的名字和称呼</b> — 这是最简单也最重要的尊重，哪怕不习惯，也请认真练习。</li>
+            <li><b>主动问，而不是随意推测</b> — 「你希望我用什么名字/代词称你？」永远比「你怎么想当男的/女的」更得体。</li>
+            <li><b>认真听 TA 讲述自己的感受</b> — 不用急着给建议，被听见本身就是疗愈。</li>
+            <li><b>为你曾经的「说错话」真诚道歉</b> — 说错了名字/称呼，简单道个歉、改正即可，不要辩解或小题大做。</li>
+            <li><b>在 TA 面对外界的偏见时站到 TA 身边</b> — 你的支持能抵消很多伤害。</li>
+          </ul>
+        </div>
+
+        <h3 class="sub">🙅 这些很伤人，请避免</h3>
+        <div class="dont">
+          <ul>
+            <li><b>「你明明是个男的/女的，别闹了」</b> — 直接否定对方最核心的自我。</li>
+            <li><b>「你要是真的早就去手术了」</b> — 手术是个人选择，不代表「够不够跨」。</li>
+            <li><b>「让你爸妈多丢脸 / 你这是病」</b> — 羞辱与污名化。</li>
+            <li><b>把 TA 当「猎奇」或当笑话「科普」给别人</b> — 用 TA 的身份当作谈资是二次伤害。</li>
+            <li><b>把「支持」当成是「纵容」</b> — 支持不是替 TA 做决定，而是尊重 TA 的自主权。</li>
+          </ul>
+        </div>
+
+        <div class="box warn">
+          <p><b>当 TA 提到被霸凌、被拒、或表现出明显的抑郁 / 自伤倾向：</b>请不要让 TA 一个人扛。陪伴、倾听、鼓励就医，必要时 <b>拨打 120 / 110 / 12356</b>。跨性别群体面临的歧视是真实存在的风险因素，<b>你的「站在一起」能救 Ta 的命。</b></p>
+        </div>
+
+        <div class="box note">
+          <p><b>也照顾你自己。</b>如果 TA 是你很亲近的人，TA 出柜、过渡的过程也可能让你困惑、担忧、甚至难过——这都是正常的。<b>你需要的话也去寻求支持</b>，不必把一切独自消化。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 本人视角 -->
+    <section id="self">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">四</span>本人视角：如果你是跨性别者</h2>
+        <p>如果你正在怀疑、纠结、害怕自己是「不正常」——<b>请先知道：你不是，你没有错。</b>你的感受是真实的、值得被认真对待的。</p>
+
+        <div class="box good">
+          <h4>你的认同不需要「证明」给任何人</h4>
+          <p>你不需要「长得像」「声音像」「做过手术」才能「算数」。<b>你觉得自己是谁，那就是谁。</b>过渡（生理或社会层面）是可选的、个人的过程，而不是做人的及格线。</p>
+        </div>
+
+        <h3 class="sub">可以自己先开始的</h3>
+        <ul class="clean small">
+          <li><b>给自己时间探索</b> — 性别是流动的，不必急着「给答案」或「下结论」。</li>
+          <li><b>用数字空间表达真实的自己</b> — 起一个符合认同的名字，在安全的环境里「试穿」不同的称呼与表达。</li>
+          <li><b>找到可靠的社群 / 过来人</b> — 和有相似经历的人聊聊，能极大地缓解孤独与自我怀疑。</li>
+          <li><b>评估情绪与安全</b> — 如果性别烦躁带来明显的抑郁、焦虑或自伤念头，请及时寻求心理 / 精神科帮助。</li>
+        </ul>
+
+        <h3 class="sub">关于激素治疗（HRT）与医疗过渡</h3>
+        <div class="box info">
+          <p><b>MTF（男跨女）常用：</b>雌激素（如雌二醇）+ 抗雄激素（如醋酸环丙孕酮、螺内酯等），帮助身体向女性化方向转变。<b>FtM（女跨男）常用：</b>睾酮（testosterone）。</p>
+          <p><b>请务必在正规医疗机构的指导与监测下进行</b>，不要为了「追效果」自行加量或混用——不规范的自行用药可能带来血栓、肝功能异常等风险。同时，若你正在用其他精神科药物，请如实告知医生，以评估相互作用。</p>
+        </div>
+
+        <div class="box note">
+          <h4>关于「出柜」（向他人透露自己是跨性别）</h4>
+          <p>出柜的时机、对象、方式<b>完全由你自己决定</b>。如果你暂时没有安全的环境，可以先不向所有人坦白；先让自己「在安全的地方做自己」。<b>你的生命与安全永远排在「别人的看法」前面。</b></p>
+        </div>
+
+        <div class="box flag">
+          <p><b>给正在挣扎的你：</b>你一路走来一定承受了很多不被理解的目光，但你依然走到现在。<b>你不是一个人，许多跨性别者都曾和你一样害怕、迷茫，最后依然活成了自己想成为的样子。</b>请给自己一个被帮助的机会。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 危机 -->
+    <section id="crisis">
+      <div class="crisis">
+        <h2>五、危机时刻：撑不下去的时候</h2>
+        <p>如果你或你身边的人此刻在绝望边缘——<span class="hl">请立刻先打一个电话。</span></p>
+        <p>孤独、被拒绝、被歧视、性别烦躁的痛苦都很真实。但<b>你现在感受到的黑暗，不一定是永远的样子</b>。很多跨性别者在获得理解、医疗支持和社群连接后，找回了平静与自尊。</p>
+        <div class="quote">你的存在不是错误，你值得被接纳，也值得被你爱的人接纳。哪怕只是「为了看看未来那个更自在的自己」，也请先撑一下、先求助。</div>
+        <p><b>如果已经吞了东西、已经伤害自己、或正在计划：请立刻拨打 120 / 110，去医院急诊。</b>不要怕没人理解，先保住命，一切才有机会被改写。</p>
+        <div class="hotline">
+          <h4>此刻可以立刻求助的渠道：</h4>
+          <div class="helpline" style="margin-top:8px">
+            <div class="hp"><div class="n">120</div><div class="l">急救 · 危险时刻第一选择</div></div>
+            <div class="hp"><div class="n">110</div><div class="l">人身安全受威胁时</div></div>
+            <div class="hp"><div class="n">12356</div><div class="l">全国心理援助热线（24 小时）</div></div>
+          </div>
+          <p style="margin-bottom:0;margin-top:14px;font-size:14px">也可寻找本地 LGBTQ+ 友善的公益组织与心理支持。许多资源都明确表示「跨性别者友善」。<b>不必等到「撑不住」才求助。</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 参考文献 -->
+    <section id="refs">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">¶</span>参考来源</h2>
+        <p class="sec-lead">用于编写上述术语与科普的专业来源。</p>
+        <div class="refs">
+          <ol>
+            <li><a href="https://www.wpath.org/">WPATH — World Professional Association for Transgender Health</a> · 护理标准 SOC-8，跨性别医疗与心理照护的权威指南。</li>
+            <li><a href="https://www.who.int/news-room/fact-sheets/detail/gender">WHO — Gender and health</a> · 性别认同与身心健康，跨性别者健康需求。</li>
+            <li><a href="https://www.apa.org/topics/lgbtq/transgender">APA — Transgender people &amp; gender identity</a> · 跨性别相关术语与心理支持。</li>
+            <li><a href="https://icd.who.int/">WHO — ICD-11</a> · 已将「性别不一致」移出精神障碍，转入与性健康相关状况。</li>
+            <li><a href="https://www.endocrine.org/clinical-practice-guidelines/gender-dysphoria-gender-incongruence">Endocrine Society — Guidelines for gender-affirming care</a> · 激素治疗等医疗过渡的临床指南。</li>
+          </ol>
+          <p style="margin-top:10px">本文为公益科普，旨在传递尊重与理解，<b>不能替代专业医疗与心理评估</b>。涉及医疗过渡的具体方案，请咨询正规医疗机构。</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p class="dis">本页面为公益知识科普，旨在促进理解与尊重。每个人的性别认同都由其本人定义，<b>任何歧视与污名化都是错误的</b>。如需帮助，请前往正规医院心理科 / 精神科或联系 LGBTQ+ 友善机构。</p>
+      <p style="margin-top:14px">作者 · <a href="#">水喝千束</a></p>
+    </footer>
+
+  </main>
+</body>
+</html>
