@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#00796b">
+<title>关于抑郁症：认识、自救与陪伴</title>
+<style>
+  :root{
+    --teal:#00796b;
+    --teal-dark:#004d40;
+    --teal-bg:#e0f2ef;
+    --teal-line:#b7dfd8;
+    --blue:#1565c0;
+    --blue-bg:#e7f0fb;
+    --coral:#e53935;
+    --coral-bg:#fdecea;
+    --coral-line:#f2c2bf;
+    --amber:#b26a00;
+    --amber-bg:#fff6e6;
+    --amber-line:#ecd7a8;
+    --green:#1b5e20;
+    --green-bg:#e9f6ea;
+    --ink:#17212b;
+    --muted:#5c6672;
+    --line:#e3e9f0;
+    --bg:#f4f7fb;
+    --card:#ffffff;
+    --radius:16px;
+    --shadow:0 8px 28px rgba(20,50,90,.08);
+    --maxw:880px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0;color:var(--ink);background:var(--bg);
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Segoe UI",system-ui,-apple-system,sans-serif;
+    line-height:1.85;font-size:17px;
+  }
+  a{color:var(--teal);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+  /* 顶栏 */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(244,247,251,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+  .brand{font-weight:800;letter-spacing:.3px;color:var(--teal-dark);display:flex;align-items:center;gap:9px}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px rgba(0,121,107,.15)}
+  .topnav{display:flex;gap:6px;font-size:14px;flex-wrap:wrap}
+  .topnav a{color:var(--muted);padding:6px 9px;border-radius:8px}
+  .topnav a:hover{background:var(--teal-bg);color:var(--teal-dark);text-decoration:none}
+
+  /* Hero */
+  .hero{
+    background:radial-gradient(1200px 420px at 15% -10%,rgba(255,255,255,.18),transparent),
+      linear-gradient(135deg,#004d40 0%,#00796b 55%,#009688 100%);
+    color:#fff;padding:54px 0 46px;position:relative;overflow:hidden;
+  }
+  .kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);padding:6px 15px;border-radius:999px;font-size:13.5px;letter-spacing:.4px;margin-bottom:18px}
+  .hero h1{font-size:clamp(26px,5vw,40px);line-height:1.3;margin:0 0 14px;font-weight:900;letter-spacing:.5px}
+  .hero .sub{font-size:16.5px;color:#e0f2ef;max-width:660px;margin:0}
+  .hero .sub b{color:#fff}
+
+  /* 最重要提醒 */
+  .sos{margin:-24px auto 0;max-width:var(--maxw);position:relative;z-index:5}
+  .sos .inner{background:linear-gradient(135deg,#fff0f0,#fff);border:1px solid var(--coral-line);border-left:6px solid var(--coral);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 26px}
+  .sos .inner b{color:var(--coral)}
+  .sos .inner p{margin:8px 0;font-size:18px}
+  .sos .inner p:first-child{margin-top:0}
+
+  /* 目录 */
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 26px;margin:34px 0}
+  .toc h2{margin:0 0 12px;font-size:15px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase}
+  .toc ol{margin:0;padding-left:20px;columns:1;column-gap:30px}
+  .toc a{color:var(--ink);display:block;padding:6px 0;border-bottom:1px dashed var(--line)}
+  .toc li{break-inside:avoid}
+  @media(min-width:640px){.toc ol{columns:2}}
+
+  section{padding:8px 0 20px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin:22px 0}
+  h2.sec-title{font-size:23px;font-weight:900;color:var(--teal-dark);margin:0 0 6px;display:flex;align-items:center;gap:12px}
+  h2.sec-title .no{flex:none;width:30px;height:30px;border-radius:9px;background:var(--teal-bg);color:var(--teal-dark);display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:800}
+  .sec-lead{color:var(--muted);margin:0 0 18px}
+  h3.sub{font-size:18.5px;font-weight:800;color:var(--ink);margin:30px 0 8px;display:flex;align-items:center;gap:10px}
+  h3.sub::before{content:"";width:4px;height:18px;border-radius:3px;background:var(--teal)}
+
+  .box{border-radius:14px;padding:16px 18px;margin:16px 0;border:1px solid}
+  .box p{margin:5px 0}
+  .box p:first-child{margin-top:0}
+  .box.warn{background:var(--coral-bg);border-color:var(--coral-line)}
+  .box.warn h4,.box.warn b{color:var(--coral)}
+  .box.note{background:var(--amber-bg);border-color:var(--amber-line)}
+  .box.note h4,.box.note b{color:var(--amber)}
+  .box.info{background:var(--blue-bg);border-color:#bfd4f0}
+  .box.info h4,.box.info b{color:var(--blue)}
+  .box.good{background:var(--green-bg);border-color:#bcdbc0}
+  .box.good h4,.box.good b{color:var(--green)}
+  .box.teal{background:var(--teal-bg);border-color:var(--teal-line)}
+  .box.teal h4,.box.teal b{color:var(--teal-dark)}
+
+  .flex2{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:640px){.flex2{grid-template-columns:1fr 1fr}}
+  .mini{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .mini.bx{background:var(--teal-bg);border-color:var(--teal-line)}
+
+  ul.clean{list-style:none;padding-left:0;margin:10px 0}
+  ul.clean li{padding:7px 0 7px 30px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.clean li::before{content:"";position:absolute;left:6px;top:17px;width:8px;height:8px;border-radius:50%;background:var(--teal)}
+  ul.clean li:last-child{border-bottom:none}
+  ul.small li{font-size:15.5px}
+
+  /* 类型卡片 */
+  .group-label{font-size:14px;font-weight:800;letter-spacing:1.5px;color:var(--teal);text-transform:uppercase;margin:30px 0 14px;display:flex;align-items:center;gap:10px}
+  .group-label::before{content:"";flex:none;width:22px;height:5px;border-radius:3px;background:var(--teal)}
+  .type-grid{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:680px){.type-grid{grid-template-columns:1fr 1fr}}
+  .type{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column}
+  .type.hot{border-left-color:var(--coral)}
+  .type .t{font-weight:900;font-size:17.5px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+  .type .t .en{font-size:12.5px;color:var(--muted);font-weight:600;letter-spacing:.3px}
+  .type .badge{flex:none;font-size:11.5px;font-weight:800;color:#fff;background:var(--teal);padding:2px 8px;border-radius:6px;letter-spacing:.5px}
+  .type.hot .badge{background:var(--coral)}
+  .type .d{font-size:15px;color:var(--ink);margin-top:8px}
+  .type .d b{color:var(--teal-dark)}
+
+  /* 步骤 */
+  .step{border-left:3px solid var(--line);padding:2px 0 2px 18px;margin:14px 0}
+  .step h4{margin:0 0 4px;font-size:17px;font-weight:800}
+  .step p{margin:4px 0}
+
+  /* 不做的事 */
+  .dont{background:var(--coral-bg);border:1px solid var(--coral-line);border-radius:12px;padding:14px 16px}
+  .dont li{margin:6px 0;position:relative;padding-left:8px}
+  .dont li::marker{color:var(--coral)}
+  .dont b{color:var(--coral)}
+
+  /* 危机章节 */
+  .crisis{background:linear-gradient(160deg,#1c1614,#3a2a24);color:#f3ede4;border-radius:var(--radius);padding:34px 30px;margin:26px 0}
+  .crisis h2{color:#f7d9a8;font-size:21px;font-weight:900;margin:0 0 16px}
+  .crisis p{color:#ece3d6;margin:12px 0}
+  .crisis .hl{color:#ffd08a;font-weight:800}
+  .crisis .quote{border-left:4px solid #b98a4a;padding-left:18px;margin:18px 0;font-size:19px;font-weight:700;color:#fff3e0}
+  .hotline{background:#fff;color:var(--ink);border-radius:12px;padding:18px 20px;margin-top:22px;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+  .hotline h4{margin:0 0 10px;font-size:16px;color:var(--teal-dark)}
+  .hotline .num{font-size:22px;font-weight:900;color:var(--coral)}
+
+  /* 求助渠道 */
+  .helpline{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:640px){.helpline{grid-template-columns:repeat(3,1fr)}}
+  .hp{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-align:center}
+  .hp .n{font-size:20px;font-weight:900;color:var(--teal-dark)}
+  .hp .l{font-size:13.5px;color:var(--muted);margin-top:4px}
+
+  /* 参考文献 */
+  .refs{font-size:14px;color:var(--muted)}
+  .refs ol{padding-left:20px;margin:6px 0}
+  .refs li{margin:5px 0}
+  .refs a{word-break:break-all}
+
+  .sep{height:1px;background:var(--line);margin:14px 0}
+  footer{color:var(--muted);text-align:center;font-size:12.5px;padding:40px 20px 50px}
+  footer a{color:var(--muted)}
+  footer .dis{max-width:600px;margin:0 auto;line-height:1.7}
+
+  @media print{.topbar{display:none}body{background:#fff;font-size:13px}.card,.toc{box-shadow:none;border-color:#ccc}a{color:#000}}
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap">
+      <div class="brand"><span class="dot"></span>关于抑郁症</div>
+      <nav class="topnav">
+        <a href="#know">认识</a>
+        <a href="#types">类型</a>
+        <a href="#signs">信号</a>
+        <a href="#others">旁人版</a>
+        <a href="#self">本人版</a>
+        <a href="#crisis">求助</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="kicker">🫂 认识 · 陪伴 · 自救 · 不是矫情</div>
+      <h1>关于抑郁症：<br>认识、自救与陪伴指南</h1>
+      <p class="sub">写给<b>觉得自己可能抑郁了的你</b>，也写给<b>想帮身边人却不知从何下手的你</b>。抑郁症不是「想开点就好」，它跟感冒、高血压一样，是一种<b>可以诊断、可以治疗的疾病</b>。</p>
+    </div>
+  </section>
+
+  <div class="sos">
+    <div class="inner">
+      <p>⚠️ <b>如果你或身边人正处在「想伤害自己」的危险边缘：</b></p>
+      <p>请<b>立刻拨打 120 / 110</b>，或拨打 <b>全国心理援助热线 12356</b>（24 小时）。</p>
+      <p>这一页能帮你认识抑郁、找到方向，<b>但它代替不了专业的诊断、药物和心理治疗。</b></p>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <nav class="toc">
+      <h2>本页目录</h2>
+      <ol>
+        <li><a href="#know">先搞懂：抑郁症是一种疾病，不是矫情</a></li>
+        <li><a href="#types">抑郁症的多种类型（按类型/特征分）</a></li>
+        <li><a href="#signs">常见信号：怎么判断可能抑郁了</a></li>
+        <li><a href="#others">旁人视角：怎么帮一个正在抑郁的人</a></li>
+        <li><a href="#self">本人视角：如果你正被抑郁困住</a></li>
+        <li><a href="#crisis">危机时刻：觉得撑不下去的时候</a></li>
+        <li><a href="#refs">参考来源</a></li>
+      </ol>
+    </nav>
+
+    <!-- 0. 认识 -->
+    <section id="know">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">0</span>先搞懂：抑郁症是一种疾病，不是矫情</h2>
+        <p class="sec-lead">在说「怎么帮」之前，先把最重要的观念对齐。</p>
+        <div class="box teal">
+          <p><b>抑郁症是真实的、有生物学基础的疾病。</b>它不是「想太多」「意志薄弱」「性格缺陷」，也不是「玻璃心」。它涉及大脑神经递质、内分泌、遗传等多方面因素，任何人——包括看起来很阳光、事业有成的人——都可能得。</p>
+        </div>
+        <h3 class="sub">常见误区（请别再这样说）</h3>
+        <div class="dont">
+          <ul>
+            <li><b>❌ 别对 TA 说「你想开点就好了」</b> — 这不是想不想得开的问题，是疾病。</li>
+            <li><b>❌ 别对 TA 说「你就是太闲/太矫情/作」</b> — 这句话杀伤力极大，会把 TA 推向更深的自我否定。</li>
+            <li><b>❌ 别以为「抑郁症=抑郁情绪」</b> — 所有人都可能心情低落几天，但抑郁症是持续、反复、影响正常生活功能的「状态」。</li>
+            <li><b>❌ 别因为「他看起来很正常」就以为没事</b> — 很多抑郁症患者会「微笑压抑」和伪装。</li>
+          </ul>
+        </div>
+        <div class="box good">
+          <p><b>好消息：抑郁症可以被治疗，且效果普遍不错。</b>药物、心理咨询（如 CBT）、生活方式调整等，都能显著改善。越早正视、越早求助，越容易走出来。</p>
+          <p><b>值得被好好对待，值得被认真倾听，也值得被专业帮助。</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 类型 -->
+    <section id="types">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">一</span>抑郁症的多种类型</h2>
+        <p class="sec-lead">「抑郁症」是一个总称，它下面有很多不同的类型和亚型。诊断需要专业医生进行，这里帮你做个了解，<b>方便你对照、也方便你向医生描述自己的情况</b>。下面尽量都列出来了。</p>
+
+        <div class="group-label">A · 最常见的基本类型</div>
+        <div class="type-grid">
+
+          <div class="type hot">
+            <div class="t">重性抑郁障碍 <span class="en">Major Depressive Disorder</span> <span class="badge">最常见</span></div>
+            <div class="d">也就是常说的「单相抑郁」。持续<b>至少两周</b>的显著情绪低落、丧失兴趣或快感，并伴有食欲/睡眠改变、疲劳、自责、注意力下降等。这是最常见、也最常被讨论的一种。</div>
+          </div>
+
+          <div class="type">
+            <div class="t">持续性抑郁障碍 <span class="en">Persistent Depressive Disorder</span></div>
+            <div class="d">旧称「恶劣心境」。特点是<b>慢性、长期</b>（成人持续至少 2 年），症状比重性抑郁<b>轻一些</b>，但几乎天天都不好，像一层灰蒙蒙的底色，让人「习以为常」而忽视求助。</div>
+          </div>
+
+          <div class="type hot">
+            <div class="t">双相障碍·抑郁相 <span class="en">Bipolar Depression</span> <span class="badge">需特别鉴别</span></div>
+            <div class="d">抑郁表现和单相抑郁<b>几乎一样</b>，但患者<b>过去有过躁狂/轻躁狂发作</b>（情绪异常高涨、话多、冲动、失眠）。<b>这一点非常关键</b>——因为双相抑郁的用药和单相完全不<span class="b">同，误当普通抑郁治可能诱发躁狂。</span></div>
+          </div>
+
+          <div class="type">
+            <div class="t">经前烦躁障碍 <span class="en">Premenstrual Dysphoric Disorder</span></div>
+            <div class="d">仅在<b>月经期前一周左右</b>出现明显情绪烦躁、易怒、低落、紧张、疲乏，月经开始后缓解。严重到影响工作与社交。它不是「心情不好」，是明确需要帮助的障碍。</div>
+          </div>
+
+          <div class="type">
+            <div class="t">破坏性情绪失调障碍 <span class="en">DMDD</span></div>
+            <div class="d">主要见于<b>儿童和青少年</b>（6–18 岁）。表现为<b>持续性的易怒、暴躁</b>，加上频繁、强烈的脾气爆发，明显超出年龄水平，并影响学习与家庭生活。</div>
+          </div>
+
+          <div class="type">
+            <div class="t">产后 / 围产期抑郁症 <span class="en">Peripartum Depression</span></div>
+            <div class="d">发生在<b>孕期或产后 4 周内</b>的抑郁。不是因为「矫情」或「当妈不称职」，而是激素、睡眠、心理多重因素导致的真实疾病。<b>产妇更需要被看见和被支持。</b></div>
+          </div>
+
+          <div class="type">
+            <div class="t">季节性情感障碍 <span class="en">Seasonal Affective Disorder</span></div>
+            <div class="d">与<b>季节更替</b>密切相关，通常在<b>秋冬日照变短时反复发作</b>，春天好转。常表现为睡眠增多、贪吃碳水、活力下降。光照治疗对它有较好的效果。</div>
+          </div>
+
+        </div>
+
+        <div class="group-label">B · 同一抑郁的「亚型 / 伴随特征」（可叠加在重性抑郁上）</div>
+        <div class="type-grid">
+
+          <div class="type">
+            <div class="t">伴忧郁特征 <span class="en">Melancholic Features</span></div>
+            <div class="d">「内源性」特征：<b>早醒、晨重暮轻</b>（早上最难受）、精神运动迟滞、丧失愉悦感、对本来喜欢的事没反应。看起来更像「经典抑郁」。</div>
+          </div>
+
+          <div class="type">
+            <div class="t">伴非典型特征 <span class="en">Atypical Features</span></div>
+            <div class="d">和忧郁型相反：<b>食欲增加、睡眠过多、四肢沉重得像「铅样瘫痪」</b>，且<b>遇到好事时情绪能短暂好转</b>。常被误判为「只是心情不好」。</div>
+          </div>
+
+          <div class="type hot">
+            <div class="t">伴精神病性特征 <span class="en">Psychotic Features</span></div>
+            <div class="d">抑郁的同时出现<b>幻觉或妄想</b>（如听到贬低自己的声音、坚信自己「有罪」等）。这是<b>较重的类型，需要紧急、专业的精神科处理</b>，不能拖延。</div>
+          </div>
+
+          <div class="type">
+            <div class="t">伴混合特征 <span class="en">Mixed Features</span></div>
+            <div class="d">在抑郁的同时，穿插一些<b>躁狂样症状</b>（情绪烦躁易怒、思绪奔涌、冲动等）。这会让情绪极不稳定，<b>容易被误诊，也增加自伤风险</b>，需要医生仔细鉴别。</div>
+          </div>
+
+          <div class="type">
+            <div class="t">伴焦虑困扰 <span class="en">Anxious Distress</span></div>
+            <div class="d">抑郁的同时带有<b>明显焦虑</b>：紧张不安、坐立难安、难以放松、怕出大事、注意力分散。这是最常见的组合之一，<b>抑郁和焦虑常常「成对出现」</b>。</div>
+          </div>
+
+          <div class="type">
+            <div class="t">伴紧张症 <span class="en">Catatonia</span></div>
+            <div class="d">出现异常的<b>运动障碍</b>，比如长时间僵住不动、突然极度躁动，或重复无意义的动作。这是一种比较少见但严重的状态，需要及时识别和处理。</div>
+          </div>
+
+        </div>
+
+        <div class="group-label">C · 其他容易被忽略或容易越界的情况</div>
+        <div class="type-grid">
+
+          <div class="type">
+            <div class="t">适应障碍·伴抑郁情绪 <span class="en">Adjustment Disorder</span></div>
+            <div class="d">在<b>明确的生活应激事件后</b>（失恋、失业、丧亲、重大变故）出现超出正常范围的抑郁、焦虑情绪，且影响功能。它不是「抑郁发作」，但同样需要支持和关注。</div>
+          </div>
+
+          <div class="type">
+            <div class="t">阈值下 / 亚临床抑郁 <span class="en">Subsyndromal Depression</span></div>
+            <div class="d">有部分抑郁症状，但<b>还没到「重性抑郁」的诊断标准</b>。虽然暂时「不够格」，但一样影响生活质量，也常常是更严重抑郁的<b>前兆</b>，值得被认真对待。</div>
+          </div>
+
+          <div class="type">
+            <div class="t">抑郁的共病 <span class="en">Comorbidity</span></div>
+            <div class="d">抑郁症<b>常常「不单独来」</b>：常与焦虑症、失眠、物质成瘾（酒精/药物）、进食障碍、慢性疼痛等一起出现。处理抑郁时，医生也会一并评估这些「同伴」。</div>
+          </div>
+
+        </div>
+
+        <div class="box note">
+          <p><b>一句重要提醒：</b>以上分类仅供了解，<b>请不要自我「对号入座」给自己下诊断</b>。不同亚型的治疗方向可能不同，能否确诊、属于哪种、要不要用药、用哪种药，<b>请交给精神科 / 心理科医生判断</b>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 信号 -->
+    <section id="signs">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">二</span>常见信号：怎么判断可能抑郁了</h2>
+        <p class="sec-lead">不一定每个都有，但如果你/ TA 出现多数且持续两周以上，就该认真考虑求助。</p>
+        <div class="flex2">
+          <div class="mini">
+            <h4 style="color:var(--teal-dark)">情绪与感受</h4>
+            <ul class="clean small">
+              <li>几乎每天情绪低落、空虚、想哭</li>
+              <li>对原本喜欢的事失去兴趣和快感</li>
+              <li>强烈的无价值感、内疚、自责</li>
+              <li>烦躁易怒、极度敏感</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4 style="color:var(--teal-dark)">身体与生活</h4>
+            <ul class="clean small">
+              <li>睡眠明显变化（睡太多 / 早醒 / 失眠）</li>
+              <li>食欲明显变化（吃太多 / 不想吃）</li>
+              <li>疲乏无力，做什么都提不起劲</li>
+              <li>注意力、记忆力、决策力下降</li>
+            </ul>
+          </div>
+        </div>
+        <div class="box warn">
+          <p><b>🚩 明确需要立即寻求帮助的信号：</b></p>
+          <p>出现「活着没意思」「想消失」「想伤害自己」的念头；开始疏远所有人；放弃以前在乎的事；突然安排后事、告别；行为明显反常、冲动。<b>请不要一个人扛，也不要让对方一个人扛。</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 旁人视角 -->
+    <section id="others">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">三</span>旁人视角：怎么帮一个正在抑郁的人</h2>
+        <p class="sec-lead">你不需要成为医生，你只需要成为「一个接得住 TA 的人」。</p>
+
+        <div class="box teal">
+          <h4>✔ 你可以这样</h4>
+          <ul class="clean small">
+            <li><b>安静地陪伴、耐心地听</b> — 很多时候 TA 需要的不是解决方案，而是「有人愿意听我讲，而且不评判我」。</li>
+            <li><b>用「表达关心」开 口</b> — 比如：「我注意到你最近好像很累/不太一样，你还好吗？我想陪陪你。」</li>
+            <li><b>把「丧」当成病来认真对待</b> — 鼓励并陪 TA 去看精神科 / 心理科，帮忙预约、陪同就诊。</li>
+            <li><b>给具体、可落地的支持</b> — 一起吃饭、一起散步、帮忙处理一件小事，比说「有事找我」更实在。</li>
+            <li><b>理解和接纳「反复」</b> — 情绪会波动、病情会反复，这不是 TA 的错。</li>
+          </ul>
+        </div>
+
+        <h3 class="sub">❌ 这些「好意」其实会伤人</h3>
+        <div class="dont">
+          <ul>
+            <li><b>「你至少还有 xxx，别人更惨」</b> — 比较痛苦只会让 TA 更自责。</li>
+            <li><b>「我懂你 / 我也经历过」</b> — 未经核实的「感同身受」有时会堵住 TA 的倾诉。</li>
+            <li><b>「你坚强一点 / 想开点」</b> — 等于告诉 TA「你的痛苦是你不够努力」。</li>
+            <li><b>用道德压力或指责逼 TA 「振作」</b> — 越催越缩。</li>
+            <li><b>过度追问「你到底怎么了」</b> — 当 TA 不想说时，陪伴比追问更重要。</li>
+          </ul>
+        </div>
+
+        <div class="box warn">
+          <p><b>当你感觉 TA 处于危险、或有自伤风险：</b></p>
+          <p>不要犹豫，<b>直接拨打 120 / 110</b>，并尽量<b>不要留 TA 一个人</b>；把 TA 身边可能伤害自己的物品暂时移除；送到能提供专业帮助的急诊 / 精神科。哪怕 TA 生气、责怪你，<b>「活着」永远比「当下被理解」更重要。</b></p>
+        </div>
+
+        <div class="box note">
+          <p><b>也请照顾你自己。</b>陪伴抑郁症患者是很耗竭的。如果你也感到疲惫、无力或被困住，请你同样去倾诉、去求助、给自己喘息的空间——<b>你只有先稳住自己，才可能真的接住对方。</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 本人视角 -->
+    <section id="self">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">四</span>本人视角：如果你正被抑郁困住</h2>
+        <p>如果你此刻正在低谷里，请先停下来，对自己说一句：<b>「我不是矫情，我是生病了，而这可以被治疗。」</b></p>
+
+        <div class="box good">
+          <h4>你并不孤独，而且可以好起来</h4>
+          <p>抑郁会让大脑「骗」你，让你觉得「没希望、没价值、一切都完了」。<b>请记住：这只是疾病说的话，不是事实。</b>很多曾经走不出来的人，最后都重新找回了生活。</p>
+        </div>
+
+        <h3 class="sub">可以自己先做的</h3>
+        <ul class="clean small">
+          <li><b>先承认、先求助</b> — 这是最重要也最勇敢的一步，不是软弱。</li>
+          <li><b>让白天有人看见你</b> — 拉开窗帘、白天尽量不赖床、出门晒晒太阳、作深呼吸。</li>
+          <li><b>保持基本作息和进食</b> — 不用做到「完美」，规律本身就是一种疗愈。</li>
+          <li><b>做「最小的」日常任务</b> — 把目标降到极低：洗把脸、倒杯水、走几步就算成功。</li>
+          <li><b>记录情绪 &amp; 连接身体</b> — 写日记、给信任的人发一句话，都是「把感受放出去」。</li>
+          <li><b>限制酒精和自伤式渲泄</b> — 酒会加重抑郁，有些方式会进一步消耗你。</li>
+        </ul>
+
+        <h3 class="sub">什么时候该去寻求专业帮助</h3>
+        <div class="box note">
+          <p>如果以上持续 <b>两周以上</b>、反复出现，或已经<b>影响工作、学习、社交、睡眠、吃饭</b>——<b>不要一个人硬扛</b>。请去<b>精神科 / 心理科 / 心理咨询</b>，这是最有效、最专业的出路。</p>
+          <p>你可以在咨询时这样开头：「我觉得自己可能抑郁了，想请你帮我评估一下。」医生或咨询师会专业地帮你判断、治疗，不会取笑你。<b>得抑郁症不是你的错，去治疗才是你的权利。</b></p>
+        </div>
+
+        <div class="box teal">
+          <p><b>给正在挣扎的你一小段话：</b>你没有变差，你只是在生病。你已经撑了这么久，已经很不容易了。<b>请给自己一个「被帮助」的机会。</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 危机 -->
+    <section id="crisis">
+      <div class="crisis">
+        <h2>五、危机时刻：觉得撑不下去的时候</h2>
+        <p>如果你或你身边的人此刻正在绝望边缘——<span class="hl">请立刻停下来，先打一个电话。</span></p>
+        <p>那种「世界一片黑」「撑不住」「想消失」的感觉，是抑郁在放大和扭曲一切。它很真实，但它<b>不是全部的事实</b>，也<b>不是永远的</b>。</p>
+
+        <div class="quote">你可能不觉得自己「值得被救」，但你值得。哪怕只是为了「看看几年后可能完全不一样的人生」，也请再撑一下、先打这个电话。</div>
+
+        <p><b>如果已经吞了东西、已经伤害自己、或正在这么计划，请立刻拨打 120 / 110，去医院急诊。</b>不要一个人扛，不要怕被责怪——<b>先保住命，一切才可能被改写的。</b></p>
+
+        <div class="hotline">
+          <h4>此刻可以立刻求助的渠道：</h4>
+          <div class="helpline" style="margin-top:8px">
+            <div class="hp"><div class="n">120</div><div class="l">急救 · 危险时刻第一选择</div></div>
+            <div class="hp"><div class="n">110</div><div class="l">人身安全受威胁时</div></div>
+            <div class="hp"><div class="n">12356</div><div class="l">全国心理援助热线（24 小时）</div></div>
+          </div>
+          <p style="margin-bottom:0;margin-top:14px;font-size:14px">全国各地还设有本地心理援助热线（可在「心理」相关平台或医院官网上查到）。<b>不必等到「撑不住」才求助。</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 参考文献 -->
+    <section id="refs">
+      <div class="card">
+        <h2 class="sec-title"><span class="no">¶</span>参考来源</h2>
+        <p class="sec-lead">用于编写上述分类与科普的专业来源。</p>
+        <div class="refs">
+          <ol>
+            <li><a href="https://www.who.int/news-room/fact-sheets/detail/depression">WHO — Depression fact sheet</a> · 抑郁症是全球常见疾病，可治疗。</li>
+            <li><a href="https://www.nimh.nih.gov/health/topics/depression">NIMH — Depression</a> · 抑郁症的症状、类型与治疗。</li>
+            <li><a href="https://www.mayoclinic.org/diseases-conditions/depression/symptoms-causes/syc-20356007">Mayo Clinic — Depression (major depressive disorder)</a> · 定义与亚型。</li>
+            <li><a href="https://www.psychiatry.org/patients-families/depression/what-is-depression">APA — What Is Depression?</a> · 抑郁症的诊断与分类说明。</li>
+            <li><a href="https://www.nhs.uk/mental-health/conditions/depression/">NHS — Overview of Depression</a> · 症状、成因、如何求助。</li>
+          </ol>
+          <p style="margin-top:10px">《DSM-5》（精神障碍诊断与统计手册，第五版）为本文「类型/亚型」分类的主要依据。本页面为公益科普，仅供参考，<b>不能替代专业诊断与治疗</b>。</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p class="dis">本页面为公益心理健康科普，仅供了解与参考，<b>不能替代专业的医学诊断、药物治疗与心理治疗</b>。如果你觉得自己可能抑郁，请前往正规医院的精神科 / 心理科评估。</p>
+      <p style="margin-top:14px">作者 · <a href="#">水喝千束</a></p>
+    </footer>
+
+  </main>
+</body>
+</html>
