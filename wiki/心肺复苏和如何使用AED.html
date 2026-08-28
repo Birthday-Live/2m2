@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心肺复苏（CPR）与AED使用 指南</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --ink-2:#333; --ink-3:#5f6b7a;
+    --line:#d7dde3; --line-2:#c2cbd4;
+    --brand:#1f5e8f; --brand-dark:#164a72; --brand-soft:#eaf2f8;
+    --warn:#c0392b; --warn-soft:#fdeeec;
+    --ok:#1e8449; --ok-soft:#e8f6ee;
+    --amber:#b9770e; --amber-soft:#fdf4e5;
+    --gray-soft:#f5f7f9;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:#eef1f4; color:var(--ink);
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Noto Sans CJK SC",sans-serif;
+    font-size:16px; line-height:1.78;
+  }
+  a{color:var(--brand); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:900px; margin:0 auto; background:#fff; box-shadow:0 0 24px rgba(0,0,0,.06);}
+
+  .topbar{
+    background:var(--brand-dark); color:#fff; padding:12px 16px;
+    display:flex; align-items:center; gap:10px; font-size:14px;
+  }
+  .topbar .brand{display:flex; align-items:center; gap:9px; font-weight:700; letter-spacing:.02em;}
+  .topbar .spacer{flex:1;}
+  .topbar a{color:#cfe3f3;}
+  .topbar .icon-btn{display:flex; align-items:center; gap:6px; color:#dbe8f2; font-size:13px;}
+
+  header.hero{padding:22px 18px; border-bottom:1px solid var(--line); background:linear-gradient(180deg,#fff,#fafcfe);}
+  header.hero .eyebrow{
+    display:inline-flex; align-items:center; gap:7px; color:var(--brand);
+    font-size:12px; letter-spacing:.1em; font-weight:700; margin-bottom:8px;
+  }
+  header.hero h1{font-size:24px; margin:0 0 8px; line-height:1.35;}
+  header.hero .lead{color:var(--ink-3); font-size:14.5px; margin:0;}
+  .meta-row{display:flex; flex-wrap:wrap; gap:8px 16px; margin-top:14px; font-size:12.5px; color:var(--ink-3);}
+  .meta-row span{display:inline-flex; align-items:center; gap:6px;}
+
+  .entry-info{margin:14px 16px; border:1px solid var(--line); border-radius:10px; overflow:hidden;}
+  .entry-info .ei-head{background:var(--gray-soft); padding:9px 14px; font-weight:700; color:var(--ink-2); font-size:14px; border-bottom:1px solid var(--line);}
+  .entry-info .ei-body{padding:10px 14px;}
+  .entry-info table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  .entry-info table td{padding:7px 8px; border-bottom:1px solid var(--gray-soft); vertical-align:top;}
+  .entry-info table tr:last-child td{border-bottom:none;}
+  .entry-info table td:first-child{width:78px; color:var(--ink-3);}
+
+  .toc-mobile{display:block; margin:6px 16px 14px; border:1px solid var(--line); border-radius:10px; background:var(--gray-soft); overflow:hidden;}
+  .toc-mobile summary{
+    list-style:none; cursor:pointer; padding:13px 16px; font-weight:700; font-size:15px;
+    color:var(--brand-dark); display:flex; align-items:center; gap:10px; user-select:none;
+  }
+  .toc-mobile summary::-webkit-details-marker{display:none;}
+  .toc-mobile summary .chev{margin-left:auto; transition:transform .2s;}
+  .toc-mobile[open] summary .chev{transform:rotate(180deg);}
+  .toc-mobile ul{list-style:none; margin:0; padding:2px 16px 14px;}
+  .toc-mobile li{margin:3px 0;}
+  .toc-mobile a{display:block; color:var(--ink-3); font-size:13.5px; padding:5px 8px; border-radius:6px;}
+  .toc-mobile a:hover{background:var(--brand-soft); color:var(--brand); text-decoration:none;}
+
+  main{padding:0 4px;}
+  section{margin-bottom:32px; scroll-margin-top:12px; padding:0 16px;}
+  section > h2{
+    font-size:20px; color:var(--brand-dark); margin:0 0 4px; padding-bottom:8px;
+    border-bottom:2px solid var(--brand); display:flex; align-items:center; gap:10px;
+  }
+  section > h2 .h-ico{flex-shrink:0; width:26px; height:26px;}
+  section .sub{color:var(--ink-3); font-size:13.5px; margin:0 0 14px;}
+
+  h3{font-size:17px; color:var(--ink-2); margin:24px 0 8px; display:flex; align-items:center; gap:8px;}
+  h3 .h-ico{width:21px; height:21px;}
+  h4{font-size:15.5px; color:var(--ink-2); margin:18px 0 6px;}
+  p{margin:10px 0;}
+  ul,ol{margin:10px 0 10px 4px; padding-left:20px;}
+  li{margin:6px 0;}
+  strong{color:var(--ink);}
+
+  .callout{border-radius:10px; padding:14px 16px; margin:16px 0; border-left:4px solid; display:flex; gap:12px; align-items:flex-start;}
+  .callout .c-ico{flex-shrink:0; width:26px; height:26px; margin-top:2px;}
+  .callout .c-title{font-weight:700; font-size:15.5px; margin:0 0 4px;}
+  .callout p{margin:0;}
+  .callout ul{margin:0; padding-left:18px; font-size:14.5px;}
+  .callout.danger{background:var(--warn-soft); border-color:var(--warn);}
+  .callout.danger .c-title{color:var(--warn);}
+  .callout.ok{background:var(--ok-soft); border-color:var(--ok);}
+  .callout.ok .c-title{color:var(--ok);}
+  .callout.info{background:var(--brand-soft); border-color:var(--brand);}
+  .callout.info .c-title{color:var(--brand);}
+  .callout.amber{background:var(--amber-soft); border-color:var(--amber);}
+  .callout.amber .c-title{color:var(--amber);}
+
+  .infobox{border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:0 0 8px;}
+  .infobox .ib-head{background:var(--brand-soft); padding:10px 14px; font-weight:700; color:var(--brand-dark); font-size:14.5px;}
+  .infobox .ib-body{padding:8px 14px;}
+  .infobox table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  .infobox table td{padding:7px 8px; border-bottom:1px solid var(--gray-soft); vertical-align:top;}
+  .infobox table tr:last-child td{border-bottom:none;}
+  .infobox table td:first-child{width:88px; color:var(--ink-3);}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:16px 0; border:1px solid var(--line); border-radius:10px;}
+  table.data{width:100%; border-collapse:collapse; font-size:13.5px; min-width:560px;}
+  table.data th, table.data td{border-bottom:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top;}
+  table.data thead th{background:var(--brand-soft); color:var(--brand-dark); font-weight:700;}
+  table.data tbody tr:last-child td{border-bottom:none;}
+  table.data tbody tr:nth-child(even){background:var(--gray-soft);}
+
+  .tag{display:inline-block; padding:2px 8px; border-radius:20px; font-size:11.5px; font-weight:600; margin-right:5px;}
+  .tag.red{background:var(--warn-soft); color:var(--warn);}
+  .tag.amber{background:var(--amber-soft); color:var(--amber);}
+  .tag.green{background:var(--ok-soft); color:var(--ok);}
+  .tag.blue{background:var(--brand-soft); color:var(--brand);}
+
+  .grid{display:grid; grid-template-columns:1fr; gap:12px;}
+  .card{border:1px solid var(--line); border-radius:10px; padding:14px 16px; background:#fff;}
+  .card h4{margin:0 0 6px; font-size:15.5px; color:var(--brand-dark); display:flex; align-items:center; gap:8px;}
+  .card p{margin:0; font-size:14px; color:var(--ink-2);}
+  .card svg{flex-shrink:0;}
+
+  .steps{list-style:none; margin:14px 0; padding:0;}
+  .steps > li{position:relative; padding:0 0 0 46px; margin:0 0 20px;}
+  .steps > li::before{
+    counter-increment:step; content:counter(step); position:absolute; left:0; top:0;
+    width:31px; height:31px; border-radius:50%; background:var(--brand); color:#fff;
+    font-weight:700; display:flex; align-items:center; justify-content:center; font-size:15px;
+  }
+  .steps{counter-reset:step;}
+  .steps > li::after{content:""; position:absolute; left:15px; top:38px; width:2px; bottom:-18px; background:var(--line);}
+  .steps > li:last-child::after{display:none;}
+  .steps .step-title{font-weight:700; font-size:15.5px;}
+  .steps p{font-size:14.5px;}
+
+  /* Phase blocks (before/after ambulance) */
+  .phase{border:1px solid var(--line); border-radius:12px; overflow:hidden; margin:18px 0;}
+  .phase .ph-head{display:flex; align-items:center; gap:10px; padding:13px 16px; color:#fff; font-weight:700; font-size:16px;}
+  .phase .ph-body{padding:6px 16px 16px;}
+  .phase .ph-item{display:flex; gap:12px; padding:11px 0; border-bottom:1px solid var(--gray-soft); align-items:flex-start;}
+  .phase .ph-item:last-child{border-bottom:none;}
+  .phase .ph-ico{flex-shrink:0; width:24px; height:24px; margin-top:1px;}
+  .phase .ph-label{font-weight:700; font-size:14.5px;}
+  .phase .ph-tip{font-size:13.5px; color:var(--ink-3); margin-top:2px;}
+
+  .do-dont{display:grid; grid-template-columns:1fr; gap:12px;}
+  .do-dont .col{border-radius:10px; padding:14px 16px;}
+  .do-dont .col h4{margin:0 0 10px; font-size:15.5px; display:flex; align-items:center; gap:8px;}
+  .do-dont .col ul{margin:0; padding-left:20px; font-size:14.5px;}
+  .do-dont .do{background:var(--ok-soft); border:1px solid #b7ddc7;}
+  .do-dont .do h4{color:var(--ok);}
+  .do-dont .dont{background:var(--warn-soft); border:1px solid #efb9b1;}
+  .do-dont .dont h4{color:var(--warn);}
+
+  .term-list{margin:16px 0;}
+  .term-item{border-bottom:1px solid var(--gray-soft); padding:10px 0; display:flex; gap:12px; align-items:flex-start;}
+  .term-item:last-child{border-bottom:none;}
+  .term-item .t{flex-shrink:0; width:108px; font-weight:700; color:var(--brand-dark); font-size:14px;}
+  .term-item .d{font-size:13.5px; color:var(--ink-2);}
+
+  .disclaimer{border:1px solid var(--line-2); background:#fbfcfd; border-radius:10px; padding:16px 18px; font-size:13px; color:var(--ink-3);}
+  .credit{margin-top:16px; border-radius:10px; padding:14px 18px; font-size:13px; background:var(--brand-soft); color:var(--brand-dark); border:1px solid #c5dcef;}
+
+  footer{background:var(--brand-dark); color:#cfe3f3; padding:20px 18px; font-size:12.5px;}
+  footer .row{display:flex; flex-wrap:wrap; gap:14px; align-items:center;}
+  footer a{color:#eaf3fb;}
+  footer .copy{margin-top:10px; opacity:.85; line-height:1.7;}
+  footer .sign{margin-top:6px; opacity:.9; display:flex; align-items:center; gap:8px;}
+
+  .top{position:fixed; right:16px; bottom:20px; width:42px; height:42px; border-radius:50%;
+    background:var(--brand); color:#fff; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 12px rgba(0,0,0,.2); cursor:pointer; border:none; opacity:0; pointer-events:none; transition:opacity .2s; z-index:50;}
+  .top.show{opacity:1; pointer-events:auto;}
+  .top svg{width:20px; height:20px;}
+
+  @media(min-width:920px){
+    .wrap{max-width:1000px;}
+    header.hero{padding:30px 36px 24px;}
+    header.hero h1{font-size:30px;}
+    header.hero .lead{font-size:15px;}
+    .entry-info{margin:18px 36px 0;}
+    .toc-mobile{display:none;}
+    main{padding:0;}
+    section{padding:0 36px; margin-bottom:48px;}
+    section > h2{font-size:23px;}
+    .grid{grid-template-columns:1fr 1fr;}
+    .do-dont{grid-template-columns:1fr 1fr;}
+    .steps > li{padding-left:54px;}
+    .steps > li::before{width:34px;height:34px;font-size:16px;}
+    .steps > li::after{left:16px;}
+    footer{padding:24px 36px;}
+    .table-scroll{overflow:visible;}
+    table.data{min-width:0; font-size:14.5px;}
+    .infobox table{font-size:14px;}
+    .term-item .t{width:130px; font-size:14.5px;}
+    .term-item .d{font-size:14px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <span class="brand">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      家庭急救知识
+    </span>
+    <span class="spacer"></span>
+    <a class="icon-btn" href="#disclaimer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+      提示
+    </a>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="eyebrow">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12h6M12 9v6"/></svg>
+      急救知识 · 单一条目
+    </div>
+    <h1>心肺复苏（CPR）与AED使用 指南</h1>
+    <p class="lead">系统梳理心搏骤停时如何判断、如何进行高质量心肺复苏、如何使用AED，以及<b>救护车到达前后</b>的关键工作，帮助你在“黄金时刻”冷静、正确地抢救生命。</p>
+    <div class="meta-row">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>阅读约 12 分钟</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5M5 8v10M19 8v10M3 20h18"/></svg>分类：心肺复苏</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>已校核</span>
+    </div>
+  </header>
+
+  <!-- Entry info -->
+  <div class="entry-info">
+    <div class="ei-head">条目信息</div>
+    <div class="ei-body">
+      <table>
+        <tr><td>作者</td><td>水喝千束</td></tr>
+        <tr><td>分类</td><td>心肺复苏 · 家庭急救</td></tr>
+        <tr><td>适用人群</td><td>普通公众、家庭看护者、孕产妇家庭</td></tr>
+        <tr><td>适用场景</td><td>心搏骤停、溺水、窒息、电击等致意识丧失且无呼吸的场合</td></tr>
+        <tr><td>核心要点</td><td>判断倒地 → 呼叫120取AED → 不间断胸外按压 → AED分析除颤 → 交给急救人员</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Mobile TOC -->
+  <details class="toc-mobile">
+    <summary>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      目录
+      <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <ul>
+      <li><a href="#overview">1. 概述</a></li>
+      <li><a href="#assess">2. 何时需要CPR</a></li>
+      <li><a href="#assess2">3. 急救前评估</a></li>
+      <li><a href="#adult">4. 成人心肺复苏</a></li>
+      <li><a href="#child">5. 儿童与婴儿</a></li>
+      <li><a href="#aed">6. AED的使用</a></li>
+      <li><a href="#before">7. 救护车到达前</a></li>
+      <li><a href="#after">8. 救护车到达后</a></li>
+      <li><a href="#errors">9. 常见错误与误区</a></li>
+      <li><a href="#special">10. 特殊情况</a></li>
+      <li><a href="#terms">11. 要点速记</a></li>
+      <li><a href="#disclaimer">12. 免责声明</a></li>
+    </ul>
+  </details>
+
+  <main>
+    <!-- 1 Overview -->
+    <section id="overview">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h6M9 11h6"/></svg>
+        1. 概述
+      </h2>
+      <p class="sub">心搏骤停时，急救的“黄金时刻”就在救护车到达前的几分钟。</p>
+      <p><b>心肺复苏（CPR，Cardiopulmonary Resuscitation）</b>是对心跳呼吸骤停者实施的人工循环与通气支持；<b>AED（自动体外除颤器）</b>则是能自动识别并电击除颤的设备。两者配合，是院前抢救心搏骤停最有效的手段。</p>
+      <p>心搏骤停后，大脑缺氧数分钟即可造成不可逆损伤。救护车往往需要数分钟以上才能到达，因此<b>现场目击者的及时出手</b>，往往决定了患者能否被救回——这正是“急救车来前”工作的意义所在。</p>
+      <div class="infobox">
+        <div class="ib-head">关键认知</div>
+        <div class="ib-body">
+          <table>
+            <tr><td>黄金时刻</td><td>心搏骤停后每延迟1分钟，存活率明显下降。尽早胸外按压与除颤是关键。</td></tr>
+            <tr><td>AED</td><td>会自动分析心律并给出指令，<b>普通人也能安全使用</b>，无需专业判断。</td></tr>
+            <tr><td>不必畏惧</td><td>即使不完美，按压也远好于不按。AED不会对不需要的人放电。</td></tr>
+            <tr><td>法律保护</td><td>中国大陆“好人法”（《民法典》第184条）保护善意救助者，<b>免责鼓励救人</b>。</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="callout danger">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        <div>
+          <p class="c-title">“不敢救”是最大的误区</p>
+          <p>很多人怕按断肋骨、怕急救失败而犹豫。事实上，心搏骤停不救必死，<b>救命优先于顾虑</b>。按错的代价远小于不按。（按断肋骨的情况实际并不常见。）</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 When -->
+    <section id="assess">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        2. 何时需要 CPR
+      </h2>
+      <p class="sub">只有确认“无反应且无正常呼吸”才启动，避免对不需要者施救。</p>
+      <div class="grid">
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M15 8l-6 6M9 8l6 6"/></svg>需要CPR</h4>
+          <p>意识丧失（呼唤拍打无反应），且<b>无呼吸</b>或仅有<b>异常喘息/濒死样呼吸</b>。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>可能不需CPR</h4>
+          <p>只是晕厥（会逐渐清醒）、能正常呼吸、或呼吸正常且意识清醒者。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 Assess -->
+    <section id="assess2">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+        3. 急救前评估（D-CAB）
+      </h2>
+      <p class="sub">动手前先做这几步，确保环境安全、判断准确。</p>
+      <ol class="steps">
+        <li>
+          <div class="step-title">D 环境安全</div>
+          <p>确认现场<b>无危险</b>（如车辆、电流、火源、有毒气体）。先保障自身与他人安全再施救。</p>
+        </li>
+        <li>
+          <div class="step-title">C 判断意识与循环</div>
+          <p>轻拍双肩、大声呼喊，询问“你还好吗”。观察有无反应、有无呼吸。若全无反应且无正常呼吸，进入下一步。</p>
+        </li>
+        <li>
+          <div class="step-title">A 呼叫求助</div>
+          <p>大声呼救，<b>指定具体的人</b>：“请你拨打120并取来AED”“请你去拿AED”！明确的指令更容易被执行。</p>
+        </li>
+        <li>
+          <div class="step-title">B 摆放体位</div>
+          <p>将患者仰卧于<b>硬质平面</b>（地面），解开领口、腰带，使其平躺，便于按压。</p>
+        </li>
+      </ol>
+      <div class="callout info">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+        <div>
+          <p class="c-title">判断呼吸别超过10秒</p>
+          <p>观察胸廓起伏约<b>5–10秒</b>。若拿不准，与其反复观察，不如<b>就当是骤停开始按压</b>——错过判断比错误启动更可怕。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Adult CPR -->
+    <section id="adult">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        4. 成人心肺复苏
+      </h2>
+      <p class="sub">重点是高质量、不间断的胸外按压。单人心肺复苏按 30:2 进行。</p>
+      <div class="grid">
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>按压位置</h4>
+          <p>两乳头连线中点的胸骨下半部，<b>掌根</b>着力，另一手掌叠上、十指相扣。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>深度与频率</h4>
+          <p>成人按压深度约 <b>5–6 厘米</b>、频率 <b>100–120 次/分</b>。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>充分回弹</h4>
+          <p>每次按压后让胸廓<b>充分回弹</b>，双手不离开胸壁；尽量减少按压中断。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="9" height="12" rx="2"/><path d="M12 9h9M12 12h9M12 15h9"/></svg>人工呼吸</h4>
+          <p>仰头抬颏开放气道，捏鼻吹气约 1 秒，见胸廓隆起为佳。按压与吹气 <b>30:2</b>。</p>
+        </div>
+      </div>
+      <div class="callout amber">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#b9770e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+        <div>
+          <p class="c-title">不愿做人工呼吸怎么办？</p>
+          <p>如果担心口对口或没把握，<b>持续做胸外按压（仅按压 CPR）</b>同样是有效的、可接受的抢救方式。持续按压总比什么都不做好。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 Child & infant -->
+    <section id="child">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M6 21v-1a6 6 0 0 1 6-6M12 13a5 5 0 0 0 5 5"/></svg>
+        5. 儿童与婴儿心肺复苏
+      </h2>
+      <p class="sub">剂量与手法与成人不同，尽可能先做2次人工呼吸再按压。</p>
+      <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>对象</th><th>按压方式</th><th>深度</th><th>频率</th><th>按压:通气</th></tr></thead>
+        <tbody>
+          <tr><td>儿童（1岁–青春期）</td><td>单手或双手掌根</td><td>约 5 厘米（1/3 胸廓）</td><td>100–120 次/分</td><td>单人 30:2／双人 15:2</td></tr>
+          <tr><td>婴儿（&lt;1岁）</td><td>两指或两拇指环抱法</td><td>约 4 厘米（1/3 胸廓）</td><td>100–120 次/分</td><td>单人 30:2／双人 15:2</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout info">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <div>
+          <p class="c-title">儿童窒息优先通气</p>
+          <p>儿童骤停多为<b>呼吸原因</b>（如窒息、溺水）所致，因此应尽可能先做 <strong>5 次人工呼吸</strong>再开始按压，并尽量保证通气。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 AED -->
+    <section id="aed">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14 9 11"/></svg>
+        6. AED 的使用
+      </h2>
+      <p class="sub">AED 会开口指导你，只要按指令做就行。</p>
+      <ol class="steps">
+        <li>
+          <div class="step-title">打开电源，听指令</div>
+          <p>按下电源键或翻开盖子即开机，随后<b>全程跟着语音提示</b>操作。</p>
+        </li>
+        <li>
+          <div class="step-title">贴上电极片</div>
+          <p>按图示位置贴：一块在<b>右锁骨下方</b>，一块在<b>左乳头外侧的腋中线</b>。婴儿可使用儿童电极片或按图示贴前后位。</p>
+        </li>
+        <li>
+          <div class="step-title">分析心律</div>
+          <p>提示“正在分析”时，<b>所有人不要触碰患者</b>。AED 会判断是否需要放电。</p>
+        </li>
+        <li>
+          <div class="step-title">按提示放电</div>
+          <p>若提示需要除颤，喊“离开”，确保<b>无人接触</b>后按下放电键。</p>
+        </li>
+        <li>
+          <div class="step-title">立即恢复按压</div>
+          <p>放电后<b>立刻继续胸外按压</b>。AED 每约2分钟会再次分析，届时听从指示。</p>
+        </li>
+      </ol>
+      <div class="callout ok">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#1e8449" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14 9 11"/></svg>
+        <div>
+          <p class="c-title">AED 是安全的</p>
+          <p>AED 只会对确实需要的心律（如室颤）放电，<b>不会误伤不需要的人</b>。即使不确定，也请按它提示操作——它比人更“懂”判断。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 Before ambulance -->
+    <section id="before">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        7. 救护车到达前（重点）
+      </h2>
+      <p class="sub">这一段时间最考验人，也是决定生死的“黄金期”。</p>
+      <div class="phase" style="border-left:4px solid var(--brand);">
+        <div class="ph-head" style="background:var(--brand-dark);">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          让抢救“不间断”，等救护车来的核心
+        </div>
+        <div class="ph-body">
+          <div class="ph-item">
+            <svg class="ph-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <div>
+              <div class="ph-label">持续按压，尽量减少中断</div>
+              <div class="ph-tip">除非 AED 在分析/放电或已换人，否则<b>不要停止按压</b>。按压中断越长，抢救成功率越低。</div>
+            </div>
+          </div>
+          <div class="ph-item">
+            <svg class="ph-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <div>
+              <div class="ph-label">按 2 分钟轮换</div>
+              <div class="ph-tip">他人可负责计数与计时，约每 <b>2 分钟（5 轮 30:2）</b>换人按压，保持质量与体力。</div>
+            </div>
+          </div>
+          <div class="ph-item">
+            <svg class="ph-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+            <div>
+              <div class="ph-label">AED 一到位就立即使用</div>
+              <div class="ph-tip">不要“等 CPR 做完再用”。AED 越早用越好，<b>分析/放电后立即返回按压</b>。</div>
+            </div>
+          </div>
+          <div class="ph-item">
+            <svg class="ph-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2"><path d="M3 21v-2a6 6 0 0 1 6-6h2M22 21v-2a6 6 0 0 0-4.5-5.8"/><circle cx="9" cy="7" r="3"/></svg>
+            <div>
+              <div class="ph-label">分工协作并保持电话畅通</div>
+              <div class="ph-tip">一人按压、一人接车、一人守着手机配合<b>120 调度员指导</b>，别让急救人员找不到门。</div>
+            </div>
+          </div>
+          <div class="ph-item">
+            <svg class="ph-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2"><path d="M12 2v20M12 2l4 3M12 2L8 5M12 22l4-3M12 22l-4-3"/></svg>
+            <div>
+              <div class="ph-label">保持硬质平面与安全通道</div>
+              <div class="ph-tip">让患者平躺于硬地面，<b>清理周围与门口通道</b>，方便担架进出。</div>
+            </div>
+          </div>
+          <div class="ph-item">
+            <svg class="ph-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <div>
+              <div class="ph-label">不要中断，坚持到交接</div>
+              <div class="ph-tip">患者可能中途恢复呼吸，若恢复，则<b>侧卧观察</b>；若未恢复，持续做到急救人员接手。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 After ambulance -->
+    <section id="after">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l9-4 9 4v14"/><path d="M12 3v5"/><path d="M9 21v-8h6v8M9 9h6"/></svg>
+        8. 救护车到达后（重点）
+      </h2>
+      <p class="sub">急救人员接手后，你要做的关键是“交接”与“配合”。</p>
+      <div class="phase" style="border-left:4px solid var(--ok);">
+        <div class="ph-head" style="background:var(--ok);">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l9-4 9 4v14"/><path d="M12 3v5"/><path d="M9 21v-8h6v8M9 9h6"/></svg>
+          交接与配合的关键动作
+        </div>
+        <div class="ph-body">
+          <div class="ph-item">
+            <svg class="ph-ico" viewBox="0 0 24 24" fill="none" stroke="#1e8449" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <div>
+              <div class="ph-label">不要停，等对方明确接手</div>
+              <div class="ph-tip">先保持按压，等急救人员明确说“我们来接手”再让位，并让出空间。</div>
+            </div>
+          </div>
+          <div class="ph-item">
+            <svg class="ph-ico" viewBox="0 0 24 24" fill="none" stroke="#1e8449" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+            <div>
+              <div class="ph-label">交代关键信息</div>
+              <div class="ph-tip">一句话说清：<b>何时倒地、是否目击、何时开始按压、是否用了AED、除颤几次、患者年龄/病史/用药/是否怀孕</b>。</div>
+            </div>
+          </div>
+          <div class="ph-item">
+            <svg class="ph-ico" viewBox="0 0 24 24" fill="none" stroke="#1e8449" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            <div>
+              <div class="ph-label">交上病史与随身物品</div>
+              <div class="ph-tip">提供<b>病历、药盒、身份证、医保卡</b>，含过敏史与用药史，帮医生快速决策。</div>
+            </div>
+          </div>
+          <div class="ph-item">
+            <svg class="ph-ico" viewBox="0 0 24 24" fill="none" stroke="#1e8449" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <div>
+              <div class="ph-label">协助搬运</div>
+              <div class="ph-tip">协助开门、清理通道、帮忙抬担架（按急救人员指示），别自行搬动患者。</div>
+            </div>
+          </div>
+          <div class="ph-item">
+            <svg class="ph-ico" viewBox="0 0 24 24" fill="none" stroke="#1e8449" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <div>
+              <div class="ph-label">家属随车与就医去向</div>
+              <div class="ph-tip">确认<b>送往哪家医院</b>、是否需要家属随车；告知其他家属，并按急救人员建议转院。</div>
+            </div>
+          </div>
+          <div class="ph-item">
+            <svg class="ph-ico" viewBox="0 0 24 24" fill="none" stroke="#1e8449" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M15 8l-6 6M9 8l6 6"/></svg>
+            <div>
+              <div class="ph-label">不要干扰、围观或拍摄</div>
+              <div class="ph-tip">保持环境安静，为急救人员腾出空间，<b>不要在抢救时拍照录像</b>，尊重患者隐私。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 Errors -->
+    <section id="errors">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg>
+        9. 常见错误与误区
+      </h2>
+      <p class="sub">这些做法会显著降低抢救成功率。</p>
+      <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>错误做法</th><th>正确做法</th></tr></thead>
+        <tbody>
+          <tr><td>犹豫“是不是该救”、反复确认</td><td>无反应且无正常呼吸，即开始按压</td></tr>
+          <tr><td>按压太浅、时快时慢</td><td>保持约 <b>5–6 厘米深、100–120 次/分</b></td></tr>
+          <tr><td>按压中断太久（搬动/等AED）</td><td>尽量减少中断，AED到位即用</td></tr>
+          <tr><td>给患者喂水、喂药、抬人中</td><td>骤停者立即按压，不喂任何东西</td></tr>
+          <tr><td>把患者垫枕头或软床按压</td><td>置于<b>硬质平面</b>、平躺</td></tr>
+          <tr><td>接触患者时让AED放电</td><td>放电时<b>所有人离开</b></td></tr>
+          <tr><td>急救人员到后仍堵在旁/围观</td><td>让出空间、听从指挥、交代信息</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <!-- 10 Special -->
+    <section id="special">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+        10. 特殊情况
+      </h2>
+      <p class="sub">不同致因的骤停，处置侧重点略有不同。</p>
+      <div class="grid">
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.5-1.5 3-3.2 3-5.5a5.5 5.5 0 0 0-11 0c0 2.3 1.5 4 3 5.5l-1 2h-6v2h2l1 3h2l1-1h4l1 1h2l1-3h2v-2z"/></svg>溺水</h4>
+          <p>先确保自身安全，将人移至安全处，优先做 <b>5 次人工呼吸</b>再按压，说明是溺水（便于对接医院）。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg>电击</h4>
+          <p><b>先断电或分离电源</b>，确保安全后再施救；不要徒手直接接触触电者。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="6" r="3"/><path d="M6 21c0-4 2-7 6-7s6 3 6 7"/><path d="M12 9v5"/></svg>孕妇</h4>
+          <p>按压位置略上移，尽量让孕妇<b>向左侧倾斜（垫高右侧）</b>以减轻子宫压迫；务必告知急救人员“已怀孕及孕周”。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>恢复呼吸后</h4>
+          <p>若患者恢复意识与呼吸，置于<b>侧卧位（恢复体位）</b>持续观察，等待急救人员，不要起身。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 Terms -->
+    <section id="terms">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        11. 要点速记
+      </h2>
+      <p class="sub">关键时刻能记住这几点就够用。</p>
+      <div class="term-list">
+        <div class="term-item"><div class="t">判断</div><div class="d">无反应 + 无正常呼吸 → 立即施救。</div></div>
+        <div class="term-item"><div class="t">呼救</div><div class="d">指定某人拨打120、某人去取AED。</div></div>
+        <div class="term-item"><div class="t">按压</div><div class="d">5–6cm 深、100–120次/分、充分回弹。</div></div>
+        <div class="term-item"><div class="t">AED</div><div class="d">开机听指令，放电时人离开。</div></div>
+        <div class="term-item"><div class="t">来前</div><div class="d">中断最少、轮换、AED到位即用。</div></div>
+        <div class="term-item"><div class="t">来后</div><div class="d">不抢压、交信息、协助、让空间。</div></div>
+        <div class="term-item"><div class="t">心理</div><div class="d">“好人法”免责，救比不救强。</div></div>
+      </div>
+    </section>
+
+    <!-- 12 Disclaimer -->
+    <section id="disclaimer">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+        12. 免责声明
+      </h2>
+      <div class="disclaimer">
+        <p><strong>重要提示：</strong>本条目为一般性科普参考，<strong>不能替代专业心肺复苏培训与急救人员的现场指导</strong>。心肺复苏技术细节（如按压深度、频率、AED操作）应以当地急救机构的最新指南与<b>120 调度员、AED 语音、急救人员</b>的指示为准。发生心搏骤停时，请<b>立即拨打当地急救电话（中国 120）</b>，并尽量使用就近的 AED。</p>
+        <p style="margin-top:12px;">建议通过正规机构参加一次<b>心肺复苏与AED实操培训</b>，实际操作比文字更有价值。本资料仅供家庭科普，作者及平台不对因使用本条目信息而产生的后果承担责任。</p>
+      </div>
+      <div class="credit">
+        <span style="display:flex; align-items:center; gap:8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+          <strong>作者：水喝千束</strong>
+        </span>
+        <p style="margin:6px 0 0; font-size:12.5px;">本文档为原创科普内容，采用纯 SVG 图标制作，离线可读。转载或引用请注明作者。</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="row">
+      <span>心肺复苏（CPR）与AED使用 指南</span>
+      <span>· 心肺复苏 · 家庭急救</span>
+      <span style="margin-left:auto;"><a href="#">收藏</a> · <a href="#">纠错</a> · <a href="#">打印</a></span>
+    </div>
+    <div class="copy">本条目纯用 SVG 图标制作，离线可读。内容仅供科普，紧急情况请拨打 120。</div>
+    <div class="sign">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#cfd8e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+      作者：水喝千束
+    </div>
+  </footer>
+</div>
+
+<button class="top" id="topBtn" title="回到顶部" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  var btn=document.getElementById('topBtn');
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>400){btn.classList.add('show');}else{btn.classList.remove('show');}
+  });
+  btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+</script>
+</body>
+</html>
