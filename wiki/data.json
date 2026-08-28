@@ -34,6 +34,14 @@
     "iconSymbol": "#icon-medical",
     "desc": "紧急情况下如何高效向 120 呼救、清晰准确报出关键信息的实用指南。"
   },
+  
+  {
+    "title": "如何心肺复苏以及如何使用Aed",
+    "file": "心肺复苏和如何使用AED.html",
+    "tag": "急救",
+    "iconSymbol": "#icon-medical",
+    "desc": "紧急情况下如何使用心肺复苏和AED的实用指南。"
+  },
   {
     "title": "降压药误吞及过量急救指南",
     "file": "降压药误吞及过量急救指南.html",
