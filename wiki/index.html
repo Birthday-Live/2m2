@@ -397,7 +397,7 @@
     <div class="sidebar-menu">
       <div class="menu-group">
         <div class="menu-title">浏览知识库</div>
-        <a href="#" class="menu-item active" onclick="filterCategory('all', this)">
+        <a class="menu-item active" onclick="filterCategory('all', this)">
           <svg class="svg-icon"><use href="#icon-book"/></svg> 词条索引
         </a>
       </div>
@@ -463,41 +463,8 @@
   </div>
 
 <script>
-/* ============================================================
-   JSON 词条清单配置（使用 SVG symbol ID 代替 Emoji）
-   ============================================================ */
-const WIKI_DATA = [
-  {
-    title: "MTF 跨性别指南",
-    file: "MTF.html",
-    tag: "跨性别",
-    iconSymbol: "#icon-gender",
-    desc: "关于跨性别女性 (MTF) 的基础认知、心理适应与生活支持相关科普指南。"
-  },
-  {
-    title: "亚硝酸钠中毒现场急救指南",
-    file: "亚硝酸钠中毒现场急救指南.html",
-    tag: "急救",
-    iconSymbol: "#icon-medical",
-    desc: "突发亚硝酸盐/亚硝酸钠中毒时的黄金急救处理流程与紧急现场自救办法。"
-  },
-  {
-    title: "双相情感障碍科普",
-    file: "双向情感障碍.html",
-    tag: "情绪障碍",
-    iconSymbol: "#icon-brain",
-    desc: "了解双相情感障碍（躁郁症）的症状识别、日常情绪监测与身边人陪伴建议。"
-  },
-  {
-    title: "抑郁症自救与伴随指南",
-    file: "抑郁症.html",
-    tag: "情绪障碍",
-    iconSymbol: "#icon-brain",
-    desc: "关于抑郁状态识别、心理调节、求医指导及给身旁陪伴者的科学科普。"
-  }
-];
-
-let currentData = [...WIKI_DATA];
+let rawData = [];
+let currentData = [];
 
 /* 渲染卡片列表 */
 function renderGrid(items){
@@ -505,7 +472,7 @@ function renderGrid(items){
   const emptyBlock = document.getElementById("emptyBlock");
   grid.innerHTML = "";
 
-  if(!items.length){
+  if(!items || !items.length){
     emptyBlock.style.display = "block";
     return;
   }
@@ -563,21 +530,38 @@ function filterCategory(cat, el){
   }
 
   if(cat === 'all') {
-    currentData = [...WIKI_DATA];
+    currentData = [...rawData];
   } else {
-    currentData = WIKI_DATA.filter(it => it.tag === cat);
+    currentData = rawData.filter(it => it.tag === cat);
   }
   
   handleSearch();
 }
 
-/* 初始化页面 */
-(function init(){
-  const count = WIKI_DATA.length;
-  document.getElementById("docCount").textContent = count;
-  document.getElementById("statusCount").textContent = count;
-  renderGrid(WIKI_DATA);
-})();
+/* 动态读取同目录下的 data.json */
+async function loadJsonData(){
+  const emptyBlock = document.getElementById("emptyBlock");
+  try {
+    const res = await fetch('./data.json', { cache: "no-store" });
+    if (!res.ok) throw new Error("无法读取 data.json");
+    
+    rawData = await res.json();
+    currentData = [...rawData];
+
+    const count = rawData.length;
+    document.getElementById("docCount").textContent = count;
+    document.getElementById("statusCount").textContent = count;
+    
+    renderGrid(rawData);
+  } catch (err) {
+    console.error("加载 data.json 失败:", err);
+    emptyBlock.style.display = "block";
+    emptyBlock.innerHTML = `⚠️ <b>读取 data.json 失败</b><br><span style="font-size:12px;color:var(--muted)">请确保同目录下存在 data.json 文件，且通过 Web 服务器访问。</span>`;
+  }
+}
+
+// 启动页面时读取 JSON
+loadJsonData();
 </script>
 </body>
 </html>
