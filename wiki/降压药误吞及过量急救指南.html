@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>误吞降压药及降压药过量 急救指南</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --ink-2:#333; --ink-3:#5f6b7a;
+    --line:#d7dde3; --line-2:#c2cbd4;
+    --brand:#1f5e8f; --brand-dark:#164a72; --brand-soft:#eaf2f8;
+    --warn:#c0392b; --warn-soft:#fdeeec;
+    --ok:#1e8449; --ok-soft:#e8f6ee;
+    --amber:#b9770e; --amber-soft:#fdf4e5;
+    --gray-soft:#f5f7f9;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:#eef1f4; color:var(--ink);
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Noto Sans CJK SC",sans-serif;
+    font-size:16px; line-height:1.75;
+  }
+  a{color:var(--brand); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:900px; margin:0 auto; background:#fff; box-shadow:0 0 24px rgba(0,0,0,.06);}
+
+  /* Top bar */
+  .topbar{
+    background:var(--brand-dark); color:#fff; padding:12px 16px;
+    display:flex; align-items:center; gap:10px; font-size:14px;
+  }
+  .topbar .brand{display:flex; align-items:center; gap:9px; font-weight:700; letter-spacing:.02em;}
+  .topbar .spacer{flex:1;}
+  .topbar a{color:#cfe3f3;}
+  .topbar .icon-btn{display:flex; align-items:center; gap:6px; color:#dbe8f2; font-size:13px;}
+
+  /* Header */
+  header.hero{padding:22px 18px; border-bottom:1px solid var(--line); background:linear-gradient(180deg,#fff,#fafcfe);}
+  header.hero .eyebrow{
+    display:inline-flex; align-items:center; gap:7px; color:var(--brand);
+    font-size:12px; letter-spacing:.1em; font-weight:700; margin-bottom:8px;
+  }
+  header.hero h1{font-size:24px; margin:0 0 8px; line-height:1.35;}
+  header.hero .lead{color:var(--ink-3); font-size:14.5px; margin:0;}
+  .meta-row{display:flex; flex-wrap:wrap; gap:8px 16px; margin-top:14px; font-size:12.5px; color:var(--ink-3);}
+  .meta-row span{display:inline-flex; align-items:center; gap:6px;}
+
+  /* Mobile TOC (collapsible) */
+  .toc-mobile{display:block; margin:14px 16px; border:1px solid var(--line); border-radius:10px; background:var(--gray-soft); overflow:hidden;}
+  .toc-mobile summary{
+    list-style:none; cursor:pointer; padding:13px 16px; font-weight:700; font-size:15px;
+    color:var(--brand-dark); display:flex; align-items:center; gap:10px; user-select:none;
+  }
+  .toc-mobile summary::-webkit-details-marker{display:none;}
+  .toc-mobile summary .chev{margin-left:auto; transition:transform .2s;}
+  .toc-mobile[open] summary .chev{transform:rotate(180deg);}
+  .toc-mobile ul{list-style:none; margin:0; padding:2px 16px 14px;}
+  .toc-mobile li{margin:3px 0;}
+  .toc-mobile a{display:block; color:var(--ink-3); font-size:14px; padding:6px 8px; border-radius:6px;}
+  .toc-mobile a:hover{background:var(--brand-soft); color:var(--brand); text-decoration:none;}
+  .toc-side{display:none;}
+
+  main{padding:0 4px;}
+  section{margin-bottom:32px; scroll-margin-top:12px; padding:0 16px;}
+  section > h2{
+    font-size:20px; color:var(--brand-dark); margin:0 0 4px; padding-bottom:8px;
+    border-bottom:2px solid var(--brand); display:flex; align-items:center; gap:10px;
+  }
+  section > h2 .h-ico{flex-shrink:0; width:26px; height:26px;}
+  section .sub{color:var(--ink-3); font-size:13.5px; margin:0 0 14px;}
+
+  h3{font-size:17px; color:var(--ink-2); margin:22px 0 8px; display:flex; align-items:center; gap:8px;}
+  h3 .h-ico{width:21px; height:21px;}
+  p{margin:10px 0;}
+  ul,ol{margin:10px 0 10px 4px; padding-left:20px;}
+  li{margin:6px 0;}
+  strong{color:var(--ink);}
+
+  .callout{border-radius:10px; padding:14px 16px; margin:16px 0; border-left:4px solid; display:flex; gap:12px; align-items:flex-start;}
+  .callout .c-ico{flex-shrink:0; width:26px; height:26px; margin-top:2px;}
+  .callout .c-title{font-weight:700; font-size:15.5px; margin:0 0 4px;}
+  .callout p{margin:0;}
+  .callout ul{margin:0; padding-left:18px; font-size:14.5px;}
+  .callout.danger{background:var(--warn-soft); border-color:var(--warn);}
+  .callout.danger .c-title{color:var(--warn);}
+  .callout.ok{background:var(--ok-soft); border-color:var(--ok);}
+  .callout.ok .c-title{color:var(--ok);}
+  .callout.info{background:var(--brand-soft); border-color:var(--brand);}
+  .callout.info .c-title{color:var(--brand);}
+
+  .infobox{border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:0 0 8px;}
+  .infobox .ib-head{background:var(--brand-soft); padding:10px 14px; font-weight:700; color:var(--brand-dark); font-size:14.5px;}
+  .infobox .ib-body{padding:8px 14px;}
+  .infobox table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  .infobox table td{padding:7px 8px; border-bottom:1px solid var(--gray-soft); vertical-align:top;}
+  .infobox table tr:last-child td{border-bottom:none;}
+  .infobox table td:first-child{width:88px; color:var(--ink-3); flex-shrink:0;}
+
+  /* Tables: horizontal scroll on mobile */
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:16px 0; border:1px solid var(--line); border-radius:10px;}
+  table.data{width:100%; border-collapse:collapse; font-size:13.5px; min-width:560px;}
+  table.data th, table.data td{ border-bottom:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top;}
+  table.data thead th{background:var(--brand-soft); color:var(--brand-dark); font-weight:700;}
+  table.data tbody tr:last-child td{border-bottom:none;}
+  table.data tbody tr:nth-child(even){background:var(--gray-soft);}
+
+  .tag{display:inline-block; padding:2px 8px; border-radius:20px; font-size:11.5px; font-weight:600; margin-right:5px;}
+  .tag.red{background:var(--warn-soft); color:var(--warn);}
+  .tag.amber{background:var(--amber-soft); color:var(--amber);}
+  .tag.green{background:var(--ok-soft); color:var(--ok);}
+  .tag.blue{background:var(--brand-soft); color:var(--brand);}
+
+  .grid{display:grid; grid-template-columns:1fr; gap:12px;}
+  .card{border:1px solid var(--line); border-radius:10px; padding:14px 16px; background:#fff;}
+  .card h4{margin:0 0 6px; font-size:15.5px; color:var(--brand-dark); display:flex; align-items:center; gap:8px;}
+  .card p{margin:0; font-size:14px; color:var(--ink-2);}
+  .card svg{flex-shrink:0;}
+
+  .steps{list-style:none; margin:14px 0; padding:0;}
+  .steps > li{position:relative; padding:0 0 0 46px; margin:0 0 20px;}
+  .steps > li::before{
+    counter-increment:step; content:counter(step); position:absolute; left:0; top:0;
+    width:31px; height:31px; border-radius:50%; background:var(--brand); color:#fff;
+    font-weight:700; display:flex; align-items:center; justify-content:center; font-size:15px;
+  }
+  .steps{counter-reset:step;}
+  .steps > li::after{content:""; position:absolute; left:15px; top:38px; width:2px; bottom:-18px; background:var(--line);}
+  .steps > li:last-child::after{display:none;}
+  .steps .step-title{font-weight:700; font-size:15.5px;}
+  .steps p{font-size:14.5px;}
+
+  .do-dont{display:grid; grid-template-columns:1fr; gap:12px;}
+  .do-dont .col{border-radius:10px; padding:14px 16px;}
+  .do-dont .col h4{margin:0 0 10px; font-size:15.5px; display:flex; align-items:center; gap:8px;}
+  .do-dont .col ul{margin:0; padding-left:20px; font-size:14.5px;}
+  .do-dont .do{background:var(--ok-soft); border:1px solid #b7ddc7;}
+  .do-dont .do h4{color:var(--ok);}
+  .do-dont .dont{background:var(--warn-soft); border:1px solid #efb9b1;}
+  .do-dont .dont h4{color:var(--warn);}
+
+  .disclaimer{border:1px solid var(--line-2); background:#fbfcfd; border-radius:10px; padding:16px 18px; font-size:13px; color:var(--ink-3);}
+
+  footer{background:var(--brand-dark); color:#cfe3f3; padding:20px 18px; font-size:12.5px;}
+  footer .row{display:flex; flex-wrap:wrap; gap:14px; align-items:center;}
+  footer a{color:#eaf3fb;}
+  footer .copy{margin-top:10px; opacity:.8; line-height:1.6;}
+
+  .top{position:fixed; right:16px; bottom:20px; width:42px; height:42px; border-radius:50%;
+    background:var(--brand); color:#fff; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 12px rgba(0,0,0,.2); cursor:pointer; border:none; opacity:0; pointer-events:none; transition:opacity .2s; z-index:50;}
+  .top.show{opacity:1; pointer-events:auto;}
+  .top svg{width:20px; height:20px;}
+
+  /* Tablet / desktop */
+  @media(min-width:920px){
+    .wrap{max-width:1000px;}
+    header.hero{padding:30px 36px 24px;}
+    header.hero h1{font-size:30px;}
+    header.hero .lead{font-size:15px;}
+    .toc-mobile{display:none;}
+    main{padding:0;}
+    section{padding:0 36px; margin-bottom:46px;}
+    section > h2{font-size:23px;}
+    .grid{grid-template-columns:1fr 1fr;}
+    .do-dont{grid-template-columns:1fr 1fr;}
+    .steps > li{padding-left:54px;}
+    .steps > li::before{width:34px;height:34px;font-size:16px;}
+    .steps > li::after{left:16px;}
+    footer{padding:24px 36px;}
+    .table-scroll{overflow:visible;}
+    table.data{min-width:0; font-size:14.5px;}
+    .infobox table{font-size:14px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <span class="brand">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      家庭急救知识
+    </span>
+    <span class="spacer"></span>
+    <a class="icon-btn" href="#disclaimer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+      提示
+    </a>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="eyebrow">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12h6M12 9v6"/></svg>
+      急救知识 · 单一条目
+    </div>
+    <h1>误吞降压药及降压药过量 急救指南</h1>
+    <p class="lead">梳理误服或过量服用抗高血压药物后的识别、现场处置、禁忌事项与就医要点。内容仅供科普参考，不能替代专业医疗判断。</p>
+    <div class="meta-row">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>阅读约 8 分钟</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5M5 8v10M19 8v10M3 20h18"/></svg>分类：药物中毒</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>已校核</span>
+    </div>
+  </header>
+
+  <!-- Mobile collapsible TOC -->
+  <details class="toc-mobile">
+    <summary>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      目录
+      <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <ul>
+      <li><a href="#overview">1. 概述</a></li>
+      <li><a href="#drugs">2. 常见降压药分类</a></li>
+      <li><a href="#warn">3. 警示信号</a></li>
+      <li><a href="#steps">4. 现场急救步骤</a></li>
+      <li><a href="#do-dont">5. 能做与禁做</a></li>
+      <li><a href="#wait">6. 等待救援期间</a></li>
+      <li><a href="#emergency">7. 紧急就医</a></li>
+      <li><a href="#specific">8. 分药类特点</a></li>
+      <li><a href="#prevent">9. 预防</a></li>
+      <li><a href="#myths">10. 常见误区</a></li>
+      <li><a href="#pregnancy">11. 孕妇特别提示</a></li>
+      <li><a href="#disclaimer">12. 免责声明</a></li>
+    </ul>
+  </details>
+
+  <main>
+    <!-- 1 Overview -->
+    <section id="overview">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h6M9 11h6"/></svg>
+        1. 概述
+      </h2>
+      <p class="sub">了解“误吞”与“过量”的区别，以及为何需要重视。</p>
+      <p>降压药（抗高血压药）是一类通过降低血管张力、减慢心率或减少血容量来降低血压的药物。当药物被<b>不恰当摄入</b>时，可能造成血压过低、心率异常、电解质紊乱甚至休克等严重后果。</p>
+      <div class="infobox">
+        <div class="ib-head">术语界定</div>
+        <div class="ib-body">
+          <table>
+            <tr><td>误吞</td><td>通常指儿童、老人或因药片散落而误服他人药物。关键在于“吃错了药/吃多了”这一事实。</td></tr>
+            <tr><td>过量</td><td>摄入剂量明显超过治疗量，或一次服用整瓶/多片，可能迅速引发严重低血压、心动过缓、意识障碍等中毒表现。</td></tr>
+            <tr><td>核心</td><td>无论哪种，都应作为潜在急症处理，尽快联系急救，不要仅凭“感觉还好”就等待观察。</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="callout info">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+        <div>
+          <p class="c-title">核心原则</p>
+          <p><strong>尽早求助、不要催吐、保留药瓶、切勿随意自行处理。</strong> 关键不是“把药排出来”，而是“防止药效过度引起循环崩溃”，这需要专业监测与支持治疗。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 Drugs -->
+    <section id="drugs">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="6" width="9" height="12" rx="2"/><path d="M6 5v2M9 5v2M6 17v2M9 17v2"/><rect x="14" y="7" width="7" height="10" rx="3.5"/></svg>
+        2. 常见降压药分类
+      </h2>
+      <p class="sub">识别药名，有助于更快得到针对性救治。</p>
+      <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>类别</th><th>名称后缀</th><th>常见药物</th><th>过量典型表现</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="tag blue">钙通道阻滞剂</span>CCB</td>
+            <td>地平 / 硫氮卓酮</td>
+            <td>硝苯地平、氨氯地平、非洛地平、地尔硫卓、维拉帕米</td>
+            <td>低血压、心动过缓、传导阻滞、严重时休克（最危险类别之一）</td>
+          </tr>
+          <tr>
+            <td><span class="tag blue">β受体阻滞剂</span></td>
+            <td>洛尔</td>
+            <td>美托洛尔、比索洛尔、普萘洛尔、阿替洛尔、卡维地洛</td>
+            <td>心动过缓、低血压、乏力、可致低血糖与休克</td>
+          </tr>
+          <tr>
+            <td><span class="tag green">ACEI</span>普利类</td>
+            <td>普利</td>
+            <td>卡托普利、依那普利、赖诺普利、培哚普利、雷米普利</td>
+            <td>低血压、咳嗽、高血钾</td>
+          </tr>
+          <tr>
+            <td><span class="tag green">ARB</span>沙坦类</td>
+            <td>沙坦</td>
+            <td>氯沙坦、缬沙坦、厄贝沙坦、坎地沙坦</td>
+            <td>低血压、高血钾；大剂量仍需警惕</td>
+          </tr>
+          <tr>
+            <td><span class="tag amber">利尿剂</span></td>
+            <td>噻嗪 / 呋塞米 / 螺内酯</td>
+            <td>氢氯噻嗪、呋塞米、螺内酯</td>
+            <td>脱水、低血压、低/高血钾、电解质紊乱、心律不齐</td>
+          </tr>
+          <tr>
+            <td><span class="tag amber">α受体阻滞剂</span></td>
+            <td>唑嗪</td>
+            <td>哌唑嗪、多沙唑嗪、特拉唑嗪</td>
+            <td>体位性低血压、头晕、晕厥</td>
+          </tr>
+          <tr>
+            <td><span class="tag amber">中枢性</span></td>
+            <td>可乐定等</td>
+            <td>可乐定、甲基多巴</td>
+            <td>低血压、嗜睡、心动过缓、呼吸抑制</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout info">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6M15 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2"/></svg>
+        <div>
+          <p class="c-title">为何“地平”和“洛尔”尤其危险</p>
+          <p>这两类直接作用于心脏与血管，过量时药效可累加，数小时内发展为低血压、严重心动过缓甚至心脏停搏，因此需入院密切监测与支持治疗。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 Warning signs -->
+    <section id="warn">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        3. 警示信号
+      </h2>
+      <p class="sub">出现以下任何一项，均应立即拨打急救电话，而非继续观察。</p>
+      <div class="callout danger">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        <div>
+          <p class="c-title">立即急救的红色警报</p>
+          <ul>
+            <li>意识模糊、嗜睡、呼叫困难甚至昏迷</li>
+            <li>头晕、站立不稳、眼前发黑或晕厥</li>
+            <li>脉搏明显减慢，或心悸、心律不齐</li>
+            <li>面色苍白、皮肤湿冷、四肢发凉（休克征象）</li>
+            <li>呼吸困难、乏力、难以起身</li>
+            <li>恶心、呕吐、抽搐</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout ok">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#1e8449" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14 9 11"/></svg>
+        <div>
+          <p class="c-title">需警惕但不能自行判断的情况</p>
+          <p>即便<b>暂时没有明显不适</b>，误服或过量后症状可能延迟出现（尤其缓释/控释制剂）。只要确认“吃错了或吃多了”，就应主动就医评估。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Steps -->
+    <section id="steps">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        4. 现场急救步骤
+      </h2>
+      <p class="sub">重点是“快联系”与“保循环”。</p>
+      <ol class="steps">
+        <li>
+          <div class="step-title">立即拨打急救电话 120</div>
+          <p>说清楚：<strong>“有人（儿童/成人）误服或过量服用了降压药”</strong>，报告药物名称、大约剂量、发生时间、患者年龄与当前状态。若患者为孕妇，务必告知接线员。</p>
+        </li>
+        <li>
+          <div class="step-title">判断意识与呼吸</div>
+          <p>轻拍并呼喊患者，观察胸廓起伏。若<b>无反应且无正常呼吸</b>，立即开始心肺复苏（CPR），并让人取来AED。</p>
+        </li>
+        <li>
+          <div class="step-title">有意识者：保持安静平躺</div>
+          <p>让患者<b>平躺</b>并抬高下肢，有助于维持脑部血压。避免站立或行走，以免低血压晕倒受伤。</p>
+        </li>
+        <li>
+          <div class="step-title">无意识但有呼吸者：稳定侧卧位</div>
+          <p>将患者置于<b>侧卧位（恢复体位）</b>，保持气道通畅，防止呕吐物阻塞气道。</p>
+        </li>
+        <li>
+          <div class="step-title">保留药瓶及外包装</div>
+          <p>找到<b>原药瓶、药板或说明书</b>带去医院。若无法确定药名，把<b>剩余药片一起带上</b>。</p>
+        </li>
+        <li>
+          <div class="step-title">记录时间与剂量</div>
+          <p>记下<b>首次发现/服药的大致时间</b>、<strong>估算服用的片数</strong>、是否已呕吐。</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 5 Do / Don't -->
+    <section id="do-dont">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a5 5 0 1 0-10 0c0 3-2 4-2 5h14c0-1-2-2-2-5M8 18h8M10 21h4"/></svg>
+        5. 能做与禁做
+      </h2>
+      <p class="sub">常见误区往往比药物本身更危险。</p>
+      <div class="do-dont">
+        <div class="col do">
+          <h4>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            应该做
+          </h4>
+          <ul>
+            <li>第一时间呼叫急救</li>
+            <li>保持安静平卧，抬高下肢</li>
+            <li>保留药瓶、药板、说明书、剩余药片</li>
+            <li>记录服药时间、剂量与呕吐情况</li>
+            <li>有意识者可适量饮水，但不要强行灌服</li>
+            <li>观察呼吸与意识变化，全程陪同</li>
+          </ul>
+        </div>
+        <div class="col dont">
+          <h4>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+            禁止做
+          </h4>
+          <ul>
+            <li><strong>不要催吐</strong>——可能加重误吸、损伤食管</li>
+            <li>不要自行再吃其他药“对抗”</li>
+            <li>不要喝浓茶、咖啡或大量进食</li>
+            <li>不要让患者站立、走动或独自待着</li>
+            <li>不要因“没症状”而拒绝就医</li>
+            <li>不要使用外敷、扎手指等偏方</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout danger">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 9v4M12 16h.01"/></svg>
+        <div>
+          <p class="c-title">特别警告：不要催吐</p>
+          <p>降压药中毒催吐有<b>误吸</b>风险，且许多缓释剂吸收较快或延迟释放，催吐并不能有效清除。是否使用活性炭等需由急诊医生评估。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 Waiting -->
+    <section id="wait">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        6. 等待救援期间
+      </h2>
+      <p class="sub">在救护车到达前维持生命体征稳定。</p>
+      <div class="grid">
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>持续监测</h4>
+          <p>每隔几分钟摸一次脉搏、观察呼吸与意识。若由清醒转为嗜睡或呼吸变浅，应稳定侧卧并加强呼叫。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="9" height="12" rx="2"/><path d="M12 9h9M12 12h9M12 15h9"/></svg>保持气道通畅</h4>
+          <p>解开领口、腰带等束缚物。如呕吐，将头偏向一侧，清理口腔。不要往嘴里塞任何东西。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M12 2l4 3M12 2L8 5M12 22l4-3M12 22l-4-3"/></svg>保暖与舒适</h4>
+          <p>用毯子保暖，避免受凉加重休克。保持环境安静，减少刺激。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>不要给食物或水</h4>
+          <p>若患者意识不清、嗜睡或可能呕吐，不要喂水或食物，以免误吸；也不要强行灌服任何液体。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 Emergency -->
+    <section id="emergency">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l9-4 9 4v14"/><path d="M12 3v5"/><path d="M9 21v-8h6v8M9 9h6"/></svg>
+        7. 紧急就医：带好这些信息
+      </h2>
+      <p class="sub">清晰的信息能让医生更快、更精准地处置。</p>
+      <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>需提供信息</th><th>为何重要</th></tr></thead>
+        <tbody>
+          <tr><td>药物名称与类别</td><td>决定治疗方向（如地平类、洛尔类处理不同）</td></tr>
+          <tr><td>估算服用剂量与人数</td><td>评估中毒严重程度</td></tr>
+          <tr><td>服药/发现时间</td><td>判断吸收进程，决定是否适用活性炭等</td></tr>
+          <tr><td>患者年龄、体重、既往病史</td><td>儿童、老人、孕产妇风险更高</td></tr>
+          <tr><td>是否呕吐、是否已用其他药</td><td>避免交互影响</td></tr>
+          <tr><td>是否怀孕或可能怀孕</td><td>孕妇需特别评估，处理方式不同</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout ok">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#1e8449" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 11l2 2 4-4"/></svg>
+        <div>
+          <p class="c-title">给急诊医生的“一句话速报”</p>
+          <p><strong>“患者约X时误服［药名］约X片，目前血压/意识/脉搏情况如何。”</strong> 简洁、准确、有数据，医生能立刻对症处理。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 Specific -->
+    <section id="specific">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5l-2 2M19 3l2 2"/><path d="M13 3.5L20 10.5l-8.5 8.5H3V11z"/><path d="M12 20h9"/></svg>
+        8. 分药类特点与处置关注点
+      </h2>
+      <p class="sub">供家人在医生指导下参考，不用于自行治疗。</p>
+      <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>类别</th><th>医院重点处置</th><th>家庭重点观察</th></tr></thead>
+        <tbody>
+          <tr><td>CCB 地平类</td><td>补液、钙剂、血管活性药、监测心律</td><td>脉搏快慢、是否晕厥、血压</td></tr>
+          <tr><td>β受体阻滞剂</td><td>阿托品/胰高血糖素/辅助通气</td><td>心率、乏力、困倦、低血糖</td></tr>
+          <tr><td>ACEI/ARB</td><td>补液、监测血钾与肾功能</td><td>血压、恶心、乏力</td></tr>
+          <tr><td>利尿剂</td><td>纠正电解质与血容量</td><td>尿量、头晕、心律</td></tr>
+          <tr><td>α受体阻滞剂</td><td>补液、仰卧抬腿</td><td>体位性低血压、晕厥</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <!-- 9 Prevention -->
+    <section id="prevent">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        9. 预防
+      </h2>
+      <p class="sub">防止误吞与过量，从存放与管理做起。</p>
+      <div class="grid">
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>安全存放</h4>
+          <p>血压药放在儿童够不到、上锁的地方，避免与维生素、保健品混放。不在昏暗处或不戴眼镜时取药。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>分装提醒</h4>
+          <p>用药盒分装，标注日期与每次剂量，避免记错、多服。更换药品时核对药名与剂量。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>勿随意加量</h4>
+          <p>血压控制不佳时不要自行加量，应遵医嘱调整。擅自加倍可能引发过度降压。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21v-1a6 6 0 0 1 6-6h2a6 6 0 0 1 6 6v1M19 8v6M22 11h-6"/></svg>教育家人</h4>
+          <p>让家人了解药物名称与用途，家中备好急救电话。教会老人或看护者识别误服药。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 Myths -->
+    <section id="myths">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg>
+        10. 常见误区
+      </h2>
+      <p class="sub">纠正容易被公众误信的做法。</p>
+      <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>误区</th><th>正确理解</th></tr></thead>
+        <tbody>
+          <tr><td>“吃了就催吐，把药吐出来”</td><td>不可取，可能误吸且清除效果差，应交由急诊医生评估。</td></tr>
+          <tr><td>“没症状就不用去医院”</td><td>降压药过量可能延迟起效（尤其缓释剂），风险不能靠“感觉”判断。</td></tr>
+          <tr><td>“多喝水/牛奶能稀释”</td><td>大量液体可能加重低血压或诱发呕吐，不应自行处理。</td></tr>
+          <tr><td>“再吃一片别的药把血压顶起来”</td><td>自行用药风险极高，所有纠正措施必须在医院监测下进行。</td></tr>
+          <tr><td>“晕倒就灌糖水/抬人中”</td><td>意识不清时灌液有误吸风险；正确做法是侧卧、呼救、监测呼吸。</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <!-- 11 Pregnancy -->
+    <section id="pregnancy">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="3"/><path d="M6 21c0-4 2-7 6-7s6 3 6 7"/><path d="M12 9v5"/></svg>
+        11. 孕妇特别提示
+      </h2>
+      <p class="sub">孕产妇属于高风险人群，需格外谨慎。</p>
+      <div class="callout info">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 7v5M9 9.5h6"/></svg>
+        <div>
+          <p class="c-title">孕妇误服/过量降压药</p>
+          <ul>
+            <li>拨打急救电话时明确告知“患者怀孕”及孕周。</li>
+            <li>到医院后请医生评估对胎儿的影响，以及是否需要产科与急诊联合处理。</li>
+            <li>不要因担心用药而隐瞒病史，如实告知才能得到最恰当处置。</li>
+            <li>部分降压药（如普利/沙坦类）孕期本属禁忌，误服需由产科医生评估。</li>
+            <li>若孕妇出现低血压、头晕，应左侧卧位（避免压迫下腔静脉）并抬高下肢。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 Disclaimer -->
+    <section id="disclaimer">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+        12. 免责声明
+      </h2>
+      <div class="disclaimer">
+        <p><strong>重要提示：</strong>本条目为一般性的科普与急救参考，<strong>不能替代执业医师的诊断与治疗</strong>。药物中毒处置个体差异大，需由急诊或中毒专家评估。若发生误服或过量，务必<b>立即拨打急救电话（中国 120）</b>，并以医疗专业人员的意见为准。本资料作者及平台不对因使用本条目信息而产生的后果承担责任。</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="row">
+      <span>误吞降压药及降压药过量 急救指南</span>
+      <span>· 药物中毒 · 家庭急救</span>
+      <span style="margin-left:auto;"><a href="#">收藏</a> · <a href="#">纠错</a> · <a href="#">打印</a></span>
+    </div>
+    <div class="copy">本条目纯用 SVG 图标制作，离线可读。内容仅供科普，紧急情况请拨打 120。</div>
+  </footer>
+</div>
+
+<button class="top" id="topBtn" title="回到顶部" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  var btn=document.getElementById('topBtn');
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>400){btn.classList.add('show');}else{btn.classList.remove('show');}
+  });
+  btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+</script>
+</body>
+</html>
