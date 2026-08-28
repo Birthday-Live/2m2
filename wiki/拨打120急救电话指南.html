@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如何拨打120急救电话 指南</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --ink-2:#333; --ink-3:#5f6b7a;
+    --line:#d7dde3; --line-2:#c2cbd4;
+    --brand:#1f5e8f; --brand-dark:#164a72; --brand-soft:#eaf2f8;
+    --warn:#c0392b; --warn-soft:#fdeeec;
+    --ok:#1e8449; --ok-soft:#e8f6ee;
+    --amber:#b9770e; --amber-soft:#fdf4e5;
+    --gray-soft:#f5f7f9;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:#eef1f4; color:var(--ink);
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Noto Sans CJK SC",sans-serif;
+    font-size:16px; line-height:1.78;
+  }
+  a{color:var(--brand); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:900px; margin:0 auto; background:#fff; box-shadow:0 0 24px rgba(0,0,0,.06);}
+
+  .topbar{
+    background:var(--brand-dark); color:#fff; padding:12px 16px;
+    display:flex; align-items:center; gap:10px; font-size:14px;
+  }
+  .topbar .brand{display:flex; align-items:center; gap:9px; font-weight:700; letter-spacing:.02em;}
+  .topbar .spacer{flex:1;}
+  .topbar a{color:#cfe3f3;}
+  .topbar .icon-btn{display:flex; align-items:center; gap:6px; color:#dbe8f2; font-size:13px;}
+
+  header.hero{padding:22px 18px; border-bottom:1px solid var(--line); background:linear-gradient(180deg,#fff,#fafcfe);}
+  header.hero .eyebrow{
+    display:inline-flex; align-items:center; gap:7px; color:var(--brand);
+    font-size:12px; letter-spacing:.1em; font-weight:700; margin-bottom:8px;
+  }
+  header.hero h1{font-size:24px; margin:0 0 8px; line-height:1.35;}
+  header.hero .lead{color:var(--ink-3); font-size:14.5px; margin:0;}
+  .meta-row{display:flex; flex-wrap:wrap; gap:8px 16px; margin-top:14px; font-size:12.5px; color:var(--ink-3);}
+  .meta-row span{display:inline-flex; align-items:center; gap:6px;}
+
+  .entry-info{margin:14px 16px; border:1px solid var(--line); border-radius:10px; overflow:hidden;}
+  .entry-info .ei-head{background:var(--gray-soft); padding:9px 14px; font-weight:700; color:var(--ink-2); font-size:14px; border-bottom:1px solid var(--line);}
+  .entry-info .ei-body{padding:10px 14px;}
+  .entry-info table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  .entry-info table td{padding:7px 8px; border-bottom:1px solid var(--gray-soft); vertical-align:top;}
+  .entry-info table tr:last-child td{border-bottom:none;}
+  .entry-info table td:first-child{width:78px; color:var(--ink-3);}
+
+  .toc-mobile{display:block; margin:6px 16px 14px; border:1px solid var(--line); border-radius:10px; background:var(--gray-soft); overflow:hidden;}
+  .toc-mobile summary{
+    list-style:none; cursor:pointer; padding:13px 16px; font-weight:700; font-size:15px;
+    color:var(--brand-dark); display:flex; align-items:center; gap:10px; user-select:none;
+  }
+  .toc-mobile summary::-webkit-details-marker{display:none;}
+  .toc-mobile summary .chev{margin-left:auto; transition:transform .2s;}
+  .toc-mobile[open] summary .chev{transform:rotate(180deg);}
+  .toc-mobile ul{list-style:none; margin:0; padding:2px 16px 14px;}
+  .toc-mobile li{margin:3px 0;}
+  .toc-mobile a{display:block; color:var(--ink-3); font-size:13.5px; padding:5px 8px; border-radius:6px;}
+  .toc-mobile a:hover{background:var(--brand-soft); color:var(--brand); text-decoration:none;}
+
+  main{padding:0 4px;}
+  section{margin-bottom:32px; scroll-margin-top:12px; padding:0 16px;}
+  section > h2{
+    font-size:20px; color:var(--brand-dark); margin:0 0 4px; padding-bottom:8px;
+    border-bottom:2px solid var(--brand); display:flex; align-items:center; gap:10px;
+  }
+  section > h2 .h-ico{flex-shrink:0; width:26px; height:26px;}
+  section .sub{color:var(--ink-3); font-size:13.5px; margin:0 0 14px;}
+
+  h3{font-size:17px; color:var(--ink-2); margin:24px 0 8px; display:flex; align-items:center; gap:8px;}
+  h3 .h-ico{width:21px; height:21px;}
+  h4{font-size:15.5px; color:var(--ink-2); margin:18px 0 6px;}
+  p{margin:10px 0;}
+  ul,ol{margin:10px 0 10px 4px; padding-left:20px;}
+  li{margin:6px 0;}
+  strong{color:var(--ink);}
+
+  .callout{border-radius:10px; padding:14px 16px; margin:16px 0; border-left:4px solid; display:flex; gap:12px; align-items:flex-start;}
+  .callout .c-ico{flex-shrink:0; width:26px; height:26px; margin-top:2px;}
+  .callout .c-title{font-weight:700; font-size:15.5px; margin:0 0 4px;}
+  .callout p{margin:0;}
+  .callout ul{margin:0; padding-left:18px; font-size:14.5px;}
+  .callout.danger{background:var(--warn-soft); border-color:var(--warn);}
+  .callout.danger .c-title{color:var(--warn);}
+  .callout.ok{background:var(--ok-soft); border-color:var(--ok);}
+  .callout.ok .c-title{color:var(--ok);}
+  .callout.info{background:var(--brand-soft); border-color:var(--brand);}
+  .callout.info .c-title{color:var(--brand);}
+  .callout.amber{background:var(--amber-soft); border-color:var(--amber);}
+  .callout.amber .c-title{color:var(--amber);}
+
+  .infobox{border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:0 0 8px;}
+  .infobox .ib-head{background:var(--brand-soft); padding:10px 14px; font-weight:700; color:var(--brand-dark); font-size:14.5px;}
+  .infobox .ib-body{padding:8px 14px;}
+  .infobox table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  .infobox table td{padding:7px 8px; border-bottom:1px solid var(--gray-soft); vertical-align:top;}
+  .infobox table tr:last-child td{border-bottom:none;}
+  .infobox table td:first-child{width:88px; color:var(--ink-3);}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:16px 0; border:1px solid var(--line); border-radius:10px;}
+  table.data{width:100%; border-collapse:collapse; font-size:13.5px; min-width:560px;}
+  table.data th, table.data td{border-bottom:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top;}
+  table.data thead th{background:var(--brand-soft); color:var(--brand-dark); font-weight:700;}
+  table.data tbody tr:last-child td{border-bottom:none;}
+  table.data tbody tr:nth-child(even){background:var(--gray-soft);}
+
+  .tag{display:inline-block; padding:2px 8px; border-radius:20px; font-size:11.5px; font-weight:600; margin-right:5px;}
+  .tag.red{background:var(--warn-soft); color:var(--warn);}
+  .tag.amber{background:var(--amber-soft); color:var(--amber);}
+  .tag.green{background:var(--ok-soft); color:var(--ok);}
+  .tag.blue{background:var(--brand-soft); color:var(--brand);}
+
+  .grid{display:grid; grid-template-columns:1fr; gap:12px;}
+  .card{border:1px solid var(--line); border-radius:10px; padding:14px 16px; background:#fff;}
+  .card h4{margin:0 0 6px; font-size:15.5px; color:var(--brand-dark); display:flex; align-items:center; gap:8px;}
+  .card p{margin:0; font-size:14px; color:var(--ink-2);}
+  .card svg{flex-shrink:0;}
+
+  .steps{list-style:none; margin:14px 0; padding:0;}
+  .steps > li{position:relative; padding:0 0 0 46px; margin:0 0 20px;}
+  .steps > li::before{
+    counter-increment:step; content:counter(step); position:absolute; left:0; top:0;
+    width:31px; height:31px; border-radius:50%; background:var(--brand); color:#fff;
+    font-weight:700; display:flex; align-items:center; justify-content:center; font-size:15px;
+  }
+  .steps{counter-reset:step;}
+  .steps > li::after{content:""; position:absolute; left:15px; top:38px; width:2px; bottom:-18px; background:var(--line);}
+  .steps > li:last-child::after{display:none;}
+  .steps .step-title{font-weight:700; font-size:15.5px;}
+  .steps p{font-size:14.5px;}
+
+  /* Info formula */
+  .formula{border:1px solid var(--line); border-radius:12px; overflow:hidden; margin:16px 0; border-left:4px solid var(--brand);}
+  .formula .f-head{background:var(--brand-dark); color:#fff; padding:10px 16px; font-weight:700; font-size:15px; display:flex; align-items:center; gap:9px;}
+  .formula .f-body{padding:14px 16px; background:#fff;}
+  .formula .f-item{display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--gray-soft); align-items:flex-start;}
+  .formula .f-item:last-child{border-bottom:none;}
+  .formula .f-item .f-ico{flex-shrink:0; width:24px; height:24px; margin-top:1px;}
+  .formula .f-item .f-label{font-weight:700; color:var(--brand-dark); font-size:14.5px;}
+  .formula .f-item .f-tip{font-size:13.5px; color:var(--ink-3); margin-top:2px;}
+
+  .do-dont{display:grid; grid-template-columns:1fr; gap:12px;}
+  .do-dont .col{border-radius:10px; padding:14px 16px;}
+  .do-dont .col h4{margin:0 0 10px; font-size:15.5px; display:flex; align-items:center; gap:8px;}
+  .do-dont .col ul{margin:0; padding-left:20px; font-size:14.5px;}
+  .do-dont .do{background:var(--ok-soft); border:1px solid #b7ddc7;}
+  .do-dont .do h4{color:var(--ok);}
+  .do-dont .dont{background:var(--warn-soft); border:1px solid #efb9b1;}
+  .do-dont .dont h4{color:var(--warn);}
+
+  .term-list{margin:16px 0;}
+  .term-item{border-bottom:1px solid var(--gray-soft); padding:10px 0; display:flex; gap:12px; align-items:flex-start;}
+  .term-item:last-child{border-bottom:none;}
+  .term-item .t{flex-shrink:0; width:108px; font-weight:700; color:var(--brand-dark); font-size:14px;}
+  .term-item .d{font-size:13.5px; color:var(--ink-2);}
+
+  .disclaimer{border:1px solid var(--line-2); background:#fbfcfd; border-radius:10px; padding:16px 18px; font-size:13px; color:var(--ink-3);}
+  .credit{margin-top:16px; border-radius:10px; padding:14px 18px; font-size:13px; background:var(--brand-soft); color:var(--brand-dark); border:1px solid #c5dcef;}
+
+  footer{background:var(--brand-dark); color:#cfe3f3; padding:20px 18px; font-size:12.5px;}
+  footer .row{display:flex; flex-wrap:wrap; gap:14px; align-items:center;}
+  footer a{color:#eaf3fb;}
+  footer .copy{margin-top:10px; opacity:.85; line-height:1.7;}
+  footer .sign{margin-top:6px; opacity:.9; display:flex; align-items:center; gap:8px;}
+
+  .top{position:fixed; right:16px; bottom:20px; width:42px; height:42px; border-radius:50%;
+    background:var(--brand); color:#fff; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 12px rgba(0,0,0,.2); cursor:pointer; border:none; opacity:0; pointer-events:none; transition:opacity .2s; z-index:50;}
+  .top.show{opacity:1; pointer-events:auto;}
+  .top svg{width:20px; height:20px;}
+
+  @media(min-width:920px){
+    .wrap{max-width:1000px;}
+    header.hero{padding:30px 36px 24px;}
+    header.hero h1{font-size:30px;}
+    header.hero .lead{font-size:15px;}
+    .entry-info{margin:18px 36px 0;}
+    .toc-mobile{display:none;}
+    main{padding:0;}
+    section{padding:0 36px; margin-bottom:48px;}
+    section > h2{font-size:23px;}
+    .grid{grid-template-columns:1fr 1fr;}
+    .do-dont{grid-template-columns:1fr 1fr;}
+    .steps > li{padding-left:54px;}
+    .steps > li::before{width:34px;height:34px;font-size:16px;}
+    .steps > li::after{left:16px;}
+    footer{padding:24px 36px;}
+    .table-scroll{overflow:visible;}
+    table.data{min-width:0; font-size:14.5px;}
+    .infobox table{font-size:14px;}
+    .term-item .t{width:130px; font-size:14.5px;}
+    .term-item .d{font-size:14px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <span class="brand">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      家庭急救知识
+    </span>
+    <span class="spacer"></span>
+    <a class="icon-btn" href="#disclaimer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+      提示
+    </a>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="eyebrow">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12h6M12 9v6"/></svg>
+      急救知识 · 单一条目
+    </div>
+    <h1>如何拨打120急救电话 指南</h1>
+    <p class="lead">从“该不该打”到“接通后说什么”“打完做什么”，系统梳理拨打 120 全流程的要点、通话公式与常见错误，帮助你在紧急时刻沉着、准确、高效求助。</p>
+    <div class="meta-row">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>阅读约 8 分钟</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5M5 8v10M19 8v10M3 20h18"/></svg>分类：急救呼叫</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>已校核</span>
+    </div>
+  </header>
+
+  <!-- Entry info -->
+  <div class="entry-info">
+    <div class="ei-head">条目信息</div>
+    <div class="ei-body">
+      <table>
+        <tr><td>作者</td><td>水喝千束</td></tr>
+        <tr><td>分类</td><td>急救呼叫 · 家庭急救</td></tr>
+        <tr><td>适用人群</td><td>普通公众、家庭看护者、孕产妇家庭</td></tr>
+        <tr><td>适用场景</td><td>突发急症、意外伤害、中毒、孕产异常等需要急救的场合</td></tr>
+        <tr><td>核心要点</td><td>沉着冷静 · 说清地址电话 · 报明病情 · 保持通话 · 引导接车</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Mobile TOC -->
+  <details class="toc-mobile">
+    <summary>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      目录
+      <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <ul>
+      <li><a href="#overview">1. 概述</a></li>
+      <li><a href="#when">2. 何时该打120</a></li>
+      <li><a href="#before">3. 拨打前准备</a></li>
+      <li><a href="#formula">4. 接通后说什么</a></li>
+      <li><a href="#talk">5. 通话中的注意事项</a></li>
+      <li><a href="#after">6. 挂断后与等待期</a></li>
+      <li><a href="#errors">7. 常见错误与误区</a></li>
+      <li><a href="#groups">8. 特殊人群</a></li>
+      <li><a href="#scenes">9. 特殊场景</a></li>
+      <li><a href="#location">10. 如何说清位置</a></li>
+      <li><a href="#terms">11. 要点速记</a></li>
+      <li><a href="#disclaimer">12. 免责声明</a></li>
+    </ul>
+  </details>
+
+  <main>
+    <!-- 1 Overview -->
+    <section id="overview">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h6M9 11h6"/></svg>
+        1. 概述
+      </h2>
+      <p class="sub">拨打 120 是普通人一生中可能用到、但极少演练的“关键时刻”。</p>
+      <p>120 是中国大陆的<b>医疗急救呼叫电话</b>，由各地急救中心统一受理，负责指挥调度救护车、急救医生与院前急救资源。紧急时刻，<b>能否在最短时间内把关键信息说清楚</b>，直接关系到患者能否得到及时、精准的救援。</p>
+      <p>很多人在慌乱中只会喊“快救人”，却漏掉了最关键的<b>地址</b>；也有人说完地址就挂断，错过了调度员提供的<b>现场急救指导</b>。了解拨打流程，能让你在紧张状态下少犯错、不添乱。</p>
+      <div class="infobox">
+        <div class="ib-head">关键认知</div>
+        <div class="ib-body">
+          <table>
+            <tr><td>收费</td><td>急救电话接通本身通常不计费；救护车与院前急救服务按规定收费（各地标准不同）。</td></tr>
+            <tr><td>调度</td><td>调度员会按优先级分派车辆，<b>并非先到先救</b>，而是根据病情危重程度判断。</td></tr>
+            <tr><td>指导</td><td>调度员往往会在电话中<b>指导你现场操作</b>（如心肺复苏、止血、侧卧），应服从其指示。</td></tr>
+            <tr><td>时间</td><td>从接通到派车，调度员通常在几分钟内完成；你提供的信息越准，越不耽误。</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="callout info">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+        <div>
+          <p class="c-title">原则：宁可多打，不要犹豫</p>
+          <p>很多人因为“怕小题大做”“怕救护车来了浪费”而延迟拨打。事实上，<strong>对急症而言，早一分钟求助就多一分生机</strong>。拿不准时，默认拨打。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 When -->
+    <section id="when">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        2. 何时该打 120
+      </h2>
+      <p class="sub">出现这些情况应立即拨打，而不是先观察或自行送医。</p>
+      <div class="grid">
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14 9 11"/></svg>意识与呼吸异常</h4>
+          <p>昏迷、呼之不应、抽搐、呼吸急促或停止、面色发绀。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>胸痛与循环问题</h4>
+          <p>剧烈胸痛、胸闷、心悸、脉搏微弱、大量出血、脸色苍白湿冷。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.5-1.5 3-3.2 3-5.5a5.5 5.5 0 0 0-11 0c0 2.3 1.5 4 3 5.5l-1 2h-6v2h2l1 3h2l1-1h4l1 1h2l1-3h2v-2z"/></svg>急性外伤与中毒</h4>
+          <p>车祸、坠落、烧伤、溺水、误服药物或毒物、煤气中毒。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="6" r="3"/><path d="M6 21c0-4 2-7 6-7s6 3 6 7"/><path d="M12 9v5"/></svg>孕产异常</h4>
+          <p>临产阵痛、破水、大出血、剧烈腹痛、胎动异常、先兆子痫（头痛、视物模糊、抽搐）。</p>
+        </div>
+      </div>
+      <div class="callout amber">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#b9770e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+        <div>
+          <p class="c-title">自行送医 vs 拨打 120</p>
+          <p>若患者病情危重、可能途中恶化（如意识不清、大出血、疑似心梗/卒中），<strong>首选拨打 120</strong>，因为救护车上有急救设备、专业人员，且能在途中提前对接医院。距离很近、病情稳定时可自行送医。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 Before -->
+    <section id="before">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        3. 拨打前的准备
+      </h2>
+      <p class="sub">花十几秒确认几件事，比慌乱地开口更有效。</p>
+      <ol class="steps">
+        <li>
+          <div class="step-title">先确认位置（最重要）</div>
+          <p>看清或确定<b>门牌号、楼栋、单元、楼层</b>。如果在户外，记住<b>路名、交叉路口、标志性建筑</b>。不确定就先看导航定位。</p>
+        </li>
+        <li>
+          <div class="step-title">确保号码畅通</div>
+          <p>拨打后请保持手机<b>开机、有信号</b>，不要用同一部手机边打边做其他占线的事。把电话号码告知调度员，方便回拨。</p>
+        </li>
+        <li>
+          <div class="step-title">快速观察患者</div>
+          <p>判断年龄、性别、<b>意识是否清醒</b>、是否有呼吸、有无外伤或出血、主要症状。有既往病史、是否怀孕也一并留意。</p>
+        </li>
+        <li>
+          <div class="step-title">找人协助</div>
+          <p>安排一人<b>下楼迎接救护车</b>、打开小区/单元门、清理通道；另一人看护患者，避免患者独处。</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 4 Formula -->
+    <section id="formula">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+        4. 接通后说什么
+      </h2>
+      <p class="sub">记住这个“信息公式”，照着说就不会漏。</p>
+      <div class="formula">
+        <div class="f-head">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l9-4 9 4v14"/><path d="M12 3v5"/><path d="M9 21v-8h6v8M9 9h6"/></svg>
+          120 呼救信息公式：地址 · 电话 · 病情 · 人数 · 病史
+        </div>
+        <div class="f-body">
+          <div class="f-item">
+            <svg class="f-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <div class="f-label">① 详细地址（先说这个）</div>
+              <div class="f-tip">“XX路XX号X栋X单元X楼X号”，或户外标志物。地址不清是耽误救援的首要原因。</div>
+            </div>
+          </div>
+          <div class="f-item">
+            <svg class="f-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+            <div>
+              <div class="f-label">② 您的联系电话</div>
+              <div class="f-tip">方便调度员联系、指路。通话期间保持手机可用。</div>
+            </div>
+          </div>
+          <div class="f-item">
+            <svg class="f-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <div>
+              <div class="f-label">③ 患者基本情况与症状</div>
+              <div class="f-tip">年龄、性别，是否清醒、有无呼吸，主要症状（胸痛/抽搐/出血/昏迷等）。</div>
+            </div>
+          </div>
+          <div class="f-item">
+            <svg class="f-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M3 21v-2a6 6 0 0 1 6-6M16 3.1a4 4 0 0 1 0 7.8M22 21v-2a6 6 0 0 0-4-5.7"/></svg>
+            <div>
+              <div class="f-label">④ 患者人数与现场情况</div>
+              <div class="f-tip">几个人受伤/发病；若是车祸、火灾、中毒等，说明<b>是否仍有危险</b>、是否需要消防/公安联动。</div>
+            </div>
+          </div>
+          <div class="f-item">
+            <svg class="f-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+            <div>
+              <div class="f-label">⑤ 既往病史 / 是否怀孕</div>
+              <div class="f-tip">有无心脏病、糖尿病、高血压、药物过敏；<b>孕妇务必说明孕周</b>。这能帮助医生做准备。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="callout ok">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#1e8449" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14 9 11"/></svg>
+        <div>
+          <p class="c-title">一句话范本</p>
+          <p><strong>“我在XX路XX号X栋X单元X楼，患者男性约60岁，现在叫不醒、呼吸很浅，可能中风了，有高血压史，我的电话是13XXXXXXXXX。”</strong><br>这样的表达，信息完整、条理清楚，调度员能立即派车。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 Talk -->
+    <section id="talk">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        5. 通话中的注意事项
+      </h2>
+      <p class="sub">接通后这几件事要做好，别让通话白打。</p>
+      <div class="do-dont">
+        <div class="col do">
+          <h4>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            应该做
+          </h4>
+          <ul>
+            <li>先说<b>地址</b>，再说病情</li>
+            <li>语速平缓、吐字清楚、避免方言词</li>
+            <li>听调度员问完再补充，不抢话</li>
+            <li>按调度员指导进行现场处置（如CPR、止血）</li>
+            <li>记住调度员嘱咐的事项</li>
+            <li>通话结束前，等对方先挂断</li>
+          </ul>
+        </div>
+        <div class="col dont">
+          <h4>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+            不要做
+          </h4>
+          <ul>
+            <li>不要只说“快救我”而<strong>不报地址</strong></li>
+            <li>不要慌张语速过快、前言不搭后语</li>
+            <li>不要擅自挂断电话</li>
+            <li>不要虚报或夸大病情</li>
+            <li>不要一边打电话一边让患者起身/喝水/乱动</li>
+            <li>不要在电话里和调度员争执</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout danger">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        <div>
+          <p class="c-title">警惕“挂断太早”</p>
+          <p>调度员可能还需要向你确认信息，或指导你做<b>现场急救</b>。匆忙挂断会错失指导、也易造成信息缺失。请尽量保持通话到对方明确告知可挂机。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 After -->
+    <section id="after">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        6. 挂断后与等待期
+      </h2>
+      <p class="sub">从挂断到救护车抵达，还有几件重要的事要做。</p>
+      <div class="grid">
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>准备就医材料</h4>
+          <p>备好<b>身份证、医保卡、病历、近期检查报告、药盒/药瓶</b>，方便医生快速了解病史。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>安排接车</h4>
+          <p>安排一人<b>到小区门口/路口迎接</b>，别让救护车“找不到门”。清理楼道、电梯通道。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M12 2l4 3M12 2L8 5M12 22l4-3M12 22l-4-3"/></svg>安抚与保暖</h4>
+          <p>保持患者安静、保暖，<b>不要随意挪动</b>（疑似脊柱损伤时尤其不要搬运），不要强行喂水。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>观察变化</h4>
+          <p>持续观察意识与呼吸。若病情恶化，及时告知到达的急救人员。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 Errors -->
+    <section id="errors">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg>
+        7. 常见错误与误区
+      </h2>
+      <p class="sub">这些做法会拖慢救援、帮倒忙。</p>
+      <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>错误做法</th><th>正确做法</th></tr></thead>
+        <tbody>
+          <tr><td>只喊“救命”不报地址</td><td>先报详细地址，再说明病情</td></tr>
+          <tr><td>报地址只说“XX医院旁边”</td><td>说清<strong>唯一可定位</strong>的位置，如路名+门牌+楼栋+单元+楼层</td></tr>
+          <tr><td>说完就挂断</td><td>等调度员确认后再挂，接受现场指导</td></tr>
+          <tr><td>把患者强行扶起/喂药/喂水</td><td>保持患者安静，意识不清者禁食禁水，避免二次伤害</td></tr>
+          <tr><td>自己慌乱乱挪动患者</td><td>除非有火灾等危险，否则不随意搬运</td></tr>
+          <tr><td>舍不得、怕麻烦犹豫不打</td><td>拿不准就拨打，早求助早安心</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <!-- 8 Groups -->
+    <section id="groups">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M3 21v-2a6 6 0 0 1 6-6h1M16 3.1a4 4 0 0 1 0 7.8M22 21v-2a6 6 0 0 0-4-5.7"/></svg>
+        8. 特殊人群
+      </h2>
+      <p class="sub">不同人群拨打时需额外说明的信息。</p>
+      <div class="grid">
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="6" r="3"/><path d="M6 21c0-4 2-7 6-7s6 3 6 7"/><path d="M12 9v5"/></svg>孕产妇</h4>
+          <p>务必告知<b>“已怀孕”及孕周</b>，是初产还是经产、是否临产、有无高危因素。调度员会优先安排产科条件较好的医院。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M6 21v-1a6 6 0 0 1 6-6M12 13a5 5 0 0 0 5 5"/></svg>儿童</h4>
+          <p>告知<b>年龄、体重</b>（以公斤计），便于按体重测算用药、评估病情。儿童病情变化快，更应尽快求助。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a6 6 0 0 1 6-6M16 2v4M18 4h-4"/></svg>老人</h4>
+          <p>告知<b>基础病、长期用药、是否独居、家属是否在场</b>。独居老人建议提前把病历放在显眼处。</p>
+        </div>
+        <div class="card">
+          <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>意识不清者</h4>
+          <p>说明患者<b>无法自述病史</b>，并请家属尽量代述；若为陌生人，尽量<strong>陪伴到急救人员接手</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 Scenes -->
+    <section id="scenes">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+        9. 特殊场景
+      </h2>
+      <p class="sub">不同地点的定位与沟通技巧。</p>
+      <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>场景</th><th>重点提示</th></tr></thead>
+        <tbody>
+          <tr><td>高楼住宅</td><td>说清<b>楼栋、单元、楼层、房号</b>；告知电梯能否使用，是否需楼梯引导。</td></tr>
+          <tr><td>大型/陌生园区</td><td>报<b>园区名 + 某号楼/某门</b>，或用“XX路与XX路交叉口”定位，派人到主入口接。</td></tr>
+          <tr><td>户外无门牌</td><td>用<b>标志性建筑</b>（银行、加油站、地铁站、大型商场）描述，并说明朝向。</td></tr>
+          <tr><td>高速公路/事故</td><td>报<b>路段方向、桩号、车道</b>；说明是否有人被困、是否有起火风险，可能需交警联动。</td></tr>
+          <tr><td>商场/景区</td><td>报<b>名称 + 区域</b>（如“XX商场3楼西侧电梯口”），请工作人员到入口引导。</td></tr>
+          <tr><td>夜间/信号差</td><td>提前开好<b>手机定位</b>，若通话不畅，改用短信或换位置保持信号，并保持手机常亮。</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <!-- 10 Location -->
+    <section id="location">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        10. 如何把位置说清楚
+      </h2>
+      <p class="sub">位置是救护车能否快速到达的核心。</p>
+      <div class="callout info">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="#1f5e8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <p class="c-title">说清位置的标准句式</p>
+          <p><strong>“［行政区］＋［道路］＋［门牌号］＋［楼栋/单元/楼层/房号］”</strong>，例如“XX市XX区人民路12号3栋2单元5楼01室”。<br>在户外则用 <strong>“道路＋交叉口＋标志物＋朝向”</strong>，例如“中山路与解放路交叉口东南角，肯德基门口”。</p>
+          <p style="margin-top:6px;">如果实在说不清，<strong>打开手机地图定位</strong>，把当前位置的“地名/楼名”读给调度员，或请人举旗/招手到路口引导。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 Terms -->
+    <section id="terms">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        11. 要点速记
+      </h2>
+      <p class="sub">可以提前记在心里的“顺口溜”。</p>
+      <div class="term-list">
+        <div class="term-item"><div class="t">先地址</div><div class="d">接通后第一时间报清位置，别只顾说病情。</div></div>
+        <div class="term-item"><div class="t">后病情</div><div class="d">年龄、性别、意识、呼吸、主要症状，一项项说明。</div></div>
+        <div class="term-item"><div class="t">留电话</div><div class="d">告知可回拨的号码，并保持手机畅通。</div></div>
+        <div class="term-item"><div class="t">说病史</div><div class="d">有无基础病、过敏、用药；孕产妇要报孕周。</div></div>
+        <div class="term-item"><div class="t">听指挥</div><div class="d">服从调度员指导做现场处置，不擅自挂断。</div></div>
+        <div class="term-item"><div class="t">派人接</div><div class="d">安排人到路口迎接、清通道，别让车找不到门。</div></div>
+        <div class="term-item"><div class="t">带材料</div><div class="d">备好身份证、医保卡、病历、药盒。</div></div>
+        <div class="term-item"><div class="t">早拨打</div><div class="d">拿不准就拨，不要因“怕麻烦”而延误。</div></div>
+      </div>
+    </section>
+
+    <!-- 12 Disclaimer -->
+    <section id="disclaimer">
+      <h2>
+        <svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+        12. 免责声明
+      </h2>
+      <div class="disclaimer">
+        <p><strong>重要提示：</strong>本条目为一般性科普参考，<strong>不能替代急救调度的专业指导</strong>。各地 120 受理流程、急救费用、派车优先级可能因地区而异。发生紧急情况时，请<b>立即拨打当地急救电话（中国 120）</b>，并以调度员与急救人员的现场指示为准。</p>
+        <p style="margin-top:12px;">本资料仅为家庭科普用途，作者及平台不对因使用本条目信息而产生的后果承担责任。</p>
+      </div>
+      <div class="credit">
+        <span style="display:flex; align-items:center; gap:8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+          <strong>作者：水喝千束</strong>
+        </span>
+        <p style="margin:6px 0 0; font-size:12.5px;">本文档为原创科普内容，采用纯 SVG 图标制作，离线可读。转载或引用请注明作者。</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="row">
+      <span>如何拨打120急救电话 指南</span>
+      <span>· 急救呼叫 · 家庭急救</span>
+      <span style="margin-left:auto;"><a href="#">收藏</a> · <a href="#">纠错</a> · <a href="#">打印</a></span>
+    </div>
+    <div class="copy">本条目纯用 SVG 图标制作，离线可读。内容仅供科普，紧急情况请拨打 120。</div>
+    <div class="sign">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#cfd8e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+      作者：水喝千束
+    </div>
+  </footer>
+</div>
+
+<button class="top" id="topBtn" title="回到顶部" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  var btn=document.getElementById('topBtn');
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>400){btn.classList.add('show');}else{btn.classList.remove('show');}
+  });
+  btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+</script>
+</body>
+</html>
