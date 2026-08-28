@@ -3,281 +3,580 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#5e35b1">
-<title>心灵指南 · 心理健康与急救科普</title>
+<meta name="theme-color" content="#2563eb">
+<title>心灵指南 Wiki · 心理健康与急救知识库</title>
 <style>
-  :root{
-    --blue:#1565c0;--blue-bg:#e7f0fb;--blue-dark:#0d47a1;
-    --teal:#00796b;--teal-bg:#e0f2ef;--teal-dark:#004d40;
-    --purple:#5e35b1;--purple-bg:#ebe5f8;--purple-dark:#311b92;
-    --pink:#e91e9c;--pink-bg:#fbe3f2;--pink-dark:#ad1457;
-    --ink:#17212b;--muted:#5c6672;--line:#e3e9f0;--bg:#f4f6fb;
-    --card:#fff;--radius:16px;--shadow:0 8px 28px rgba(20,50,90,.08);
-    --maxw:960px;
+  :root {
+    --primary: #2563eb;
+    --primary-light: #eff6ff;
+    --primary-dark: #1e40af;
+    --ink: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --sidebar-w: 260px;
+    --radius: 10px;
+    --shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px -1px rgba(0,0,0,0.1);
+    --shadow-hover: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
   }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-  body{margin:0;color:var(--ink);background:var(--bg);font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.75;font-size:17px}
-  a{text-decoration:none;color:inherit}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-  .topbar{position:sticky;top:0;z-index:50;background:rgba(244,246,251,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
-  .brand{font-weight:800;letter-spacing:.3px;color:var(--ink);display:flex;align-items:center;gap:9px}
-  .brand .dot{width:12px;height:12px;border-radius:50%;background:conic-gradient(var(--blue),var(--teal),var(--purple),var(--pink),var(--blue))}
-  .topnav{display:flex;gap:6px;font-size:13.5px;flex-wrap:wrap}
-  .topnav a{color:var(--muted);padding:6px 9px;border-radius:8px}
-  .topnav a:hover{background:var(--purple-bg);color:var(--purple-dark)}
+  
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.6;
+    font-size: 15px;
+    display: flex;
+    min-height: 100vh;
+  }
+  a { text-decoration: none; color: inherit; }
 
-  .hero{background:radial-gradient(1200px 420px at 15% -10%,rgba(255,255,255,.28),transparent),linear-gradient(135deg,#0d47a1 0%,#5e35b1 45%,#e91e9c 100%);color:#fff;padding:54px 0 46px;position:relative;overflow:hidden}
-  .hero .kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);padding:6px 15px;border-radius:999px;font-size:13.5px;letter-spacing:.4px;margin-bottom:18px}
-  .hero h1{font-size:clamp(28px,6vw,42px);line-height:1.25;margin:0 0 12px;font-weight:900;letter-spacing:.5px}
-  .hero .sub{font-size:16px;color:#ece6fb;max-width:600px;margin:0}
-  .hero .sub b{color:#fff}
+  /* 通用 SVG 图标样式 */
+  .svg-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
 
-  /* 状态徽章 */
-  .status{margin:-22px auto 0;max-width:var(--maxw);position:relative;z-index:5}
-  .status .inner{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:12px 18px;font-size:14px;flex-wrap:wrap}
-  .badge{font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px;letter-spacing:.5px;white-space:nowrap}
-  .badge.auto{background:var(--green-bg);color:var(--green)}
-  .badge.manual{background:var(--amber-bg);color:var(--amber)}
-  .status .info{color:var(--muted);font-size:12.5px}
-  .status .info b{color:var(--ink)}
+  /* 侧边栏 Wiki Sidebar */
+  .sidebar {
+    width: var(--sidebar-w);
+    background: #fff;
+    border-right: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+  }
+  .sidebar-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .sidebar-menu {
+    padding: 16px;
+    flex: 1;
+    overflow-y: auto;
+  }
+  .menu-group {
+    margin-bottom: 20px;
+  }
+  .menu-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    padding: 0 12px 8px;
+  }
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    color: #334155;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.15s;
+    cursor: pointer;
+  }
+  .menu-item:hover, .menu-item.active {
+    background: var(--primary-light);
+    color: var(--primary);
+  }
+  .sidebar-footer {
+    padding: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--muted);
+  }
 
-  .grid{display:grid;grid-template-columns:1fr;gap:18px;margin:30px 0 10px}
-  @media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+  /* 主内容区 Outer */
+  .main-wrapper {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
 
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 24px;display:flex;gap:16px;align-items:flex-start;transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden}
-  .card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(20,50,90,.14)}
-  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent,#9aa4b0)}
-  .ico{flex:none;width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:25px;background:var(--icon-bg,#f0f2f6)}
-  .body{min-width:0}
-  .t{font-weight:900;font-size:18.5px;color:var(--ink);line-height:1.35}
-  .t .tag{font-size:11px;font-weight:800;color:#fff;background:var(--accent,#9aa4b0);padding:2px 8px;border-radius:6px;margin-left:8px;vertical-align:middle;letter-spacing:.4px}
-  .d{font-size:14.5px;color:var(--muted);margin-top:6px;line-height:1.6}
-  .fname{font-size:12.5px;color:#9aa4b0;margin-top:10px;word-break:break-all}
-  .fname::before{content:"📄 "}
+  /* 顶部搜索栏 Header */
+  .top-header {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    padding: 12px 32px;
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+  }
+  .search-box {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+  }
+  .search-input {
+    width: 100%;
+    padding: 8px 12px 8px 36px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-input:focus {
+    border-color: var(--primary);
+    background: #fff;
+  }
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+  }
 
-  /* 空状态 */
-  .empty{background:var(--card);border:1px dashed var(--line);border-radius:var(--radius);padding:42px 30px;text-align:center;color:var(--muted)}
-  .empty h3{margin:0 0 10px;color:var(--ink)}
-  .empty code{background:#f0f2f6;padding:2px 6px;border-radius:5px;font-size:13px}
-  .empty ol{text-align:left;max-width:520px;margin:16px auto 0;padding-left:22px}
-  .empty li{margin:6px 0}
+  /* 内容区 Content */
+  .content {
+    padding: 32px;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+  }
 
-  .guide{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 28px;margin:22px 0}
-  .guide h2{font-size:18px;color:var(--purple-dark);margin:0 0 14px;font-weight:900}
-  .guide ul{list-style:none;padding:0;margin:0}
-  .guide li{position:relative;padding:8px 0 8px 28px;border-bottom:1px dashed var(--line)}
-  .guide li::before{content:"";position:absolute;left:6px;top:17px;width:8px;height:8px;border-radius:50%;background:var(--purple)}
-  .guide li:last-child{border-bottom:none}
-  .guide code{background:#f0f2f6;padding:2px 6px;border-radius:5px;font-size:13px;color:var(--purple-dark)}
+  .wiki-hero {
+    margin-bottom: 24px;
+  }
+  .wiki-hero h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .wiki-hero p {
+    color: var(--muted);
+    margin: 0;
+    font-size: 15px;
+  }
 
-  footer{color:var(--muted);text-align:center;font-size:12.5px;padding:40px 20px 50px}
-  footer .dis{max-width:620px;margin:0 auto;line-height:1.7}
-  @media print{.topbar{display:none}body{background:#fff}.card,.guide{box-shadow:none;border-color:#ccc}}
+  /* Status Bar */
+  .status-bar {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    box-shadow: var(--shadow);
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background: #e0f2fe;
+    color: #0369a1;
+  }
+
+  /* 知识卡片网格 Grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .wiki-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  .wiki-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+    border-color: #cbd5e1;
+  }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+  .card-icon .svg-icon {
+    width: 22px;
+    height: 22px;
+  }
+  .card-header {
+    flex: 1;
+    min-width: 0;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .card-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #94a3b8;
+    border-top: 1px dashed var(--line);
+    padding-top: 12px;
+  }
+  .card-footer .file-name {
+    font-family: monospace;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 180px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .card-footer .read-btn {
+    color: var(--primary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  /* Empty state */
+  .empty-block {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px;
+    text-align: center;
+    color: var(--muted);
+  }
+
+  footer {
+    padding: 24px 0;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--line);
+    margin-top: auto;
+  }
+  footer a {
+    color: var(--primary);
+    font-weight: 600;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* 响应式调整 */
+  @media (max-width: 768px) {
+    .sidebar { display: none; }
+    .main-wrapper { margin-left: 0; }
+    .content { padding: 16px; }
+  }
 </style>
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="wrap">
-      <div class="brand"><span class="dot"></span>心灵指南</div>
-      <nav class="topnav">
-        <a href="#lib">分类</a>
-        <a href="#how">如何自动检索</a>
-      </nav>
-    </div>
-  </header>
+  <!-- SVG 图标库声明（隐藏） -->
+  <svg style="display: none;">
+    <!-- 搜索 -->
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    </symbol>
+    <!-- 📚 知识库 -->
+    <symbol id="icon-book" viewBox="0 0 24 24">
+      <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/>
+    </symbol>
+    <!-- 🏷️ 标签/分类 -->
+    <symbol id="icon-tag" viewBox="0 0 24 24">
+      <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM13 20l-9-9V4h7l9 9-7 7z"/><circle cx="6.5" cy="6.5" r="1.5"/>
+    </symbol>
+    <!-- 🧠 大脑/心理 -->
+    <symbol id="icon-brain" viewBox="0 0 24 24">
+      <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.2 19.57 10.55 20 12 20s2.8-.43 4.34-1.09l1.9 1.9c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-.62-1.79C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/>
+    </symbol>
+    <!-- 🚑 紧急/医疗 -->
+    <symbol id="icon-medical" viewBox="0 0 24 24">
+      <path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/>
+    </symbol>
+    <!-- 🏳️‍⚧️ 性别/认同 -->
+    <symbol id="icon-gender" viewBox="0 0 24 24">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+    </symbol>
+    <!-- 📄 文件 -->
+    <symbol id="icon-file" viewBox="0 0 24 24">
+      <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+    </symbol>
+    <!-- 箭头 -->
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+      <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+    </symbol>
+  </svg>
 
-  <section class="hero">
-    <div class="wrap">
-      <div class="kicker">📚 心理健康 · 急救 · 陪伴 · 自救</div>
-      <h1>心灵指南<br>心理健康与急救科普站</h1>
-      <p class="sub">把同文件夹里的 <b>.html 指南页自动收集成导航</b>。跨性别 / 抑郁症 / 双相 / 亚硝酸盐急救，点击即可阅读。</p>
-    </div>
-  </section>
-
-  <div class="status">
-    <div class="inner">
-      <span class="badge manual" id="modeBadge">检测中…</span>
-      <span class="info" id="modeInfo">正在尝试自动检索同目录文件…</span>
-    </div>
-  </div>
-
-  <main class="wrap">
-
-    <div class="grid" id="grid"></div>
-
-    <!-- 空状态提示 -->
-    <div class="empty" id="empty" style="display:none">
-      <h3>暂时没有自动列出任何指南</h3>
-      <p>这通常是因为：1）你用了 <code>file://</code> 直接双击打开本页，浏览器禁止读取同目录文件；2）或当前服务器没有开启目录列表。</p>
-      <p>
-        <b>解决办法（任选其一）：</b>
-        <ol>
-          <li>在文件所在目录打开终端，运行 <code>python3 -m http.server 8000</code>，然后访问 <code>http://localhost:8000/</code>（推荐，能自动扫描）。</li>
-          <li>或直接编辑本文件顶部 <code>const FILE_LIST = [...];</code>，手动把文件名填进去（无需服务器也能用）。</li>
-        </ol>
-      </p>
-    </div>
-
-    <!-- 使用方法 -->
-    <section id="how">
-      <div class="guide">
-        <h2>🔧 「自动检索」是怎么工作的</h2>
-        <ul>
-          <li>本页会先尝试用 <code>fetch('./')</code> 向服务器请求<strong>当前目录的列表</strong>，并把其中所有 <code>.html</code> 文件抓出来。</li>
-          <li>如果能抓到 → 用<strong>自动模式</strong>（左上角显示绿色「自动检索」），以后新增 / 改名文件都会自动纳入。</li>
-          <li>如果抓不到 → 自动切换为<strong>清单模式</strong>（左上角显示橙色「内置清单」），使用文件顶部 <code>FILE_LIST</code> 里的名单。</li>
-          <li>每个卡片会自动尝试读取该页面的 <code>&lt;title&gt;</code> 作为标题；按文件名关键字匹配主题色和图标。</li>
-        </ul>
-        <p style="color:var(--muted);font-size:13.5px;margin-top:14px;margin-bottom:0">💡 用 <code>python3 -m http.server</code> 或任意支持「目录列表」的静态服务器托管，即可获得最完整的自动体验。</p>
+  <!-- 左侧 Wiki 导航栏 -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <div class="brand-icon">W</div>
+        <span>心灵指南 Wiki</span>
       </div>
-    </section>
+    </div>
+    <div class="sidebar-menu">
+      <div class="menu-group">
+        <div class="menu-title">浏览知识库</div>
+        <a href="#" class="menu-item active" onclick="filterCategory('all', this)">
+          <svg class="svg-icon"><use href="#icon-book"/></svg> 词条索引
+        </a>
+      </div>
+      <div class="menu-group">
+        <div class="menu-title">快捷分类</div>
+        <a class="menu-item" onclick="filterCategory('跨性别', this)">
+          <svg class="svg-icon"><use href="#icon-gender"/></svg> 跨性别
+        </a>
+        <a class="menu-item" onclick="filterCategory('情绪障碍', this)">
+          <svg class="svg-icon"><use href="#icon-brain"/></svg> 心理与情绪障碍
+        </a>
+        <a class="menu-item" onclick="filterCategory('急救', this)">
+          <svg class="svg-icon"><use href="#icon-medical"/></svg> 中毒与生理急救
+        </a>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <div>共包含 <b id="docCount">0</b> 个指南词条</div>
+      <div style="margin-top:4px">公益心理健康科普</div>
+    </div>
+  </aside>
 
-    <footer>
-      <p class="dis">本站所有内容均为公益心理健康 / 急救科普，仅供了解与参考，<b>不能替代专业医疗诊断与治疗</b>。涉及诊断与用药，请前往正规医院专业科室评估。</p>
-      <p style="margin-top:14px">作者 · <a href="#" onclick="return false">水喝千束</a></p>
-    </footer>
+  <!-- 右侧主内容区 -->
+  <div class="main-wrapper">
+    <!-- 顶部搜索栏 Header -->
+    <header class="top-header">
+      <div class="search-box">
+        <span class="search-icon">
+          <svg class="svg-icon"><use href="#icon-search"/></svg>
+        </span>
+        <input type="text" id="searchInput" class="search-input" placeholder="搜索 Wiki 词条或关键字..." oninput="handleSearch()">
+      </div>
+    </header>
 
-  </main>
+    <!-- 实际内容 -->
+    <main class="content">
+      <div class="wiki-hero">
+        <h1>心灵指南 · 心理健康与急救知识库</h1>
+        <p>收录关于心理健康、跨性别认同、精神疾病常识与生理现场急救的开源 Wiki 科普指南。</p>
+      </div>
+
+      <!-- 状态提示 -->
+      <div class="status-bar">
+        <span class="badge">已就绪</span>
+        <span style="color: var(--muted)">知识库已载入 <b id="statusCount" style="color:var(--ink)">0</b> 个 Wiki 词条</span>
+      </div>
+
+      <!-- 词条卡片网格 -->
+      <div class="grid" id="grid"></div>
+
+      <!-- 空状态 -->
+      <div class="empty-block" id="emptyBlock" style="display:none">
+        未找到相关的词条内容
+      </div>
+
+      <footer>
+        <div>免责声明：本站所有内容均为公益科普，<b>不能替代专业医疗诊断与临床治疗</b>。如遇急诊或严重心理危机，请立即前往正规医院就诊或拨打急救电话。</div>
+        <div style="margin-top: 8px;">
+          维护者 · <a href="https://chisato.org.cn" target="_blank" rel="noopener noreferrer">水喝千束</a>
+        </div>
+      </footer>
+    </main>
+  </div>
 
 <script>
 /* ============================================================
-   内置清单（词单模式用）：把同一目录下的 .html 文件名填进来即可。
-   留空 [] 时，若无法自动检索会显示「空状态」提示。
-   注意：不需要写 index.html 自己。
+   JSON 词条清单配置（使用 SVG symbol ID 代替 Emoji）
    ============================================================ */
-const FILE_LIST = [
-  "MTF.html",
-  "亚硝酸钠中毒现场急救指南.html",
-  "双向情感障碍.html",
-  "抑郁症.html"
+const WIKI_DATA = [
+  {
+    title: "MTF 跨性别指南",
+    file: "MTF.html",
+    tag: "跨性别",
+    iconSymbol: "#icon-gender",
+    desc: "关于跨性别女性 (MTF) 的基础认知、心理适应与生活支持相关科普指南。"
+  },
+  {
+    title: "亚硝酸钠中毒现场急救指南",
+    file: "亚硝酸钠中毒现场急救指南.html",
+    tag: "急救",
+    iconSymbol: "#icon-medical",
+    desc: "突发亚硝酸盐/亚硝酸钠中毒时的黄金急救处理流程与紧急现场自救办法。"
+  },
+  {
+    title: "双相情感障碍科普",
+    file: "双向情感障碍.html",
+    tag: "情绪障碍",
+    iconSymbol: "#icon-brain",
+    desc: "了解双相情感障碍（躁郁症）的症状识别、日常情绪监测与身边人陪伴建议。"
+  },
+  {
+    title: "抑郁症自救与伴随指南",
+    file: "抑郁症.html",
+    tag: "情绪障碍",
+    iconSymbol: "#icon-brain",
+    desc: "关于抑郁状态识别、心理调节、求医指导及给身旁陪伴者的科学科普。"
+  }
 ];
 
-/* ============================================================
-   卡片主题：按文件名关键字匹配图标 / 颜色
-   ============================================================ */
-function themeFor(name){
-  const n = name.toLowerCase();
-  if(/双相|双向|bipolar/.test(n)) return {accent:"#5e35b1",bg:"#ebe5f8",icon:"🌗",tag:"情绪障碍",cat:"双相"};
-  if(/抑郁|忧郁|depress/.test(n)) return {accent:"#00796b",bg:"#e0f2ef",icon:"🫂",tag:"情绪低落",cat:"抑郁"};
-  if(/mtf|跨性别|trans|性别/.test(n)) return {accent:"#e91e9c",bg:"#fbe3f2",icon:"🏳️‍⚧️",tag:"性别认同",cat:"跨性别"};
-  if(/亚硝酸|急救|中毒|nitrite/.test(n)) return {accent:"#1565c0",bg:"#e7f0fb",icon:"🚑",tag:"急救",cat:"中毒急救"};
-  return {accent:"#8892a0",bg:"#eef1f5",icon:"📄",tag:"指南",cat:"其他"};
-}
+let currentData = [...WIKI_DATA];
 
-/* 从文件名里去掉 .html，做显示名 */
-function prettyName(name){
-  return name.replace(/\.html$/i,"").replace(/[_\-]+/g," ");
-}
-
-/* 读取某个页面的 <title>（同源才能读到；失败则用文件名） */
-async function fetchTitle(url){
-  try{
-    const r = await fetch(url,{cache:"no-store"});
-    if(!r.ok) return null;
-    const html = await r.text();
-    const m = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
-    return m ? m[1].trim() : null;
-  }catch(e){ return null; }
-}
-
-/* 自动检索：抓当前目录列表里的 .html */
-async function autoScan(){
-  try{
-    const r = await fetch("./",{cache:"no-store"});
-    if(!r.ok) return [];
-    const ct = r.headers.get("content-type")||"";
-    let names = [];
-    if(ct.includes("json")){
-      const data = await r.json();
-      // nginx autoindex json 格式
-      names = (Array.isArray(data)?data:[])
-        .map(x=>x.name)
-        .filter(x=>/\.html$/i.test(x) && x!=="index.html");
-    }else{
-      const html = await r.text();
-      const seen = new Set();
-      // 先抓取所有 href，再统一清洗/过滤，兼容带 query 与各种列表格式
-      const re = /\bhref\s*=\s*["']([^"']+)["']/gi;
-      let m;
-      while((m=re.exec(html))!==null){
-        let href = m[1];
-        // 排除上级/绝对路径（在清理前先判断原始值）
-        if(href.startsWith("..")) continue;
-        if(/^\//.test(href)) continue;
-        // 去掉 query / hash，只留文件名
-        href = href.split(/[?#]/)[0];
-        href = decodeURIComponent(href.split("/").pop());
-        // 排除空、index 自身、非 html
-        if(!href || href==="index.html") continue;
-        if(!/\.html$/i.test(href)) continue;
-        seen.add(href);
-      }
-      names = [...seen];
-    }
-    return names;
-  }catch(e){ return []; }
-}
-
-/* 渲染卡片 */
-function render(names, mode){
+/* 渲染卡片列表 */
+function renderGrid(items){
   const grid = document.getElementById("grid");
-  const empty = document.getElementById("empty");
-  const badge = document.getElementById("modeBadge");
-  const info = document.getElementById("modeInfo");
+  const emptyBlock = document.getElementById("emptyBlock");
   grid.innerHTML = "";
 
-  if(!names.length){
-    empty.style.display = "block";
-    badge.className = "badge manual";
-    badge.textContent = "未检索到";
-    info.innerHTML = "未能自动列出同目录文件，请运行 <b>python3 -m http.server</b> 或编辑内置 FILE_LIST。";
+  if(!items.length){
+    emptyBlock.style.display = "block";
     return;
   }
+  emptyBlock.style.display = "none";
 
-  empty.style.display = "none";
-  if(mode==="auto"){
-    badge.className = "badge auto";
-    badge.textContent = "自动检索";
-    info.innerHTML = "已从服务器目录列表中自动发现 <b>"+names.length+"</b> 个指南 · 新增文件会自动纳入";
-  }else{
-    badge.className = "badge manual";
-    badge.textContent = "内置清单";
-    info.innerHTML = "自动检索不可用，已使用内置 FILE_LIST 中的 <b>"+names.length+"</b> 个指南";
-  }
-
-  // 逐个读取标题（并发，容错）
-  Promise.all(names.map(async name=>{
-    const t = themeFor(name);
-    const url = encodeURI(name);
-    const title = await fetchTitle(url);
-    return {name,url,t,title};
-  })).then(items=>{
-    items.forEach(it=>{
-      const card = document.createElement("a");
-      card.className = "card";
-      card.href = it.url;
-      card.style.setProperty("--accent", it.t.accent);
-      card.style.setProperty("--icon-bg", it.t.bg);
-      card.innerHTML =
-        '<div class="ico">'+it.t.icon+'</div>'+
-        '<div class="body">'+
-          '<div class="t">'+ (it.title?it.title:it.name.replace(/\.html$/i,"")) +' <span class="tag">'+it.t.tag+'</span></div>'+
-          '<div class="d">'+ it.t.cat +' · 点击阅读详情</div>'+
-          '<div class="fname">'+ it.name +'</div>'+
-        '</div>';
-      grid.appendChild(card);
-    });
+  items.forEach(it => {
+    const card = document.createElement("a");
+    card.className = "wiki-card";
+    card.href = encodeURI(it.file);
+    card.innerHTML = `
+      <div>
+        <div class="card-top">
+          <div class="card-icon">
+            <svg class="svg-icon"><use href="${it.iconSymbol || '#icon-file'}"/></svg>
+          </div>
+          <div class="card-header">
+            <div class="card-title">${it.title}</div>
+            <span class="card-tag">${it.tag || "指南"}</span>
+          </div>
+        </div>
+        <div class="card-desc">${it.desc || "点击阅读详情..."}</div>
+      </div>
+      <div class="card-footer">
+        <span class="file-name">
+          <svg class="svg-icon" style="width:14px;height:14px;"><use href="#icon-file"/></svg>
+          ${it.file}
+        </span>
+        <span class="read-btn">
+          阅读词条
+          <svg class="svg-icon" style="width:14px;height:14px;"><use href="#icon-arrow-right"/></svg>
+        </span>
+      </div>
+    `;
+    grid.appendChild(card);
   });
 }
 
-/* 启动：先尝试自动检索，失败则用内置清单 */
-(async function init(){
-  const auto = await autoScan();
-  if(auto.length) render(auto,"auto");
-  else render(FILE_LIST.filter(n=>n && /\.html$/i.test(n)),"manual");
+/* 实时搜索过滤 */
+function handleSearch(){
+  const query = document.getElementById("searchInput").value.toLowerCase().trim();
+  const filtered = currentData.filter(it => 
+    it.title.toLowerCase().includes(query) || 
+    it.file.toLowerCase().includes(query) ||
+    (it.tag && it.tag.toLowerCase().includes(query)) ||
+    (it.desc && it.desc.toLowerCase().includes(query))
+  );
+  renderGrid(filtered);
+}
+
+/* 侧边栏分类过滤 */
+function filterCategory(cat, el){
+  if(el){
+    document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  if(cat === 'all') {
+    currentData = [...WIKI_DATA];
+  } else {
+    currentData = WIKI_DATA.filter(it => it.tag === cat);
+  }
+  
+  handleSearch();
+}
+
+/* 初始化页面 */
+(function init(){
+  const count = WIKI_DATA.length;
+  document.getElementById("docCount").textContent = count;
+  document.getElementById("statusCount").textContent = count;
+  renderGrid(WIKI_DATA);
 })();
 </script>
 </body>
